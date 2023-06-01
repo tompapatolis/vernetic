@@ -1,4 +1,4 @@
-![Vernetic Logo](http://[::1]/vernetic/public/images/blocks/1684912712_5c064c99637c3115f09f.svg)
+![Vernetic Logo](logo.svg)
 
 # Vernetic
 
