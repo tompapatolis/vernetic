@@ -36,4 +36,4 @@ The Project is Open Source so you can use it freely for personal or professional
 
 http://[::1]/vernetic/public/images/blocks/1684912712_5c064c99637c3115f09f.svg
 
-By Tom Papatolis
+*By Tom Papatolis*
