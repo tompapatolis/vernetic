@@ -1,0 +1,157 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Cards ◗⎯⎯⎯⎯⎯⎯◌
+ */
+@use '../abstracts/mixins' as m;
+
+.card {
+	text-decoration: none !important;
+	background: var(--color-800);
+    border-radius: .5rem;
+	box-shadow: var(--shadow);
+	color: var(--color-100);
+	overflow: hidden;
+	display: flex;
+	flex-direction:column;
+
+	&__title {
+		margin-bottom: 0 !important;
+		padding: 1rem 1rem 0 1rem;
+		color: var(--color-50);
+        font-weight: 500;
+	}
+
+	&__body {
+		margin: 0;
+		font-size: var(--fs-400);
+        line-height: 1.5;
+		padding: 1rem;
+		flex:1;
+	}
+
+    &__image {
+        border-radius: .5rem .5rem 0 0;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        background-color: var(--color-950);
+        overflow: hidden;
+        border-bottom: 1px solid var(--color-900);
+    }
+
+    &__placeholder {
+        aspect-ratio: 16 / 9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--color-950);
+        border-bottom: 1px solid var(--color-900);
+
+        svg {
+            width: auto;
+            height: 80%;
+            fill: var(--color-700);
+        }
+    }
+
+	&:hover,
+	&:focus {
+        box-shadow: var(--shadow-focus);
+        * {
+            color: var(--color-50) !important;
+        }
+        .card__info--status {
+            color: var(--color-black) !important;
+        }
+	}
+}
+
+@include m.mq(large) {
+    .card {
+        box-shadow: none;
+    }
+}
+
+.card__footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .125rem 1rem;
+	border-top: 1px solid var(--color-900);
+	color: var(--color-200);
+	padding: .75rem 1rem;
+    overflow: hidden;
+}
+
+.card__info {
+    flex: 1 0 auto;
+    display: flex;
+    gap: .25rem;
+    align-items: center;
+    line-height: 1;
+    white-space: nowrap;
+    font-size: var(--fs-100);
+    padding: 0;
+
+    &--hits {
+        font-size: var(--fs-300);
+        color: var(--color-50);
+        justify-content: flex-end;
+    }
+
+    &--status {
+        justify-content: center;
+    }
+
+    &--status[data-status='2'] {
+        color: var(--color-blue-900);
+        background: var(--color-blue-200);
+    }
+
+    &--status[data-status='2']::before {
+        content: 'Draft';
+    }
+
+    &--status[data-status='3'] {
+        color: var(--color-red-900);
+        background: var(--color-red-200);
+    }
+
+    &--status[data-status='3']::before {
+        content: 'Deleted';
+    }
+}
+
+/**
+ * Popular Posts
+ */
+
+.popular-posts {
+    counter-reset: count_post;
+}
+
+.popular-posts > a.card {
+    counter-increment: count_post;
+}
+
+.popular-posts a.card {
+    position: relative;
+}
+
+.popular-posts a.card::after {
+    content: counter(count_post,decimal-leading-zero);
+    position: absolute;
+    top: .5rem;
+    left: 0;
+    z-index: 5;
+    font-weight: bold;
+    font-family: var(--ff-heading);
+    font-size: 2rem;
+    padding: .5rem 1rem .5rem .5rem;
+    line-height: 1;
+    background: var(--color-900);
+    color: var(--color-a200);
+    border-top-right-radius: 100% 135px;
+	border-bottom-right-radius: 100% 10px;
+}

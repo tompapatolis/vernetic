@@ -1,0 +1,22 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Mixins ◗⎯⎯⎯⎯⎯⎯◌
+ */
+
+@use 'sass:map';
+@use '../abstracts/breakpoints' as b;
+
+@mixin mq($size) {
+    @media (max-width: map.get(b.$breakpoints, $size)) {
+        @content;
+    }
+}
+
+@mixin mqm($size) {
+    @media (min-width: calc(map.get(b.$breakpoints, $size) + 1px)) {
+        @content;
+    }
+}

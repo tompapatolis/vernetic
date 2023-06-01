@@ -1,0 +1,348 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Forms ◗⎯⎯⎯⎯⎯⎯◌
+ */
+@use '../abstracts/mixins' as m;
+
+/**
+ * Inputs
+ */
+
+// https://getbootstrap.com/docs/5.0/forms/floating-labels/
+
+.form-set {
+    position: relative;
+
+    &__input,
+    &__select {
+        display: block;
+        width: 100%;
+        padding: 1rem .75rem;
+        line-height: 1.25;
+        font-size: 1rem;
+        color: var(--color-100);
+        background: var(--color-900);
+        border: 2px solid var(--color-600);
+        border-radius: .5rem;
+        outline: none;
+        transition: border-color .15s ease-in-out;
+        box-shadow: var(--shadow);
+        height: calc(3.5rem + 4px);
+
+        &:focus {
+            outline: 0;
+            border-color: var(--color-blue-400);
+        }
+
+        &:focus,
+        &:not(:placeholder-shown) {
+            padding-top: 1.75rem;
+            padding-bottom: .5rem;
+        }
+
+        &:not(select):read-only:focus {
+            border-color: var(--color-red-300);
+        }
+
+        &::placeholder {
+            opacity: 0;
+        }
+    }
+
+    &__label,
+    &[data-readonly]::after {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        padding: 1rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        pointer-events: none;
+        user-select: none;
+        border: 2px solid transparent;
+        transform-origin: 0 0;
+        transition: opacity .1s ease-in-out,transform .1s ease-in-out;
+        color: var(--color-100);
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: calc(100% - 1rem);
+    }
+    &[data-readonly]::after {
+        color: var(--color-red-300);
+    }
+
+    &__input:not(:placeholder-shown) ~ &__label,
+    &__input:not(:read-only):focus ~ &__label,
+    &__select ~ &__label {
+        opacity: .65;
+        transform: scale(.85) translateY(-.5rem) translateX(.15rem);
+    }
+
+    &[data-readonly]:has(&__input:focus)::after {
+        content: attr(data-readonly);
+        left: auto;
+        right: 0;
+        opacity: 1;
+        transform: scale(.85) translateY(-.5rem) translateX(.9rem);
+    }
+}
+
+/**
+ * Select
+ */
+
+.form-set--select {
+    &::after {
+        content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='28' viewBox='0 96 960 960' width='28'%3E%3Cpath fill='%23606d7b' d='M480 711 240 471l43-43 197 198 197-197 43 43-240 239Z'/%3E%3C/svg%3E");
+        position: absolute;
+        transform: translateY(-50%);
+        top: calc((3.5rem + 4px) / 2);
+        right: .25rem;
+        height: 28px;
+        width: 28px;
+        pointer-events: none;
+        display: block;
+    }
+
+    .form-set__select {
+        padding-right: 2rem;
+    }
+}
+
+/**
+ * Textarea
+ */
+
+.form-set {
+    &__textarea {
+        color: var(--color-100);
+        background: var(--color-900);
+        font-size: 1;
+        line-height: 1.25;
+
+        &:not(:placeholder-shown) + .form-set__label,
+        &:focus + .form-set__label {
+            opacity: .65;
+            transform: scale(.85) translateY(-.5rem) translateX(.15rem);
+        }
+
+        &::placeholder {
+            opacity: 0;
+        }
+
+        &::-webkit-scrollbar {
+            width: .5rem;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: var(--color-800);
+            border-radius: 9999px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: var(--color-600);
+          border-radius: 9999px;
+        }
+    }
+}
+
+.form-set--textarea {
+    display: block;
+    width: 100%;
+    padding: 1rem .75rem;
+    color: var(--color-100);
+    background: var(--color-900);
+    line-height: 1.25;
+    font-size: 1rem;
+    border: 2px solid var(--color-600);
+    border-radius: .5rem;
+    outline: none;
+    transition: border-color .15s ease-in-out;
+    box-shadow: var(--shadow);
+
+    &:focus-within {
+        border-color: var(--color-blue-400);
+    }
+
+    &:focus-within,
+    &:has(.form-set__textarea:not(:placeholder-shown)) {
+        outline: 0;
+        padding-top: 1.75rem;
+        padding-bottom: .25rem;
+    }
+
+}
+
+/**
+ * Toggles
+ */
+
+.form-set {
+    &__input-toggle {
+        display: none;
+    }
+
+    &__input-toggle:checked ~ &__switch {
+        background: var(--color-blue-300);
+    }
+
+    &__switch {
+        --toggle-size: 1.25rem;
+        display: block;
+        position: relative;
+        width: calc(var(--toggle-size) * 2);
+        height: var(--toggle-size);
+        border-radius: calc(var(--toggle-size) / 2);
+        background: var(--color-700);
+        transition: background-color 0.2s ease, box-shadow 0.2s ease;
+        cursor: pointer;
+        box-shadow: inset 0  25px 25px -25px rgba(0,0,0,0.45);
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: var(--toggle-size);
+            width: var(--toggle-size);
+            background: var(--color-100);
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
+    }
+
+    &__input-toggle:checked ~ &__switch::after {
+        transform: translateX(var(--toggle-size));
+    }
+}
+
+.form-set--toggle {
+    padding: 1rem .75rem;
+    height: calc(3.5rem + 4px);
+    width: 100%;
+    display: flex;
+    gap: .75rem;
+    align-items: center;
+    color: var(--color-100);
+    background: var(--color-900);
+    line-height: 1.25;
+    font-size: 1rem;
+    border: 2px solid var(--color-600);
+    border-radius: .5rem;
+    outline: none;
+    transition: border-color .15s ease-in-out;
+    box-shadow: var(--shadow);
+
+    .form-set__label {
+        all: unset;
+        line-height: 1;
+    }
+}
+
+/**
+ * Input with Button
+ */
+
+.form-set {
+    &__button.btn {
+        padding: 0 .5rem;
+        border-radius: 0 .5rem .5rem 0;
+        box-shadow: 2px 3px 2px rgba(0,0,0, .25);
+        height: calc(3.5rem + 4px);
+    }
+}
+
+.form-set--button {
+    display: flex;
+
+    .form-set__input {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .form-set__input.animate {
+        animation: form-set-animate 150ms infinite alternate;
+        transition: none;
+    }
+    .form-set__input:read-only:focus {
+        border-color: var(--color-600);
+    }
+
+    &[data-readonly]:has(.form-set__input:focus)::after {
+        right: 2.65rem;
+    }
+}
+
+@keyframes form-set-animate {
+    0%   { border-color: var(--color-800); }
+    100% { border-color: var(--color-blue-400); }
+}
+
+/**
+ * Radio
+ */
+
+.form-set {
+
+    &__radio-input {
+        display: none;
+    }
+
+    &__radio-input:checked + &__radio-label {
+        background: var(--color-blue-300);
+        color: var(--color-white);
+        box-shadow: inset 0 -25px 25px -25px rgba(0,0,0,0.45);
+    }
+
+    &__radio-label {
+        font-size: var(--fs-200);
+        background: var(--color-800);
+        color: var(--color-200);
+        line-height: 1;
+        padding: .375rem 0;
+        flex: 1 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        user-select: none;
+
+        &:first-of-type {
+            border-top-left-radius: .25rem;
+            border-bottom-left-radius: .25rem;
+        }
+        &:nth-last-of-type(2) {
+            border-top-right-radius: .25rem;
+            border-bottom-right-radius: .25rem;
+        }
+    }
+}
+
+.form-set--radio {
+    padding: 1rem .75rem;
+    height: calc(3.5rem + 4px);
+    width: 100%;
+    display: flex;
+    gap: 1px;
+    align-items: center;
+    color: var(--color-100);
+    background: var(--color-900);
+    line-height: 1.25;
+    font-size: 1rem;
+    border: 2px solid var(--color-600);
+    border-radius: .5rem;
+    outline: none;
+    transition: border-color .15s ease-in-out;
+    box-shadow: var(--shadow);
+
+    .form-set__label {
+        all: unset;
+        line-height: 1;
+        order: -1;
+        padding-right: calc(.75rem - 1px);
+    }
+}

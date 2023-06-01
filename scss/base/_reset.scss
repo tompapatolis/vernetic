@@ -1,0 +1,114 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Reset ◗⎯⎯⎯⎯⎯⎯◌
+ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    min-height: 100vh;
+}
+
+body {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+a {
+    text-decoration: none;
+}
+
+img,
+picture,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+textarea,
+button,
+select {
+    font: inherit;
+    max-width: 100%;
+}
+
+input,
+select {
+	width: 100%;
+	appearance: none;
+}
+
+textarea {
+	width: 100%;
+	border: none;
+    overflow: auto;
+    outline: none;
+    box-shadow: none;
+    resize: none;
+}
+
+input[type="submit"] {
+    width: auto;
+}
+
+// Remove Chrome Autofill
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    box-shadow: 0 0 0 30px #1a232b inset !important;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: var(--color-50) !important;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+button,
+button:focus {
+    outline: none;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+img,
+iframe,
+table {
+	max-width: 100%;
+}
+
+p,
+a,
+table {
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	word-break: break-word;
+	hyphens: auto;
+}
+
+[contenteditable]:focus {
+	outline: 0;
+}

@@ -1,0 +1,17 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Functions ◗⎯⎯⎯⎯⎯⎯◌
+ */
+@use 'sass:math';
+
+/**
+ * Decimal Round
+ */
+
+@function dround($number, $digits) {
+    $n: math.pow(10, $digits);
+    @return  math.div(ceil($number * $n), $n);
+}

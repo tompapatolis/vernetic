@@ -1,0 +1,289 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Effects ◗⎯⎯⎯⎯⎯⎯◌
+ */
+@use '../abstracts/mixins' as m;
+
+/**
+ * Image Animations
+ */
+
+.animate-rotate {
+    animation: rotating 10s linear infinite;
+}
+
+.animate-rotate-counterclock {
+    animation: rotating-counterclock 10s linear infinite;
+}
+
+.animate-heartbeat {
+    animation: heartbeat 1.2s linear infinite;
+}
+
+.animate-breathing {
+    animation: breathing 5s ease-out infinite;
+}
+
+.animate-deform {
+    animation: deform 2s linear infinite alternate;
+}
+
+/**
+* Animations
+*/
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotating-counterclock {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(0.8);
+    }
+    5% {
+        transform: scale(0.9);
+    }
+    10% {
+        transform: scale(0.8);
+    }
+    15% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.8);
+    }
+    100% {
+        transform: scale(0.8);
+    }
+}
+
+@keyframes breathing {
+    0% {
+      transform: scale(0.9);
+    }
+
+    25% {
+      transform: scale(1);
+    }
+
+    60% {
+      transform: scale(0.9);
+    }
+
+    100% {
+      transform: scale(0.9);
+    }
+}
+
+@keyframes deform {
+    0% {
+        transform: scale(0.95, 1.05);
+    }
+
+    100% {
+        transform: scale(1.05, 0.95);
+    }
+}
+
+/**
+ * Border Pulsate
+ */
+
+
+.border-pulsate {
+    animation: border-pulsate 1500ms infinite;
+}
+
+@keyframes border-pulsate {
+    0%   { border-color: var(--color-red-500); }
+    50%  { border-color: var(--color-black); }
+    100% { border-color: var(--color-red-500); }
+}
+
+/**
+ * Slide Right
+ */
+
+@include m.mqm(large) {
+    [data-animation="slide-right"] {
+        transform: translateX(-5rem);
+        opacity: 0;
+    }
+
+    .slide-right {
+        transition: opacity 500ms ease-out, transform 500ms ease-out;
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/**
+ * Slide Left
+ */
+
+@include m.mqm(large) {
+    [data-animation="slide-left"] {
+        transform: translateX(5rem);
+        opacity: 0;
+    }
+
+    .slide-left {
+        transition: opacity 500ms ease-out, transform 500ms ease-out;
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/**
+ * Slide Up
+ */
+
+@include m.mqm(large) {
+    [data-animation="slide-up"] {
+        transform: translateY(5rem);
+        opacity: 0;
+    }
+
+    .slide-up {
+        transition: opacity 500ms ease-out, transform 500ms ease-out;
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/**
+ * Slide Down
+ */
+
+@include m.mqm(large) {
+    [data-animation="slide-down"] {
+        transform: translateY(-5rem);
+        opacity: 0;
+    }
+
+    .slide-down {
+        transition: opacity 500ms ease-out, transform 500ms ease-out;
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/**
+ * Slide Grow
+ */
+
+@include m.mqm(large) {
+    [data-animation="slide-grow"] {
+        transform: scale(.9);
+        opacity: .65;
+    }
+
+    .slide-grow {
+        transition: opacity 350ms ease-out, transform 350ms ease-out;
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/**
+ * Sequential Fade-in
+ */
+
+@include m.mqm(large) {
+    [data-animation="sequential-fade-in"] > * {
+        opacity: 0;
+    }
+
+    .sequential-fade-in > * {
+        transition: opacity 500ms;
+    }
+}
+
+/**
+ * Hover Effect
+ */
+
+ .hover-effect {
+    &:hover,
+	&:focus {
+        box-shadow: var(--shadow-focus);
+        cursor: pointer;
+        * {
+            color: var(--color-50) !important;
+        }
+	}
+ }
+
+ /**
+ * Circular Spinner
+ */
+
+.spinner {
+	position: absolute; z-index:10;
+	top:50%;left:50%; transform: translate(-50%, -50%);
+
+	img {
+		width: 10rem; height: 10rem;
+	}
+}
+
+@include m.mq(small) {
+	.spinner img {
+		width: 4rem;
+		height: 4rem;
+	}
+}
+
+/**
+ * Animate Bubble Button
+ */
+
+.btn-bubble.animate {
+    position: relative;
+    pointer-events: none;
+}
+
+.btn-bubble.animate::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -8px;
+    left: -8px;
+    width:  calc(100% + 16px);
+    height: calc(100% + 16px);
+    border-radius: 50%;
+    background-image: conic-gradient(var(--color-orange-400) 30deg, transparent 120deg);
+    animation: orbit 2s infinite linear;
+}
+
+@keyframes orbit {
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+/**
+ * Typewriter
+ */
+
+.typerwriter {
+    word-break: keep-all;
+}

@@ -1,0 +1,55 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Containers ◗⎯⎯⎯⎯⎯⎯◌
+ */
+
+@use 'sass:map';
+@use '../abstracts/sizes' as s;
+@use '../abstracts/mixins' as m;
+
+.container {
+    width: map.get(s.$container_sizes, 'd');
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+    overflow: hidden;
+}
+
+.container--fluid {
+    width: auto;
+    margin: 0;
+    padding: 0 2vw;
+    overflow: visible;
+}
+
+/**
+ * Modifiers
+ */
+
+.container {
+
+    @each $key, $size in s.$container_sizes {
+        &--#{$key} {
+            width: $size;
+        }
+    }
+
+    &--overflow {
+        overflow: visible;
+    }
+}
+
+@include m.mq(small) {
+    .container {
+        width: 100% !important;
+        margin: 0;
+
+        &--max {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}

@@ -1,0 +1,31 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Draggable ◗⎯⎯⎯⎯⎯⎯◌
+ */
+@use '../abstracts/mixins' as m;
+
+.draggable-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap:.75rem;
+    margin: 3px;
+}
+
+.draggable {
+    cursor: move;
+    background: var(--color-800);
+    border-radius: .25rem;
+    padding: .5rem 1rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.draggable.dragging {
+    opacity: .75;
+    outline: 3px dashed var(--color-red-500);
+}

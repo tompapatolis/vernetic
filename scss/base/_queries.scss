@@ -1,0 +1,23 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Queries ◗⎯⎯⎯⎯⎯⎯◌
+ */
+
+@use 'sass:map';
+@use '../abstracts/type' as t;
+@use '../abstracts/mixins' as m;
+
+/**
+ * Font sizes
+ */
+
+@include m.mq(small) {
+    :root {
+        @each $key, $size in map.get(t.$type-scale, small) {
+            --fs-#{$key}: #{$size};
+        }
+    }
+}

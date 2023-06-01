@@ -1,0 +1,194 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Grid ◗⎯⎯⎯⎯⎯⎯◌
+ */
+
+@use 'sass:map';
+@use '../abstracts/mixins' as m;
+@use '../abstracts/sizes' as s;
+
+/**
+ * Display
+ */
+
+.grid {
+    display: grid;
+}
+
+.grid-inline {
+    display: inline-grid;
+}
+
+/**
+ * Grid Columns
+ */
+
+@for $i from 1 through 10 {
+	.grid-col-#{$i} {
+		grid-template-columns: repeat($i, 1fr);
+	}
+
+	.grid-col-span-#{$i} {
+		grid-column: span $i;
+	}
+
+	.grid-row-span-#{$i} {
+		grid-row: span $i;
+	}
+}
+
+@include m.mq(large) {
+	@for $i from 1 through 10 {
+		.grid-col-md-#{$i} {
+			grid-template-columns: repeat($i, 1fr);
+		}
+	}
+
+	@for $i from 1 through 10 {
+		.grid-col-span-md-#{$i} {
+			grid-column: span $i;
+		}
+	}
+}
+
+@include m.mq(small) {
+	@for $i from 1 through 10 {
+		.grid-col-sm-#{$i} {
+			grid-template-columns: repeat($i, 1fr);
+		}
+	}
+}
+
+@include m.mq(small) {
+	.grid-break-sm {
+		grid-template-columns: 1fr !important;
+		* {
+			grid-column: span 1 !important;
+			grid-row: span 1 !important;
+		}
+	}
+}
+
+@each $suffix, $value in s.$grid_col_sizes {
+	.grid-col-auto-#{$suffix} {
+		grid-template-columns: repeat(auto-fill, minmax($value + px, 1fr));
+	}
+}
+
+.grid-col-spread {
+	grid-column: 1 / -1;
+}
+
+.grid-col-2-spread {
+	grid-template-columns: 1fr auto;
+}
+
+.grid-last-right {
+    grid-column-end: -1;
+}
+
+/**
+ * Alignment
+ */
+
+.grid-center {
+    justify-content: center;
+	align-items: center;
+}
+
+.grid-vcenter {
+    align-items: center;
+}
+
+.grid-hcenter {
+    justify-content: center;
+}
+
+.grid-top {
+	align-items: start;
+}
+
+.grid-bottom {
+	align-items: end;
+}
+
+.grid-self-bottom {
+	align-self: end;
+}
+
+.grid-self-right {
+    justify-self: right;
+}
+
+.grid-self-center {
+    justify-self: center;
+}
+
+.grid-self-spread {
+    align-self: stretch;
+}
+
+/**
+ * Grid/Flex Gaps
+ */
+
+@each $suffix, $value in s.$gaps {
+	.gap-#{$suffix} {
+		gap: $value + rem;
+	}
+
+	.gap-row-#{$suffix} {
+		row-gap: $value + rem;
+	}
+
+	.gap-col-#{$suffix} {
+		column-gap: $value + rem;
+	}
+}
+
+@include m.mq(small) {
+    @each $suffix, $value in s.$gaps {
+        .gap-sm-#{$suffix} {
+            gap: $value + rem !important;
+        }
+    }
+}
+
+/**
+ * Flow
+ */
+
+.grid-flow-row {
+    grid-auto-flow: row;
+}
+
+.grid-flow-column {
+    grid-auto-flow: column;
+}
+
+/**
+ * Helpers
+ */
+
+.grid-eq-h {
+    grid-auto-rows: 1fr;
+}
+
+.grid-eq-w {
+    grid-auto-columns: 1fr;
+}
+
+.grid-top {
+    align-items: start;
+}
+
+.grid-col-2-master {
+    grid-template-columns: auto 1fr;
+}
+
+.grid-col-3-master {
+    grid-template-columns: auto auto 1fr;
+}

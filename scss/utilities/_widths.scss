@@ -1,0 +1,95 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Widths & Heights ◗⎯⎯⎯⎯⎯⎯◌
+ */
+@use '../abstracts/mixins' as m;
+
+/**
+ * Widths & Heights | Step: 20px
+ */
+
+@for $i from 1 through 50 {
+    // Width
+    .w-#{$i * 20} {
+        width: #{$i * 20} + px;
+        max-width: 100%;
+    }
+
+    // Height
+    .h-#{$i * 20} {
+        height: #{$i * 20} + px;
+    }
+
+    // Minimum Width
+    .mw-#{$i * 20} {
+        min-width: #{$i * 20} + px;
+        max-width: 100%;
+    }
+
+    // Minimim Width in Characters
+    .mwc-#{$i * 10} {
+        min-width: #{$i * 10} + ch !important;
+    }
+
+    // Minimum Height
+    .mh-#{$i * 20} {
+        min-height: #{$i * 20} + px;
+    }
+}
+
+@include m.mq(small) {
+    @for $i from 1 through 30 {
+        .w-sm-#{$i * 20} {
+            width: #{$i * 20} + px !important;
+            max-width: 100%;
+        }
+
+        .h-sm-#{$i * 20} {
+            height: #{$i * 20} + px !important;
+        }
+    }
+}
+
+/**
+ * Widths based on Viewport
+ */
+
+ @for $i from 1 through 30 {
+    // Width
+    .w-#{$i}vw {
+        width: $i + vw;
+        max-width: 100%;
+    }
+
+}
+
+/**
+ * Helpers
+ */
+
+.w-auto {
+    width: auto;
+}
+
+.h-auto {
+    height: auto;
+}
+
+.w-fit {
+    width: fit-content;
+}
+
+.aspect-1 {
+    aspect-ratio: 1;
+}
+
+.aspect-169 {
+    aspect-ratio: 16 / 9;
+}
+
+.aspect-golden {
+    aspect-ratio: 1.618;
+}

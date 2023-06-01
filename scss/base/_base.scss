@@ -1,0 +1,17 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Base ◗⎯⎯⎯⎯⎯⎯◌
+ */
+@use '../abstracts/mixins' as m;
+
+body {
+    padding-top: var(--navbar-height);
+    font-family: var(--ff-body);
+    font-size: var(--fs-400);
+    line-height: var(--line-height);
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}

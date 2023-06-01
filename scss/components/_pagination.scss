@@ -1,0 +1,93 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Pagination ◗⎯⎯⎯⎯⎯⎯◌
+ */
+@use '../abstracts/mixins' as m;
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .25rem;
+    margin-top: 2.5rem;
+    font-family: var(--ff-heading);
+
+    &__no,
+    &__current {
+        line-height: 1;
+        font-size: var(--fs-400);
+        margin: 0;
+        border-radius: 9999px;
+        color: var(--color-200);
+        padding: .75rem 1rem;
+
+        @include m.mq(small) {
+            padding: .75rem;
+        }
+    }
+
+    &__no,
+    &__arrows {
+        position: relative;
+        isolation: isolate;
+        transition: color 150ms ease-out;
+    }
+
+    &__no::after,
+    &__arrows::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: var(--color-red-300);
+        transform: scale(0);
+        transform-origin: center;
+        transition: transform 150ms ease-out;
+        z-index: -1;
+        border-radius: 9999px;
+    }
+
+    &__no:where(:hover, :focus),
+    &__arrows:where(:hover, :focus) {
+        color: var(--color-red-50) !important;
+    }
+
+    &__no:where(:hover, :focus)::after,
+    &__arrows:where(:hover, :focus)::after {
+        transform: scale(1);
+    }
+
+    &__arrows,
+    &__dots {
+        line-height: 1;
+        margin: 0;
+        color: var(--color-200);
+    }
+
+    &__arrows {
+        padding: .5rem;
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        border-radius: 50%;
+        .svg-icon {
+            width:  2rem;
+            height: 2rem;
+        }
+    }
+
+    &__dots {
+        .svg-icon {
+            width:  1.5rem;
+            height: 1.5rem;
+        }
+    }
+
+    &__current {
+        font-weight: 500;
+        background-color: var(--color-blue-200);
+        color: var(--color-blue-800);
+    }
+}

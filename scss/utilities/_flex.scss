@@ -1,0 +1,84 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Flexbox ◗⎯⎯⎯⎯⎯⎯◌
+ */
+@use '../abstracts/mixins' as m;
+
+/**
+ * Display
+ */
+
+.flex {
+    display: flex;
+}
+
+.flex-inline {
+    display: inline-flex;
+}
+
+/**
+ * Flex Directions
+ */
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+/**
+ * Flex Positions
+ */
+
+.flex-center {
+    justify-content: center;
+    align-items:center;
+}
+
+.flex-spread {
+    justify-content: space-between;
+}
+
+.flex-vcenter {
+    align-items: center;
+}
+
+.flex-vtop {
+    align-items: flex-start;
+}
+
+.flex-hcenter {
+    justify-content: center;
+}
+
+.flex-end,
+.flex-right {
+    justify-content: flex-end;
+}
+
+
+.flex-v {
+    display: flex;
+    align-items: center;
+    gap: .25em;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+/**
+ * Flex Column Widths
+ */
+
+
+@for $i from 1 through 5 {
+	.flex-#{$i} {
+		flex:$i !important;
+	}
+}

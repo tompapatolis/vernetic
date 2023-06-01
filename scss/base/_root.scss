@@ -1,0 +1,85 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Root ◗⎯⎯⎯⎯⎯⎯◌
+ */
+
+@use 'sass:math';
+@use 'sass:map';
+@use '../abstracts/colors' as c;
+@use '../abstracts/type' as t;
+
+:root {
+    /**
+     * color Scheme
+     */
+    --color-scheme: dark;
+    --text-color  : var(--color-100);
+    --bg-color    : var(--color-900);
+    color-scheme: var(--color-scheme);
+
+    /**
+     * Fonts
+     */
+    --ff-body      : sans-serif;
+    --ff-heading   : sans-serif;
+    --ff-monospace : 'Fira Code', monospace;
+    --ff-count     : 'Bebas Neue', monospace;
+    --line-height  : 1.8;
+
+    @each $key, $size in map.get(t.$type-scale, big) {
+        --fs-#{$key}: #{$size};
+    }
+
+    /**
+     * Colors
+     */
+
+    @each $shade, $h, $s, $l in c.$shade_builder {
+        --color-#{$shade}: hsl(#{c.$gray_hue+$h}, #{math.min(c.$gray_sat+$s,100%)}, #{$l});
+    }
+
+    @each $shade, $h, $s, $l in c.$color_builder {
+        --color-red-#{$shade}: hsl(#{c.$red_hue+$h}, #{math.min(c.$red_sat+$s,100%)}, #{$l});
+    }
+
+    @each $shade, $h, $s, $l in c.$color_builder {
+        --color-orange-#{$shade}: hsl(#{c.$orange_hue+$h}, #{math.min(c.$orange_sat+$s,100%)}, #{$l});
+    }
+
+    @each $shade, $h, $s, $l in c.$color_builder {
+        --color-green-#{$shade}: hsl(#{c.$green_hue+$h}, #{math.min(c.$green_sat+$s,100%)}, #{$l});
+    }
+
+    @each $shade, $h, $s, $l in c.$color_builder {
+        --color-blue-#{$shade}: hsl(#{c.$blue_hue+$h}, #{math.min(c.$blue_sat+$s,100%)}, #{$l});
+    }
+
+    --color-black: #111;
+    --color-white: #FFF;
+
+    /**
+     * Navbar
+     */
+    --navbar-color      : var(--color-100);
+    --navbar-background : var(--color-800);
+    --navbar-height     : 60px;
+    --sidebar-width     : 370px;
+    --sub-navbar-height : 26px;
+
+    /**
+     * Shadows
+     */
+    --shadow-intensity: 0.45;
+    --shadow             : 0 2px 5px rgba(0,0,0,var(--shadow-intensity));
+    --shadow-below       : 0 4px 8px rgba(0,0,0,var(--shadow-intensity));
+    --shadow-top         : inset 0 25px 25px -25px rgba(0,0,0,0.65);
+    --shadow-top-smooth  : inset 0 25px 25px -25px rgba(0,0,0,var(--shadow-intensity));
+    --shadow-top-slim    : inset 0 8px 8px -8px rgba(0,0,0,var(--shadow-intensity));
+    --shadow-focus       : 0 0 0 3px var(--color-900), 0 0 0 6px var(--color-a700);
+    --shadow-focus-inset : inset 0 0 0 3px var(--color-a700), inset 0 0 0 6px var(--color-900);
+    --shadow-text        : 2px 4px 3px rgba(0,0,0,var(--shadow-intensity));
+
+}

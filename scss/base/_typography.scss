@@ -1,0 +1,261 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Typography ◗⎯⎯⎯⎯⎯⎯◌
+ */
+
+@use 'sass:map';
+@use '../abstracts/type' as s;
+@use '../abstracts/mixins' as m;
+
+/**
+ * Headings
+ */
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    font-family: var(--ff-heading);
+    line-height: 1.25;
+    margin-bottom: 1.25ex;
+    font-weight: bold;
+}
+
+h1, .h1 {
+    font-size: var(--fs-800);
+    font-weight: 700;
+}
+
+h2, .h2 {
+    font-size: var(--fs-700);
+    font-weight: 700;
+}
+
+h3, .h3 {
+    font-size: var(--fs-600);
+    font-weight: 600;
+}
+
+h4, .h4 {
+    font-size: var(--fs-500);
+    font-weight: 500;
+}
+
+h5, .h5 {
+    font-size: var(--fs-400);
+    font-weight: 500;
+}
+
+h6, .h6 {
+    font-size: var(--fs-300);
+    font-weight: 500;
+}
+
+/**
+ * Paragraphs
+ */
+
+p {
+    font-size: var(--fs-400);
+    line-height: var(--line-height);
+    margin-bottom: 3ex;
+}
+
+/**
+ * Lists
+ */
+
+ol,
+ul,
+dl {
+    margin: 1em 0;
+    padding: 0 0 0 2.5em;
+
+    @include m.mq(small) {
+        padding: 0 0 0 1.5em;
+
+    }
+}
+
+li {
+    margin-bottom: .5em;
+    line-height: 1.5em;
+
+    @include m.mq(small) {
+        margin-bottom: .375em;
+
+    }
+}
+
+ul li::marker {
+    color: var(--color-orange-400);
+}
+
+ol li::marker {
+    color: var(--color-blue-300);
+}
+
+ol ol,
+ul ul,
+ol ul,
+ul ol {
+	margin-bottom: 0;
+}
+
+/**
+ * Clear Lists
+ */
+
+ul.strip {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	line-height: 1.5;
+}
+
+/**
+ * Blockquote
+ */
+
+blockquote {
+	border-left: 5px solid var(--color-a400) !important;
+	padding: 1.5rem;
+	font-style: italic;
+    color: var(--color-200);
+	background: var(--color-950);
+	border-radius: .5rem;
+	margin: 2rem 0;
+    font-size: var(--fs-300);
+
+	p {
+        font-size: var(--fs-300);
+	}
+
+	p:last-child {
+		margin-bottom:0 !important;
+	}
+}
+
+/**
+ * Raw HTML Embed for CKEditor
+ */
+
+.raw-html-embed:not(.ck-widget) {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+	box-shadow: var(--shadow);
+	background: var(--color-800);
+	margin: 1.5rem 0;
+	border-radius: .5rem;
+}
+
+.raw-html-embed:not(.ck-widget) iframe {
+	position: absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+/**
+ * Text Art
+ */
+
+.text-grad {
+    @supports (background-clip: text) {
+        background-image: linear-gradient(90deg, var(--color-a200), var(--color-50));
+        background-clip: text;
+        color: transparent;
+    }
+}
+
+/**
+ * Source Code
+ */
+
+.code {
+    position: relative;
+    margin-bottom: 1.5rem;
+
+    pre {
+        white-space: pre-wrap;
+        overflow-x: auto;
+        font-size: var(--fs-100);
+        line-height: 1.25;
+        padding: 1rem;
+        color: #fff;
+        tab-size: 4;
+        font-weight: 400;
+        background-color: #0d1117;
+        border-radius: .25rem;
+    }
+
+    pre::-webkit-scrollbar {
+        height: .75rem;
+        width:  .75rem;
+        background-color: #0d1117;
+    }
+    pre::-webkit-scrollbar-thumb:horizontal {
+        background-color: var(--color-800);
+        border-radius: 9999px;
+    }
+
+    code {
+        font-family: var(--ff-monospace);
+    }
+
+    .cl0 {color: rgb(139, 148, 158);} // Comments
+    .cl1 {color: rgb(126, 231, 135);}
+    .cl2 {color: rgb(121, 192, 255);}
+    .cl3 {color: rgb(255, 123, 114);}
+    .cl4 {color: rgb(255, 166, 87);}
+    .cl5 {color: rgb(201, 209, 217);}
+
+    &-copy {
+        position: absolute;
+        top: .25rem;
+        right: .25rem;
+    }
+
+    &-copy.btn {
+        display: none;
+    }
+
+    &:hover &-copy.btn {
+        display: inline-flex;
+    }
+}
+
+/**
+ * Boxy Text
+ */
+
+.text-boxy {
+    background: linear-gradient(90deg, var(--color-700), var(--color-800));
+    padding: .125rem .5rem;
+    line-height: 1;
+    text-transform: uppercase;
+    font-size: var(--fs-100);
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 3px rgba(0,0,0,.15);
+}
+
+/**
+ * Paragraphs
+ */
+
+.p-no-margin > p {
+    margin-bottom: 0 !important;
+}

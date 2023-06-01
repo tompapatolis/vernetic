@@ -1,0 +1,130 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Text ◗⎯⎯⎯⎯⎯⎯◌
+ */
+
+@use 'sass:map';
+@use '../abstracts/mixins' as m;
+@use '../abstracts/type' as t;
+
+/**
+ * Font Families
+ */
+
+.ff-body {
+    font-family: var(--ff-body) !important;
+}
+.ff-heading {
+    font-family: var(--ff-heading) !important;
+}
+.ff-monospace {
+    font-family: var(--ff-monospace) !important;
+}
+.ff-count {
+    font-family: var(--ff-count) !important;
+}
+
+/**
+ * Sizes
+ */
+
+@each $key, $size in map.get(t.$type-scale, small) {
+    .fs-#{$key},
+    .fs-#{$key} p {
+        font-size: var(--fs-#{$key}) !important;
+        line-height: 2.7ex;
+    }
+}
+
+/**
+* Weights & Styles
+*/
+
+.text-strong {
+	font-weight: bold !important;
+}
+
+.text-italic {
+	font-style: italic !important;
+}
+
+.text-strike {
+	text-decoration: line-through !important;
+}
+
+@for $i from 1 through 9 {
+    .fw-#{$i * 100},
+    .fw-#{$i * 100} p {
+        font-weight: #{$i * 100} !important;
+    }
+}
+
+/**
+ * Alignment
+ */
+
+.text-left {
+	text-align: left !important;
+}
+
+.text-center {
+	text-align: center !important;
+}
+
+.text-right {
+	text-align: right !important;
+}
+
+/**
+ * Text Transformations
+ */
+
+.text-cap {
+	text-transform: capitalize;
+}
+
+.text-upper {
+	text-transform: uppercase;
+}
+
+.text-lower {
+	text-transform: lowercase;
+}
+
+/**
+ * Letter Spacings
+ */
+
+.ls-0 {
+	letter-spacing: 0px;
+}
+
+.ls-1 {
+	letter-spacing: -1px;
+}
+
+.ls-2 {
+	letter-spacing: -2px;
+}
+
+/**
+ * Line Heights
+ */
+
+@each $key, $value in t.$line_heights {
+	.lh-#{$key},
+	.lh-#{$key} p {
+		line-height: $value !important;
+	}
+}
+
+/**
+ * Text Decorations
+ */
+
+.text-shadow {
+    text-shadow: var(--shadow-text);
+}

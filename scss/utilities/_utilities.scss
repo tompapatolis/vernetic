@@ -1,0 +1,195 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Utilities ◗⎯⎯⎯⎯⎯⎯◌
+ */
+
+@use '../abstracts/mixins' as m;
+
+/**
+ * Links
+ */
+
+.disabled {
+    pointer-events: none;
+    opacity: .3;
+}
+
+.no-select {
+	user-select: none;
+}
+
+.no-events {
+	pointer-events: none;
+}
+
+/**
+ * Hiding
+ */
+
+.hidden {
+	display:none !important;
+}
+
+// Hide for Large and smaller
+@include m.mq(large) {
+    .hide-lg  {display:none !important;}
+}
+
+// Hide for Medium and smaller
+@include m.mq(medium) {
+    .hide-md  {display:none !important;}
+}
+
+// Hide for Small and smaller
+@include m.mq(small) {
+	.hide-sm {display:none !important;}
+}
+
+// Hide for larger than large
+@include m.mqm(large) {
+	.hide-llg {display:none !important;}
+}
+
+// Hide for larger than medium
+@include m.mqm(medium) {
+	.hide-lmd {display:none !important;}
+}
+
+// Hide for larger than small
+@include m.mqm(small) {
+	.hide-lsm {display:none !important;}
+}
+
+.invisible {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/**
+ * Align Item
+ */
+
+.align-left {
+	display: block;
+	width: fit-content;
+	margin-right: auto;
+}
+
+.align-right {
+	display: block;
+	width: fit-content;
+	margin-left: auto;
+}
+
+.align-center {
+	display: block;
+	width: fit-content;
+	margin: 0 auto;
+}
+
+/**
+ * Display Contents
+ */
+
+.display-contents {
+    display: contents;
+}
+
+/**
+ * Shadows & Borders
+ */
+
+.shadow {
+    box-shadow: var(--shadow);
+}
+
+.border-radius-025 {
+    border-radius: .25rem;
+}
+
+.border-radius-05 {
+    border-radius: .5rem;
+}
+
+.border-radius-075 {
+    border-radius: .5rem;
+}
+
+.border-radius-1 {
+    border-radius: 1rem;
+}
+
+.border-radius-pill {
+    border-radius: 9999px;
+}
+
+/**
+ * SVG Icon
+ */
+
+.svg-icon {
+    width: 1em;
+    height: 1em;
+    fill: currentcolor;
+}
+
+.svg-icon.svg-icon-md {
+    width: 1.375em;
+    height: 1.375em;
+}
+
+.svg-icon.svg-icon-lg {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.svg-icon.svg-icon-xl {
+    width: 1.75em;
+    height: 1.75em;
+}
+
+@for $i from 2 through 10 {
+    .svg-icon.svg-icon-#{$i}x {
+        width: $i + em;
+        height: $i + em;
+	}
+}
+
+/**
+ * Overlay
+ */
+
+.overlay  {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 20;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,0.6);
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 250ms linear;
+
+	&.show {
+		visibility: visible;
+		opacity: 1;
+	}
+}
+
+/**
+ * Position
+ */
+
+.pos-relative {
+    position: relative;
+}
+
+.pos-absolute {
+    position: absolute;
+}

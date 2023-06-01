@@ -1,0 +1,55 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * Version : 2023
+ * Author  : Tom Papatolis
+ * ◌⎯⎯⎯⎯⎯⎯◖ Type ◗⎯⎯⎯⎯⎯⎯◌
+ */
+
+@use 'sass:math';
+@use '../abstracts/functions' as f;
+
+$big_base:  1.05;
+$big_scale: 1.10;
+
+$small_base:  1.00;
+$small_scale: 1.10;
+
+// https://typescale.com/
+
+$type-scale: (
+    small: ( // Major Second
+        950: f.dround( $small_base * math.pow($small_scale, 12), 3 ) + rem,
+        900: f.dround( $small_base * math.pow($small_scale, 10), 3 ) + rem,
+        800: f.dround( $small_base * math.pow($small_scale,  7), 3 ) + rem, //h1
+        700: f.dround( $small_base * math.pow($small_scale,  6), 3 ) + rem, //h2
+        600: f.dround( $small_base * math.pow($small_scale,  4), 3 ) + rem, //h3
+        500: f.dround( $small_base * math.pow($small_scale,  1), 3 ) + rem, //h4
+        400: f.dround( $small_base * math.pow($small_scale,  0), 3 ) + rem, //Base
+        300: f.dround( math.div( $small_base, math.pow($small_scale, 1) ), 3 ) + rem,
+        200: f.dround( math.div( $small_base, math.pow($small_scale, 2) ), 3 ) + rem,
+        100: f.dround( math.div( $small_base, math.pow($small_scale, 3) ), 3 ) + rem
+    ),
+    big: ( // Perfect Fourth
+        950: f.dround( $big_base * math.pow($big_scale, 18), 3 ) + rem,
+        900: f.dround( $big_base * math.pow($big_scale, 14), 3 ) + rem,
+        800: f.dround( $big_base * math.pow($big_scale, 10), 3 ) + rem, //h1
+        700: f.dround( $big_base * math.pow($big_scale,  8), 3 ) + rem, //h2
+        600: f.dround( $big_base * math.pow($big_scale,  4), 3 ) + rem, //h3
+        500: f.dround( $big_base * math.pow($big_scale,  1), 3 ) + rem, //h4
+        400: f.dround( $big_base * math.pow($big_scale,  0), 3 ) + rem, //Base
+        300: f.dround( math.div( $big_base, math.pow($big_scale, 1) ), 3 ) + rem,
+        200: f.dround( math.div( $big_base, math.pow($big_scale, 2) ), 3 ) + rem,
+        100: f.dround( math.div( $big_base, math.pow($big_scale, 3) ), 3 ) + rem
+    )
+);
+
+$line_heights: (
+    "1"   : 1,
+    "115" : 1.15,
+    "125" : 1.25,
+    "150" : 1.5,
+    "165" : 1.65,
+    "2"   : 2
+);
+
