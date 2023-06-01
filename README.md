@@ -34,4 +34,4 @@ In the future of course I will probably add CDNs and other ways of embedding.
 
 The Project is Open Source so you can use it freely for personal or professional use. You can even Fork it and create your own version.
 
-*By Tom Papatolis*
+
