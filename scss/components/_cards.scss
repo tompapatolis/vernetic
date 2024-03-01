@@ -1,21 +1,38 @@
 /**
  * Vernetic Framework
  * Website : https://vernetic.io
- * Version : 2023
+ * GitHub: https://github.com/tompapatolis/vernetic
+ * Version : 2024
  * Author  : Tom Papatolis
- * ◌⎯⎯⎯⎯⎯⎯◖ Cards ◗⎯⎯⎯⎯⎯⎯◌
+ * ⎯⎯⎯⎯⎯⎯[ Cards ] ⎯⎯⎯⎯⎯⎯
  */
+
 @use '../abstracts/mixins' as m;
 
 .card {
 	text-decoration: none !important;
 	background: var(--color-800);
     border-radius: .5rem;
-	box-shadow: var(--shadow);
+	position: relative;
 	color: var(--color-100);
 	overflow: hidden;
 	display: flex;
 	flex-direction:column;
+
+    &--raised {
+        color: var(--color-red-100);
+        background-image: linear-gradient(0deg, var(--color-red-700), var(--color-red-900));
+    }
+    &--raised &__image {
+        border-bottom: 1px solid var(--color-red-900);
+    }
+    &--raised &__title {
+        color: var(--color-red-50);
+    }
+    &--raised &__footer {
+        color: var(--color-red-50);
+        border-top: 1px solid var(--color-red-900);
+    }
 
 	&__title {
 		margin-bottom: 0 !important;
@@ -39,20 +56,9 @@
         background-color: var(--color-950);
         overflow: hidden;
         border-bottom: 1px solid var(--color-900);
-    }
 
-    &__placeholder {
-        aspect-ratio: 16 / 9;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: var(--color-950);
-        border-bottom: 1px solid var(--color-900);
-
-        svg {
-            width: auto;
-            height: 80%;
-            fill: var(--color-700);
+        @media(max-width: 750px) {
+            aspect-ratio: 3 / 2;
         }
     }
 
@@ -66,23 +72,34 @@
             color: var(--color-black) !important;
         }
 	}
-}
 
-@include m.mq(large) {
-    .card {
-        box-shadow: none;
+    &__footer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .125rem 1rem;
+        border-top: 1px solid var(--color-900);
+        color: var(--color-200);
+        padding: .75rem 1rem;
+        overflow: hidden;
+        font-family: var(--ff-heading);
+    }
+
+    &__premium {
+        background: var(--color-950);
+        display: flex;
+        justify-content: flex-end;
+        padding: .5rem;
+
+        img {
+            width: 45%;
+            height: auto;
+        }
     }
 }
 
-.card__footer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .125rem 1rem;
-	border-top: 1px solid var(--color-900);
-	color: var(--color-200);
-	padding: .75rem 1rem;
-    overflow: hidden;
-}
+/**
+ * Footer Info Section
+ */
 
 .card__info {
     flex: 1 0 auto;
@@ -96,30 +113,19 @@
 
     &--hits {
         font-size: var(--fs-300);
-        color: var(--color-50);
         justify-content: flex-end;
     }
 
-    &--status {
-        justify-content: center;
-    }
+    &--popular {
+        font-size: var(--fs-300);
+        color: var(--color-red-50);
+        display: flex;
+        align-items: center;
+        background: var(--color-red-300);
+        border-radius: .25rem;
+        font-family: var(--ff-heading);
+        padding: .25rem .5rem;
 
-    &--status[data-status='2'] {
-        color: var(--color-blue-900);
-        background: var(--color-blue-200);
-    }
-
-    &--status[data-status='2']::before {
-        content: 'Draft';
-    }
-
-    &--status[data-status='3'] {
-        color: var(--color-red-900);
-        background: var(--color-red-200);
-    }
-
-    &--status[data-status='3']::before {
-        content: 'Deleted';
     }
 }
 
@@ -133,10 +139,6 @@
 
 .popular-posts > a.card {
     counter-increment: count_post;
-}
-
-.popular-posts a.card {
-    position: relative;
 }
 
 .popular-posts a.card::after {
@@ -154,4 +156,91 @@
     color: var(--color-a200);
     border-top-right-radius: 100% 135px;
 	border-bottom-right-radius: 100% 10px;
+}
+
+.popular-posts a.card--raised::after {
+    color: var(--color-red-500);
+    background: var(--color-950);
+}
+
+/**
+ * Nano Card
+ */
+
+.nano-card {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    text-decoration: none !important;
+    color: var(--color-100);
+    isolation: isolate;
+    border-radius: .5rem;
+    overflow: hidden;
+
+    &__photo {
+        // grid-area: <row start> / <column start> / <row end> / <column end>;
+        grid-area: 1 / 1 / 3 / 6;
+        z-index: 1;
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+
+    }
+
+    &__title {
+        grid-area: 1 / 5 / 2 / -1;
+        z-index: 2;
+        padding: 1rem;
+        border-bottom-left-radius: .5rem;
+        background: var(--color-800);
+    }
+
+    &--alt &__title {
+        color: var(--color-blue-100);
+        background: var(--color-blue-950);
+    }
+
+    &__count {
+        grid-area: 2 / 6 / 3 / -1;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        font-weight: 800;
+        font-size: var(--fs-600);
+        background: var(--color-600);
+        background-image: linear-gradient(0deg, var(--color-400), var(--color-600));
+        padding: 0 .65rem;
+        color: var(--color-800);
+        letter-spacing: -1px;
+    }
+
+    &--alt &__count {
+        color: var(--color-blue-900);
+        background-image: linear-gradient(0deg, var(--color-blue-400), var(--color-blue-600));
+    }
+
+    &:hover,
+	&:focus {
+        box-shadow: var(--shadow-focus);
+        * {
+            color: var(--color-50) !important;
+        }
+        .trending__count {
+            background: var(--color-blue-400);
+        }
+	}
+}
+
+.nano-card-more {
+    position: absolute;
+    right: 5vw;
+    bottom: 0;
+    transform: translateY(100%);
+
+    @media(max-width: 750px) {
+        transform: translateY(60%);
+    }
 }

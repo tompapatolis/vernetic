@@ -1,16 +1,17 @@
 /**
  * Vernetic Framework
  * Website : https://vernetic.io
- * Version : 2023
+ * GitHub: https://github.com/tompapatolis/vernetic
+ * Version : 2024
  * Author  : Tom Papatolis
- * ◌⎯⎯⎯⎯⎯⎯◖ Colors ◗⎯⎯⎯⎯⎯⎯◌
+ * ⎯⎯⎯⎯⎯⎯[ Colors ] ⎯⎯⎯⎯⎯⎯
  */
 
 /**
- * Basic (:root) Colors
+ * Basic (:root) Arrays
  */
 
-
+// HSL Values of Gray Colors
 $shade_builder: (
     '50'  5  11% 97%,
    '100'  3   3% 91%,
@@ -29,6 +30,7 @@ $shade_builder: (
   'a700'  2 100% 56%
 );
 
+// Array of base HSL Values in order to calculate all colors
 $color_builder: (
     '50'  5  11% 97%,
    '100'  3   3% 91%,
@@ -39,7 +41,8 @@ $color_builder: (
    '600' -2   2% 37%,
    '700' -2   6% 30%,
    '800' -2   8% 25%,
-   '900' -1  12% 16%
+   '900' -1  12% 16%,
+   '950' -1   8% 10%
 );
 
 $gray_hue:    211;
@@ -49,10 +52,10 @@ $gray_sat:    12%;
  * Colors
  * Gray: Basis is 500: #616E7C | hsl(211, 12%, 43%)
  * Generator: https://color.adobe.com/create/
- * Red: Basis: #ff4938 | hsl(5, 100%, 61%); | A700 ->color-wheel -> Triad
- * Green: Basis: #95b00c | hsl(70, 87%, 37%) | A700 ->color-wheel -> Triad
- * Blue: Basis: #0453b4 | hsl(213, 96%, 36%) | A700 ->color-wheel -> Triad
- * Orange: #FF7C2B -> hsl(23, 100%, 58%); | A700 -> Split Complementary
+ * Red:   Basis:  #ff4938 | hsl(5, 100%, 61%); | A700 ->color-wheel -> Triad
+ * Green: Basis:  #95b00c | hsl(70, 87%, 37%)  | A700 ->color-wheel -> Triad
+ * Blue:  Basis:  #0453b4 | hsl(213, 96%, 36%) | A700 ->color-wheel -> Triad
+ * Orange: Basis: #FF7C2B | hsl(23, 100%, 58%) | A700 -> Split Complementary
  */
 
 $red_hue:       5;
@@ -72,9 +75,8 @@ $blue_sat:    96%;
  */
 
 $shades_ext: ('50','100','200','300','400','500','600','700','800','900','950','a100','a200','a400','a700');
-$shades: ('50','100','200','300','400','500','600','700','800','900');
+$shades: ('50','100','200','300','400','500','600','700','800','900','950');
 $colors: ('red','orange','green','blue');
-
 
 // Gray Color Set: Background | Forecolor
 $set_grayscale_matrix: (
@@ -102,7 +104,8 @@ $set_red_matrix: (
     600 200,
     700 200,
     800 200,
-    900 300
+    900 200,
+    950 300
 );
 
 // Orange Color Set: Background | Forecolor
@@ -116,7 +119,8 @@ $set_orange_matrix: (
     600 200,
     700 200,
     800 200,
-    900 300
+    900 300,
+    950 400
 );
 
 // Green Color Set: Background | Forecolor
@@ -130,7 +134,8 @@ $set_green_matrix: (
     600 100,
     700 100,
     800 200,
-    900 300
+    900 300,
+    950 300
 );
 
 // Blue Color Set: Background | Forecolor
@@ -144,12 +149,13 @@ $set_blue_matrix: (
     600 100,
     700 200,
     800 200,
-    900 300
+    900 300,
+    950 300
 );
 
 /**
  * Button Colors
- * $key == $background | $color | $hover_background | $hover_color
+ * $background | $color | $hover_background | $hover_color
  */
 
 $gray_buttons: (
@@ -162,7 +168,8 @@ $gray_buttons: (
    600 100 900 200,
    700 100 500  50,
    800 100 600  50,
-   900 200 700 100
+   900 200 700 100,
+   950 200 700 100
 );
 
 $red_buttons: (
@@ -175,7 +182,8 @@ $red_buttons: (
     600 100 900 200,
     700 100 500  50,
     800 200 600 100,
-    900 200 700 100
+    900 200 700 100,
+    950 200 700 100
 );
 
 $orange_buttons: (
@@ -188,7 +196,8 @@ $orange_buttons: (
     600 100 900 100,
     700 100 500  50,
     800 200 600 100,
-    900 200 700 100
+    900 200 700 100,
+    950 200 700 100
 );
 
 $green_buttons: (
@@ -201,7 +210,8 @@ $green_buttons: (
     600  50 900 200,
     700 100 900 200,
     800 200 600  50,
-    900 200 700 100
+    900 200 700 100,
+    950 200 700 100
 );
 
 $blue_buttons: (
@@ -214,5 +224,6 @@ $blue_buttons: (
     600 100 900 100,
     700 100 500  50,
     800 200 600 100,
-    900 200 700 100
+    900 200 700 100,
+    950 200 700 100
 );

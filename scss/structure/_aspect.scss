@@ -1,0 +1,24 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * GitHub: https://github.com/tompapatolis/vernetic
+ * Version : 2024
+ * Author  : Tom Papatolis
+ * ⎯⎯⎯⎯⎯⎯[ Aspect Ratios ] ⎯⎯⎯⎯⎯⎯
+ */
+
+.aspect-1 {
+    aspect-ratio: 1;
+}
+
+.aspect-169 {
+    aspect-ratio: 16 / 9;
+}
+
+.aspect-32 {
+    aspect-ratio: 3 / 2;
+}
+
+.aspect-golden {
+    aspect-ratio: 1.618;
+}

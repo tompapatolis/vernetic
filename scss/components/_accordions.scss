@@ -1,10 +1,12 @@
 /**
  * Vernetic Framework
  * Website : https://vernetic.io
- * Version : 2023
+ * GitHub: https://github.com/tompapatolis/vernetic
+ * Version : 2024
  * Author  : Tom Papatolis
- * ◌⎯⎯⎯⎯⎯⎯◖ Accordions ◗⎯⎯⎯⎯⎯⎯◌
+ * ⎯⎯⎯⎯⎯⎯[ Accordion ] ⎯⎯⎯⎯⎯⎯
  */
+
 @use '../abstracts/mixins' as m;
 
 .accordion {
@@ -48,13 +50,10 @@
     &--open &__body {
         grid-template-rows: 1fr;
     }
-
     &--open &__title svg {
         transform: rotate(0);
     }
-
     &--open &__header {
         border-color: var(--color-red-300);
     }
-
 }

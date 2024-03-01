@@ -1,9 +1,10 @@
 /**
  * Vernetic Framework
  * Website : https://vernetic.io
- * Version : 2023
+ * GitHub: https://github.com/tompapatolis/vernetic
+ * Version : 2024
  * Author  : Tom Papatolis
- * ◌⎯⎯⎯⎯⎯⎯◖ Sizes ◗⎯⎯⎯⎯⎯⎯◌
+ * ⎯⎯⎯⎯⎯⎯[ Sizes ] ⎯⎯⎯⎯⎯⎯
  */
 
 /**
@@ -23,10 +24,11 @@ $container_sizes: (
 );
 
 /**
- * Grid & Flex
+ * Grid & Flex Column Sizes
  */
 
 $grid_col_sizes: (
+	"50"  :  50,
 	"80"  :  80,
 	"100" : 100,
 	"120" : 120,
@@ -42,6 +44,10 @@ $grid_col_sizes: (
     "450" : 450
 );
 
+/**
+ * Gaps
+ */
+
 $gaps: (
     "0125" : .125,
 	"025"  : .25,
@@ -56,14 +62,16 @@ $gaps: (
 );
 
 /**
- * Margins & Paddings
+ * Special Margins & Paddings
  */
 
 $mp_special_sizes: (
     "0125"	: .125,
 	"025"   : .25,
 	"0375"  : .375,
+	"045"   : .45,
 	"05"    : .5,
+	"065"   : .65,
 	"075" 	: .75,
     "15" 	: 1.5
 );

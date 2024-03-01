@@ -1,9 +1,10 @@
 /**
  * Vernetic Framework
  * Website : https://vernetic.io
- * Version : 2023
+ * GitHub: https://github.com/tompapatolis/vernetic
+ * Version : 2024
  * Author  : Tom Papatolis
- * ◌⎯⎯⎯⎯⎯⎯◖ Type ◗⎯⎯⎯⎯⎯⎯◌
+ * ⎯⎯⎯⎯⎯⎯[ Typography ] ⎯⎯⎯⎯⎯⎯
  */
 
 @use 'sass:math';
@@ -19,6 +20,7 @@ $small_scale: 1.10;
 
 $type-scale: (
     small: ( // Major Second
+        990: f.dround( $small_base * math.pow($small_scale, 14), 3 ) + rem,
         950: f.dround( $small_base * math.pow($small_scale, 12), 3 ) + rem,
         900: f.dround( $small_base * math.pow($small_scale, 10), 3 ) + rem,
         800: f.dround( $small_base * math.pow($small_scale,  7), 3 ) + rem, //h1
@@ -31,6 +33,7 @@ $type-scale: (
         100: f.dround( math.div( $small_base, math.pow($small_scale, 3) ), 3 ) + rem
     ),
     big: ( // Perfect Fourth
+        990: f.dround( $big_base * math.pow($big_scale, 22), 3 ) + rem,
         950: f.dround( $big_base * math.pow($big_scale, 18), 3 ) + rem,
         900: f.dround( $big_base * math.pow($big_scale, 14), 3 ) + rem,
         800: f.dround( $big_base * math.pow($big_scale, 10), 3 ) + rem, //h1
@@ -43,6 +46,10 @@ $type-scale: (
         100: f.dround( math.div( $big_base, math.pow($big_scale, 3) ), 3 ) + rem
     )
 );
+
+/**
+ * Line Heights
+ */
 
 $line_heights: (
     "1"   : 1,

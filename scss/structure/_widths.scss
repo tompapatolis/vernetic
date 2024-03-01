@@ -1,17 +1,20 @@
 /**
  * Vernetic Framework
  * Website : https://vernetic.io
- * Version : 2023
+ * GitHub: https://github.com/tompapatolis/vernetic
+ * Version : 2024
  * Author  : Tom Papatolis
- * ◌⎯⎯⎯⎯⎯⎯◖ Widths & Heights ◗⎯⎯⎯⎯⎯⎯◌
+ * ⎯⎯⎯⎯⎯⎯[ Widths ] ⎯⎯⎯⎯⎯⎯
  */
-@use '../abstracts/mixins' as m;
+
+ @use '../abstracts/mixins' as m;
 
 /**
- * Widths & Heights | Step: 20px
+ * Widths & Heights
+ * --- Values: 20,40,60,80,100,120,140,160,180,200,220,240,260,280,300,320,340,360,380,400
  */
 
-@for $i from 1 through 50 {
+@for $i from 1 through 20 {
     // Width
     .w-#{$i * 20} {
         width: #{$i * 20} + px;
@@ -29,9 +32,9 @@
         max-width: 100%;
     }
 
-    // Minimim Width in Characters
-    .mwc-#{$i * 10} {
-        min-width: #{$i * 10} + ch !important;
+    // Maximum Width
+    .w-max-#{$i * 20} {
+        max-width: #{$i * 20} + px;
     }
 
     // Minimum Height
@@ -40,8 +43,13 @@
     }
 }
 
+/**
+ * Widths & Heights for Small Displays
+ * --- Values: 20,40,60,80,100,120,140,160,180,200,220,240,260,280,300,320,340,360,380,400
+ */
+
 @include m.mq(small) {
-    @for $i from 1 through 30 {
+    @for $i from 1 through 20 {
         .w-sm-#{$i * 20} {
             width: #{$i * 20} + px !important;
             max-width: 100%;
@@ -54,16 +62,20 @@
 }
 
 /**
- * Widths based on Viewport
+ * Widths & Heights based on Viewport
+ * --- Values: 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
  */
 
- @for $i from 1 through 30 {
+ @for $i from 1 through 20 {
     // Width
     .w-#{$i}vw {
         width: $i + vw;
         max-width: 100%;
     }
-
+    // Height
+    .h-#{$i}vh {
+        width: $i + vh;
+    }
 }
 
 /**
@@ -82,14 +94,6 @@
     width: fit-content;
 }
 
-.aspect-1 {
-    aspect-ratio: 1;
-}
-
-.aspect-169 {
-    aspect-ratio: 16 / 9;
-}
-
-.aspect-golden {
-    aspect-ratio: 1.618;
+.mw-0 {
+    min-width: 0 !important;
 }

@@ -7,83 +7,71 @@
  */
 
 /**
- * Draggable Elements
+ * Draggable
  */
 
-export function draggableElements() {
-    const exists = document.querySelector('.draggable');
+export function draggable() {
+    const exists = document.querySelector('.draglist');
     if ( !exists ) {return;}
 
-    const draggables    = document.querySelectorAll('.draggable');
-    const draggableList = document.querySelectorAll('.draggable-list');
+    const dragContainer = document.querySelector('.draglist');
+    const draggables    = document.querySelectorAll('.draglist__item');
 
-    draggables.forEach(draggable => {
-        draggable.setAttribute('draggable', true);
-
+    draggables.forEach( draggable => {
         draggable.addEventListener('dragstart', () => {
-            draggable.classList.add('dragging')
-        });
+            draggable.classList.add('draglist__dragging');
+        })
 
         draggable.addEventListener('dragend', () => {
-            draggable.classList.remove('dragging')
-        });
-    });
+            draggable.classList.remove('draglist__dragging');
+        })
+    })
 
-    draggableList.forEach(container => {
-        container.addEventListener('dragover', e => {
-            e.preventDefault();
-            const afterElement = getDragAfterElement(container, e.clientY);
-            const draggable = document.querySelector('.dragging');
-            if (afterElement == null) {
-                container.appendChild(draggable);
-            } else {
-                container.insertBefore(draggable, afterElement);
-            }
-
-            let i = 0;
-            const newDraggables = document.querySelectorAll('.draggable')
-            newDraggables.forEach(d => {
-                d.dataset.position = i;
-                i++;
-            });
-
-        });
-    });
+    dragContainer.addEventListener('dragover', e => {
+        e.preventDefault();
+        const afterElement = findClosest(e.clientY);
+        const draggable = document.querySelector('.draglist__dragging');
+        if (afterElement == null) {
+            dragContainer.appendChild(draggable);
+        } else {
+            dragContainer.insertBefore(draggable, afterElement);
+        }
+    })
 }
 
-function getDragAfterElement(container, y) {
-    const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
+function findClosest(y) {
+    const draggableElements = [...document.querySelectorAll('.draglist__item:not(.draglist__dragging)')]
 
     return draggableElements.reduce((closest, child) => {
         const box = child.getBoundingClientRect();
         const offset = y - box.top - box.height / 2;
         if (offset < 0 && offset > closest.offset) {
-            return { offset: offset, element: child }
+            return { offset: offset, element: child };
         } else {
             return closest;
         }
-    }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }, { offset: Number.NEGATIVE_INFINITY }).element
 }
 
 /**
  * Panels with Incremental Tiles
  */
 
-export function incPanels() {
+// export function incPanels() {
 
-    const panels = document.querySelectorAll('.panel-inc');
+//     const panels = document.querySelectorAll('.panel-inc');
 
-    panels.forEach( panel => {
-        const tiles = panel.querySelectorAll('.tile');
-        tiles.forEach( (tile, index) => {
-            let newDiv = document.createElement("div");
-            newDiv.innerText = String(index + 1).padStart(2, '0');
-            newDiv.classList.add('tile-header');
-            tile.appendChild(newDiv);
-        });
-    });
+//     panels.forEach( panel => {
+//         const tiles = panel.querySelectorAll('.tile');
+//         tiles.forEach( (tile, index) => {
+//             let newDiv = document.createElement("div");
+//             newDiv.innerText = String(index + 1).padStart(2, '0');
+//             newDiv.classList.add('tile-header');
+//             tile.appendChild(newDiv);
+//         });
+//     });
 
-}
+// }
 
 
 /**
@@ -149,6 +137,12 @@ export function initModal() {
     });
 }
 
+// function showModal(modal) {
+//     const overlay = document.querySelector('.modal__overlay');
+//     modal.classList.add('modal--show');
+//     overlay.classList.add('modal__overlay--show');
+// }
+
 /**
  * Tabs
  */
@@ -190,6 +184,66 @@ export function tabs() {
 }
 
 /**
+ * Tabs Vertical
+ */
+
+export function tabsVertical() {
+    const exists = document.querySelector('.tabs-vertical');
+    if ( !exists ) {return;}
+
+    const tabElements = document.querySelectorAll('.tabs-vertical');
+
+    tabElements.forEach( tabElement => {
+
+        // Init
+        const activeButton = tabElement.querySelector('.tabs-vertical__button.active');
+        const line         = tabElement.querySelector('.tabs-vertical__line');
+        line.style.height  = activeButton.offsetHeight + "px";
+        line.style.top     = activeButton.offsetTop  + "px";
+
+        // localStorage Params
+        const tabsId   = tabElement.id;
+        const position = localStorage.getItem('tabIndex-' + tabsId);
+
+        // Do it's thing
+        const tabs        = tabElement.querySelectorAll('.tabs-vertical__button');
+        const contents    = tabElement.querySelectorAll('.tabs-vertical__content');
+
+        // Restore from localStorage
+        if ( tabsId !== null &&  position !== null) {
+            contents.forEach( content => {content.classList.remove('active')});
+            contents[position].classList.add('active');
+            tabs.forEach( tab => {tab.classList.remove('active')});
+            tabs[position].classList.add('active');
+            line.style.height = tabs[position].offsetHeight + "px";
+            line.style.top    = tabs[position].offsetTop + "px";
+        }
+
+        // Click Listener
+        tabs.forEach( (tab, index) => {
+            tab.addEventListener('click', e => {
+
+                tabs.forEach( tab => {tab.classList.remove('active')});
+                tab.classList.add('active');
+
+                contents.forEach( content => {content.classList.remove('active')});
+                contents[index].classList.add('active');
+
+                line.style.height = e.currentTarget.offsetHeight + "px";
+                line.style.top    = e.currentTarget.offsetTop + "px";
+
+                // Save to localStorage
+                if ( tabsId !== null ) {
+                    localStorage.setItem('tabIndex-' + tabsId, index);
+                }
+
+            });
+        });
+    });
+
+}
+
+/**
  * Panels
  */
 
@@ -217,4 +271,58 @@ export function panels() {
         });
 
     });
+}
+
+/**
+ * Drop Image
+ */
+
+export function dropImage() {
+    const imageDrops = document.querySelectorAll('.drop-image');
+
+    imageDrops.forEach( imageDrop => {
+        const inputFile = imageDrop.querySelector('#input-file');
+        const imageView = imageDrop.querySelector('.drop-image__view');
+
+        inputFile.addEventListener('change', e => {
+            uploadImage(imageDrop);
+        });
+
+        imageDrop.addEventListener('dragover', e => {
+            e.preventDefault();
+        });
+
+        imageDrop.addEventListener('drop', e => {
+            e.preventDefault();
+            inputFile.files = e.dataTransfer.files;
+            uploadImage(imageDrop);
+        });
+    });
+}
+
+function uploadImage(imageDrop) {
+    const inputFile  = imageDrop.querySelector('#input-file');
+	const form       = inputFile.form;
+	const action     = form.dataset.action;
+    const share      = form.dataset.shareInput;
+    const imageView  = imageDrop.querySelector('.drop-image__view');
+
+    // Effects
+    imageView.innerHTML = '&nbsp;';
+    imageDrop.style.border = '3px solid #000';
+    imageDrop.classList.add('drop-image--pulsate');
+
+	fetch(action, {method: 'POST', body: new FormData(form), cache: 'no-cache'})
+    	.then(res => res.json())
+    	.then(response => {
+            const imgLink = response.baseurl + "/images/" + response.filename + ".webp";
+            imageView.style.backgroundImage = `url(${imgLink})`;
+            imageDrop.classList.remove('drop-image--pulsate');
+            imageDrop.style.border = 0;
+            if ( share ) {
+                const shareInput = document.querySelector(`input[name="${share}"]`);
+                shareInput.value = response.filename;
+            }
+    	})
+	    .catch(err => {console.log(err);});
 }

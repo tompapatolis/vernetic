@@ -142,8 +142,8 @@ export function convToSymbol() {
             text = text.replace('<svg', '<symbol');
             text = text.replace('</svg>', '\r\n</symbol>');
             text = text.replace('xmlns="http://www.w3.org/2000/svg"', 'id="icon"');
-            text = text.replace('height="48" ', '');
-            text = text.replace(' width="48"', '');
+            text = text.replace('height="24" ', '');
+            text = text.replace(' width="24"', '');
             text = text.replace('<path', '\r\n\    <path');
             textDest.value = text;
             copyClipboard(text);
@@ -265,5 +265,22 @@ export function copyTableCell() {
             copyClipboard(el.innerText);
             el.classList.add('set-green-300');
         }
+    });
+}
+
+/**
+ * Delete Button (in Form) *** All-Purpose Function
+ */
+
+export function deleteButtonInForm() {
+    const deleteBtn = document.querySelector('button[data-form]');
+    if ( !deleteBtn ) {return;}
+
+    const form = document.querySelector('#' + deleteBtn.dataset.form);
+    const deleteInput = form.querySelector('input[name="delete"]');
+
+    deleteBtn.addEventListener('click', e => {
+        deleteInput.value = 1;
+        form.submit();
     });
 }

@@ -1,0 +1,191 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * GitHub: https://github.com/tompapatolis/vernetic
+ * Version : 2024
+ * Author  : Tom Papatolis
+ * ⎯⎯⎯⎯⎯⎯[ Text ] ⎯⎯⎯⎯⎯⎯
+ */
+
+@use 'sass:map';
+@use '../abstracts/mixins' as m;
+@use '../abstracts/typography' as t;
+
+/**
+ * Font Families
+ */
+
+.ff-body {
+    font-family: var(--ff-body) !important;
+}
+.ff-heading {
+    font-family: var(--ff-heading) !important;
+}
+.ff-monospace {
+    font-family: var(--ff-monospace) !important;
+}
+.ff-count {
+    font-family: var(--ff-count) !important;
+}
+
+/**
+ * Sizes
+ * --- Values: 100,200,300,400,500,600,700,800,900,950,990
+ */
+
+@each $key, $size in map.get(t.$type-scale, small) {
+    .fs-#{$key},
+    .fs-#{$key} p {
+        font-size: var(--fs-#{$key}) !important;
+        line-height: 2.7ex;
+    }
+}
+
+/**
+* Styles
+*/
+
+.text-strong {
+	font-weight: bold !important;
+}
+.text-italic {
+	font-style: italic !important;
+}
+.text-strike {
+	text-decoration: line-through !important;
+}
+
+/**
+ * Weights
+ * --- Values: 100,200,300,400,500,600,700,800,900
+ */
+
+@for $i from 1 through 9 {
+    .fw-#{$i * 100},
+    .fw-#{$i * 100} p {
+        font-weight: #{$i * 100} !important;
+    }
+}
+
+/**
+ * Alignment
+ */
+
+.text-left {
+	text-align: left !important;
+}
+.text-center {
+	text-align: center !important;
+}
+.text-right {
+	text-align: right !important;
+}
+
+/**
+ * Text Transformations
+ */
+
+.text-cap {
+	text-transform: capitalize;
+}
+.text-upper {
+	text-transform: uppercase;
+}
+.text-lower {
+	text-transform: lowercase;
+}
+
+/**
+ * Letter Spacings
+ */
+
+.ls-0 {
+	letter-spacing: 0px;
+}
+.ls-1 {
+	letter-spacing: -1px;
+}
+.ls-2 {
+	letter-spacing: -2px;
+}
+
+/**
+ * Line Heights
+ * --- Values: 1,115,125,150,165,2
+ */
+
+@each $key, $value in t.$line_heights {
+	.lh-#{$key},
+	.lh-#{$key} p {
+		line-height: $value !important;
+	}
+}
+
+/**
+ * Text Decoration
+ */
+
+.text-shadow {
+    text-shadow: var(--shadow-text);
+}
+
+/**
+ * Gradient Text
+ */
+
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+
+    .grad-1,
+    .grad-2,
+    .grad-3,
+    .grad-4,
+    .grad-5,
+    .grad-6 {
+        background-clip: text;
+        color: transparent;
+    }
+
+    .grad {
+        &-1 {
+            background-image: linear-gradient(to right,
+                var(--color-orange-300),
+                var(--color-red-300),
+                var(--color-blue-200),
+                var(--color-orange-300)
+            );
+        }
+        &-2 {
+            background-image: linear-gradient(to right,
+                var(--color-orange-400),
+                var(--color-100)
+            );
+        }
+        &-3 {
+            background-image: linear-gradient(to right,
+                var(--color-green-200),
+                var(--color-blue-300)
+            );
+        }
+        &-4 {
+            background-image: linear-gradient(to right,
+                var(--color-red-100),
+                var(--color-red-300)
+            );
+        }
+        &-5 {
+            background-image: linear-gradient(to right,
+                var(--color-blue-100),
+                var(--color-a200)
+            );
+        }
+        &-6 {
+            background-image: linear-gradient(to right,
+                #71d4f8,
+                #fad4be,
+                #777581,
+                #e5c49d,
+            );
+        }
+    }
+}
+

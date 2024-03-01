@@ -1,11 +1,14 @@
 /**
  * Vernetic Framework
  * Website : https://vernetic.io
- * Version : 2023
+ * GitHub: https://github.com/tompapatolis/vernetic
+ * Version : 2024
  * Author  : Tom Papatolis
- * ◌⎯⎯⎯⎯⎯⎯◖ Modals ◗⎯⎯⎯⎯⎯⎯◌
+ * ⎯⎯⎯⎯⎯⎯[ Modals ] ⎯⎯⎯⎯⎯⎯
  */
+
 @use '../abstracts/mixins' as m;
+@use '../abstracts/sizes' as s;
 
 .modal {
     position: fixed;
@@ -58,6 +61,11 @@
         border-top: 1px solid rgba(255,255,255,.2);
     }
 
+    @each $key, $size in s.$container_sizes {
+        &--#{$key} {
+            width: $size;
+        }
+    }
 }
 
 /**

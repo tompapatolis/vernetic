@@ -1,26 +1,25 @@
 /**
  * Vernetic Framework
  * Website : https://vernetic.io
- * Version : 2023
+ * GitHub: https://github.com/tompapatolis/vernetic
+ * Version : 2024
  * Author  : Tom Papatolis
- * ◌⎯⎯⎯⎯⎯⎯◖ Utilities ◗⎯⎯⎯⎯⎯⎯◌
+ * ⎯⎯⎯⎯⎯⎯[ Helpers ] ⎯⎯⎯⎯⎯⎯
  */
 
 @use '../abstracts/mixins' as m;
 
 /**
- * Links
+ * Events
  */
 
 .disabled {
     pointer-events: none;
     opacity: .3;
 }
-
 .no-select {
 	user-select: none;
 }
-
 .no-events {
 	pointer-events: none;
 }
@@ -69,65 +68,57 @@
 }
 
 /**
- * Align Item
+ * Display
  */
 
-.align-left {
-	display: block;
-	width: fit-content;
-	margin-right: auto;
+.display-block {
+    display: block;
 }
-
-.align-right {
-	display: block;
-	width: fit-content;
-	margin-left: auto;
-}
-
-.align-center {
-	display: block;
-	width: fit-content;
-	margin: 0 auto;
-}
-
-/**
- * Display Contents
- */
 
 .display-contents {
     display: contents;
 }
 
 /**
- * Shadows & Borders
+ * Shadow
  */
 
 .shadow {
     box-shadow: var(--shadow);
 }
 
-.border-radius-025 {
+/**
+ * Border Radius
+ */
+
+.br-0125 {
+    border-radius: .125rem;
+}
+.br-025 {
     border-radius: .25rem;
 }
-
-.border-radius-05 {
+.br-0375 {
+    border-radius: .375rem;
+}
+.br-05 {
     border-radius: .5rem;
 }
-
-.border-radius-075 {
+.br-065 {
+    border-radius: .65rem;
+}
+.br-075 {
     border-radius: .5rem;
 }
-
-.border-radius-1 {
+.br-1 {
     border-radius: 1rem;
 }
-
-.border-radius-pill {
+.br-pill {
     border-radius: 9999px;
 }
 
 /**
  * SVG Icon
+ * --- Values: md,lg,xl,2x,3x,4x,5x,6x,7x,8x,9x,10x
  */
 
 .svg-icon {
@@ -193,3 +184,26 @@
 .pos-absolute {
     position: absolute;
 }
+
+/**
+ * Thumbnail
+ */
+
+.thumb {
+    border-radius: .5rem;
+    box-shadow: var(--shadow-soft);
+    border: 3px solid var(--color-600);
+}
+
+/**
+ * Perspective
+ */
+
+.pers-1 {
+    transform: perspective(400px) rotateY(15deg) translateX(0.5vw);
+
+    @media(max-width: 750px) {
+        transform: none;
+    }
+}
+

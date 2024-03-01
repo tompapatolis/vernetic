@@ -37,6 +37,7 @@ utils.escapeHtml();
 utils.syntaxHighlight();
 utils.copyCode();
 utils.copyTableCell();
+utils.deleteButtonInForm();
 
 /**
  * Content
@@ -48,18 +49,18 @@ content.loadMorePosts();
  * Animations
 */
 
-animations.observeElements();
-animations.typewriter();
-animations.sequentialFadeIn();
 animations.navChange();
+animations.newObserveElements();
 
 /**
  * Components
 */
 
-component.draggableElements();
-component.incPanels();
+component.draggable();
+// component.incPanels();
 component.accordion();
 component.initModal();
 component.tabs();
+component.tabsVertical();
 component.panels();
+component.dropImage();

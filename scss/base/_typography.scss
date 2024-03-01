@@ -1,13 +1,14 @@
 /**
  * Vernetic Framework
  * Website : https://vernetic.io
- * Version : 2023
+ * GitHub: https://github.com/tompapatolis/vernetic
+ * Version : 2024
  * Author  : Tom Papatolis
- * ◌⎯⎯⎯⎯⎯⎯◖ Typography ◗⎯⎯⎯⎯⎯⎯◌
+ * ⎯⎯⎯⎯⎯⎯[ Typography ] ⎯⎯⎯⎯⎯⎯
  */
 
 @use 'sass:map';
-@use '../abstracts/type' as s;
+@use '../abstracts/typography' as t;
 @use '../abstracts/mixins' as m;
 
 /**
@@ -30,30 +31,62 @@ h1, .h1 {
     font-size: var(--fs-800);
     font-weight: 700;
 }
-
 h2, .h2 {
     font-size: var(--fs-700);
     font-weight: 700;
 }
-
 h3, .h3 {
     font-size: var(--fs-600);
     font-weight: 600;
 }
-
 h4, .h4 {
     font-size: var(--fs-500);
     font-weight: 500;
 }
-
 h5, .h5 {
     font-size: var(--fs-400);
     font-weight: 500;
 }
-
 h6, .h6 {
     font-size: var(--fs-300);
     font-weight: 500;
+}
+
+/**
+ * Sleek Heading
+ */
+
+h1, h2, h3, h4, h5, h6 {
+    &.sleek-heading {
+        display: flex;
+        align-items: center;
+        gap: .375rem;
+        margin-bottom: 0;
+
+        svg {
+            color: var(--color-a200);
+            font-size: 1.25em;
+        }
+
+        &::after {
+            content: '';
+            height: 1px;
+            flex: 1 1 0;
+            background:  rgba(255,255,255,.15);
+        }
+    }
+}
+
+/**
+ * Font Size Variables for Small Displays
+ */
+
+@include m.mq(small) {
+    :root {
+        @each $key, $size in map.get(t.$type-scale, small) {
+            --fs-#{$key}: #{$size};
+        }
+    }
 }
 
 /**
@@ -66,6 +99,14 @@ p {
     margin-bottom: 3ex;
 }
 
+.p-no-margin > p {
+    margin-bottom: 0 !important;
+}
+
+.last-p-m0 p:last-child {
+    margin-bottom:0 !important;
+}
+
 /**
  * Lists
  */
@@ -73,12 +114,11 @@ p {
 ol,
 ul,
 dl {
-    margin: 1em 0;
+    margin: 1em 0 2em 0;
     padding: 0 0 0 2.5em;
 
     @include m.mq(small) {
         padding: 0 0 0 1.5em;
-
     }
 }
 
@@ -145,38 +185,12 @@ blockquote {
  * Raw HTML Embed for CKEditor
  */
 
-.raw-html-embed:not(.ck-widget) {
-	position: relative;
-	overflow: hidden;
-	width: 100%;
-	padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
-	box-shadow: var(--shadow);
-	background: var(--color-800);
-	margin: 1.5rem 0;
-	border-radius: .5rem;
-}
-
+.raw-html-embed:not(.ck-widget),
 .raw-html-embed:not(.ck-widget) iframe {
-	position: absolute;
-	top:0;
-	left:0;
-	bottom:0;
-	right:0;
+    aspect-ratio: 16 / 9;
 	width: 100%;
-	height: 100%;
-	border: none;
-}
-
-/**
- * Text Art
- */
-
-.text-grad {
-    @supports (background-clip: text) {
-        background-image: linear-gradient(90deg, var(--color-a200), var(--color-50));
-        background-clip: text;
-        color: transparent;
-    }
+    height: auto;
+    overflow: hidden;
 }
 
 /**
@@ -234,28 +248,4 @@ blockquote {
     &:hover &-copy.btn {
         display: inline-flex;
     }
-}
-
-/**
- * Boxy Text
- */
-
-.text-boxy {
-    background: linear-gradient(90deg, var(--color-700), var(--color-800));
-    padding: .125rem .5rem;
-    line-height: 1;
-    text-transform: uppercase;
-    font-size: var(--fs-100);
-    letter-spacing: 2px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 2px 3px rgba(0,0,0,.15);
-}
-
-/**
- * Paragraphs
- */
-
-.p-no-margin > p {
-    margin-bottom: 0 !important;
 }

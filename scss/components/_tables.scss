@@ -1,10 +1,12 @@
 /**
  * Vernetic Framework
  * Website : https://vernetic.io
- * Version : 2023
+ * GitHub: https://github.com/tompapatolis/vernetic
+ * Version : 2024
  * Author  : Tom Papatolis
- * ◌⎯⎯⎯⎯⎯⎯◖ Tables ◗⎯⎯⎯⎯⎯⎯◌
+ * ⎯⎯⎯⎯⎯⎯[ Tables ] ⎯⎯⎯⎯⎯⎯
  */
+
 @use '../abstracts/mixins' as m;
 
 .table {
@@ -26,6 +28,7 @@
         padding: .25rem 0;
         min-width: 0;
         text-align: center;
+        background: red;
     }
 
     th {

@@ -1,31 +1,48 @@
 /**
  * Vernetic Framework
  * Website : https://vernetic.io
- * Version : 2023
+ * GitHub: https://github.com/tompapatolis/vernetic
+ * Version : 2024
  * Author  : Tom Papatolis
- * ◌⎯⎯⎯⎯⎯⎯◖ Draggable ◗⎯⎯⎯⎯⎯⎯◌
+ * ⎯⎯⎯⎯⎯⎯[ Draggable ] ⎯⎯⎯⎯⎯⎯
  */
-@use '../abstracts/mixins' as m;
 
-.draggable-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap:.75rem;
-    margin: 3px;
-}
+/**
+ * Draglist
+ */
 
-.draggable {
-    cursor: move;
-    background: var(--color-800);
-    border-radius: .25rem;
-    padding: .5rem 1rem;
-    overflow: hidden;
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-}
+.draglist {
+    padding: .5rem;
+    border-radius: .5rem;
+    border: 2px solid transparent;
 
-.draggable.dragging {
-    opacity: .75;
-    outline: 3px dashed var(--color-red-500);
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        padding: .5rem;
+        line-height: 1;
+        background: var(--color-800);
+        color: var(--color-100);
+        border-radius: .25rem;
+        cursor: move;
+        box-shadow: var(--shadow), inset 0 -3px 0 0 rgba(255,255,255,.1);
+
+        &:not(:last-child) {
+            margin-bottom: .65rem;
+        }
+
+        .svg-icon {
+            opacity: .65;
+        }
+    }
+
+    &__dragging {
+        background: var(--color-blue-600);
+        color: var(--color-blue-50);
+    }
+
+    &--saved {
+        border-color: var(--color-green-300);
+    }
 }

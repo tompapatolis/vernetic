@@ -1,10 +1,12 @@
 /**
  * Vernetic Framework
  * Website : https://vernetic.io
- * Version : 2023
+ * GitHub: https://github.com/tompapatolis/vernetic
+ * Version : 2024
  * Author  : Tom Papatolis
- * ◌⎯⎯⎯⎯⎯⎯◖ Buttons ◗⎯⎯⎯⎯⎯⎯◌
+ * ⎯⎯⎯⎯⎯⎯[ Buttons ] ⎯⎯⎯⎯⎯⎯
  */
+
 @use '../abstracts/mixins' as m;
 @use '../abstracts/colors' as c;
 
@@ -44,40 +46,32 @@ a.btn:focus {
  */
 
 .btn {
-
     &-shadow {
         box-shadow: var(--shadow);
     }
-
     &-noshadow {
         box-shadow: none !important;
     }
-
     &-square {
         border-radius: 0 !important;
     }
-
     &-tiny {
         line-height: 1;
         font-size: var(--fs-100);
         padding: .375rem .65rem;
     }
-
     &-small {
         line-height: 1;
         font-size: var(--fs-300);
         padding: .5rem .75rem;
     }
-
     &-large {
         font-size: var(--fs-500);
         padding: .75rem 1.25rem;
     }
-
     &-narrow {
         padding: 0 .65rem;
     }
-
     &-round {
         width: 3rem;
         height: 3rem;
@@ -87,6 +81,12 @@ a.btn:focus {
         .svg-icon {
             transform: translateY(-.1rem);
         }
+    }
+
+    &-svg {
+        padding: .5rem;
+        aspect-ratio: 1;
+        border-radius: .25rem;
     }
 }
 
@@ -180,6 +180,7 @@ a.btn.disabled {
     border-radius: .5rem;
     border-bottom: .2rem solid rgba(0,0,0,.45);
     box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    font-family: var(--ff-heading);
 
     &.active {
         border-color: var(--color-blue-500);
@@ -213,6 +214,7 @@ a.btn.disabled {
     align-items: center;
     justify-content: center;
     box-shadow: var(--shadow);
+    font-family: var(--ff-heading);
 
     span {
         display: flex;
@@ -276,6 +278,8 @@ a.btn.disabled {
     align-items: center;
     justify-content: center;
     box-shadow: var(--shadow);
+    font-family: var(--ff-heading);
+    font-weight: 400;
 
     &__title {
         display: flex;
@@ -284,11 +288,11 @@ a.btn.disabled {
         padding: .65rem 1rem;
         border-right: 1px solid rgba(0,0,0,.25);
         flex: 1;
-        line-height: 1.05;
+        line-height: 1.25;
     }
 
     &:not(:has(> .btn-cnt__cnt)) {
-        border-left: .375rem solid rgba(255,255,255,.15);
+        border-left: 8px solid rgba(0,0,0,.15);
     }
 
     &__title:not(:has(~ .btn-cnt__cnt)) {
@@ -308,6 +312,23 @@ a.btn.disabled {
         box-shadow: var(--shadow-focus);
     }
 
+    &--pill {
+        border-radius: 9999px;
+        box-shadow: inset 25px 0px 25px -25px rgba(0,0,0,0.15), var(--shadow);
+    }
+
+    &--pill:hover {
+        border-left-color: var(--color-red-300);
+        box-shadow: inset 0  25px 25px -25px rgba(0,0,0,0.45), inset 25px 0px 25px -25px rgba(0,0,0,0.15), var(--shadow);
+    }
+
+    &--pill &__cnt {
+        padding: .65rem 1.75rem .65rem 1.5rem;
+    }
+
+    &--pill &__title:has(~ .btn-cnt__cnt) {
+        padding: .65rem .5rem .65rem 1.25rem;
+    }
 }
 
 /**
@@ -331,8 +352,8 @@ a.btn.disabled {
 .btn-bubble {
     padding: 0;
     line-height: 1;
-    width: calc(5rem + 2vw);
-    height: calc(5rem + 2vw);
+    width:  calc(6rem + 1vw);
+    height: calc(6rem + 1vw);
     border-radius: 50%;
     font-family: var(--ff-heading);
 }

@@ -1,0 +1,123 @@
+/**
+ * Vernetic Framework
+ * Website : https://vernetic.io
+ * GitHub: https://github.com/tompapatolis/vernetic
+ * Version : 2024
+ * Author  : Tom Papatolis
+ * ⎯⎯⎯⎯⎯⎯[ Featured ] ⎯⎯⎯⎯⎯⎯
+ */
+
+.featured {
+	display: grid;
+	grid-template-columns: repeat(10, 1fr);
+    height: calc(400px + 10vw);
+    background: #171f26;
+    border-bottom: 1rem solid #171f26;
+
+    @media(max-width: 1600px) {
+        grid-template-columns: repeat(8, 1fr);
+    }
+
+    @media(max-width: 750px) {
+        grid-template-columns: 1fr;
+        height: auto;
+        gap: .25rem;
+        background: #111;
+    }
+
+    &__item {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+
+        @media(max-width: 750px) {
+            grid-area: initial !important;
+            aspect-ratio: 5 / 3;
+        }
+    }
+
+    &__title {
+        margin: 0;
+        padding: 1rem;
+        line-height: 1.25;
+        font-size: var(--fs-600);
+        @media(min-width: 750px) and (max-width: 990px) {
+            font-size: var(--fs-500);
+        }
+
+        @media(max-width: 750px) {
+            line-height: 1.15;
+            padding: .75rem;
+        }
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        z-index: -1;
+    }
+
+    &__link {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        text-decoration: none !important;
+        color: var(--color-50);
+        display: flex;
+        align-items: flex-end;
+
+        background-image: linear-gradient(
+            to bottom,
+            transparent 0%,
+            transparent 50%,
+            rgba(0,0,0,.55) 70%,
+            rgba(0,0,0,.85) 100%
+        );
+
+        @media(max-width: 750px) {
+            background-image: linear-gradient(
+                to bottom,
+                transparent 0%,
+                transparent 25%,
+                rgba(0,0,0,.65) 70%,
+                rgba(0,0,0,.85) 100%
+            );
+
+        }
+
+        &:hover,
+        &:focus {
+            color: var(--color-50);
+            text-shadow: 0 0 3px rgba(0,0,0,.85);
+            background: rgba(0,0,0,.45);
+        }
+
+    }
+
+    &__item--p1 {
+        grid-area: 1 / 1 / 2 / 4; /* Starts at row 1, column 1, spans to row 4, column 2 */
+    }
+    &__item--p2 {
+        grid-area: 2 / 1 / 3 / 4;
+    }
+    &__item--p3 {
+        grid-area: 1 / 4 / 3 / 6;
+    }
+    &__item--p4 {
+        grid-area: 1 / 6 / 2 / 9;
+    }
+    &__item--p5 {
+        grid-area: 2 / 6 / 3 / 9;
+    }
+    &__item--p6 {
+        grid-area: 1 / 9 / 3 / 11;
+    }
+
+    @media(max-width: 1600px) {
+        &__item--p6 {
+            display: none;
+        }
+    }
+}
