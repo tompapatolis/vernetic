@@ -1,37 +1,30 @@
 ![Vernetic Logo](logo.svg)
 
-# Vernetic
+# Vernetic CSS Framework
 
-[https://vernetic.io/](https://vernetic.io/)
+Enhance your web development experience with Vernetic, a versatile and powerful CSS framework designed for efficiency and flexibility.
 
-## Fast, Smart, Robust, Open Source CSS Framework
+## [Discover Vernetic](https://vernetic.io/)
 
-#### A font, color, size, icon system that makes your life easier.
+### What is Vernetic?
 
-Vernetic CSS Framework was previously known as VerdinCSS. It has been evolving continuously since 2017 and is used in both the private and government sectors of various countries.
+Vernetic, formerly known as VerdinCSS, is a fast, smart, robust, and open-source CSS framework. It serves as a comprehensive font, color, size, and icon system, streamlining your development process and elevating your design capabilities.
 
-## Why?
+### Why Choose Vernetic?
 
-The truth is that for years I've been building pages or applications using Bootstrap. I also tried Foundation.
+For years, Bootstrap and Foundation have been go-to choices for web development. However, as projects grow in size and complexity, the limitations become apparent. Vernetic emerged from the need for a customizable and adaptable solution, especially when building substantial applications or content management systems (CMS).
 
-The above two Projects are amazing but when your applications become bigger and more complex you start missing things. You want to modify more, your requirements increase.
+When embarking on the creation of a complete CMS from scratch, the founder recognized the opportunity to develop a tailored CSS framework. After years of dedication, testing, and refinement, Vernetic has evolved into a solution that meets the demands of modern, sophisticated projects.
 
-When I decided to write a complete CMS from scratch I had to create the Frontend as well. I decided that since I was going to write a complete CMS it would be a good idea to write the CSS framework with which I would implement it.
+### Who is Behind Vernetic?
 
-No, it wasn't easy. It took me several years, thousands of tests and fixes. In every Project I used it I added, changed, improved something. Until I came up with what I use today, what I share with you here.
+The creator of Vernetic is a seasoned programmer with decades of experience, driven by an unwavering passion for code since the early days of Quick Basic at the age of 15. As a Full-Stack Developer, they have mastered the art of programming interfaces, applications, and managing large databases.
 
-## Who?
+Hailing from Greece, a country that inspires a commitment to making the world a better place, the founder co-founded the first Linux community in Greece. Today, they continue their programming journey in Germany, contributing to the global development community.
 
-I don't know if it matters who I am. I'm a programmer with decades of experience. Code has been a passion since the first day I wrote my first lines in Quick Basic. At the age of 15. Many years later, the passion remains unchanged.
+### Where to Find Vernetic?
 
-I am what they call a Full-Stack Developer. Programming everything from interfaces, to applications, designing and managing large databases.
+Explore the future of web development with Vernetic. The project is open source, allowing free use for both personal and professional purposes. You can even fork the project to create your own customized version. Stay tuned for future updates, including the addition of CDNs and other embedding options. Elevate your development experience with Vernetic CSS Framework.
 
-I grew up in Greece. A country that definitely inspires you to make the world a better place. The reason I became a professional programmer. Together with friends we founded the first Linux community in Greece. Wild times back then to set up a computer with this relatively new operating system. I got a family and a beautiful daughter. I immigrated to Germany where I work until now.
-
-## Where?
-
-In the future of course I will probably add CDNs and other ways of embedding.
-
-The Project is Open Source so you can use it freely for personal or professional use. You can even Fork it and create your own version.
 
 
