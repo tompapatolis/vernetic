@@ -46,10 +46,11 @@ Vernetic avoids opinionated styles, giving you clean, modular CSS to:
 
 ## Get Started  
 
-Explore the repository:  
-[https://github.com/tompapatolis/vernetic](https://github.com/tompapatolis/vernetic)  
+### Installation  
 
----
+```bash  
+git clone https://github.com/tompapatolis/vernetic.git
+```
 
 ## Contribute  
 Vernetic thrives on community expertise. Submit issues for bugs, feature requests, or improvements. Pull requests are welcomed with clear documentation.  
