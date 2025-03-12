@@ -1,0 +1,181 @@
+/******************************************************************************
+ * ANIMATIONS
+ *
+ * Keys: rotate, rotate-counterclock, heartbeat, breathing, deform
+ *****************************************************************************/
+
+.animate-rotate              { animation: rotating 10s linear infinite; }
+.animate-rotate-counterclock { animation: rotating-counterclock 10s linear infinite; }
+.animate-heartbeat           { animation: heartbeat 1.2s linear infinite; }
+.animate-breathing           { animation: breathing 5s ease-out infinite; }
+.animate-deform              { animation: deform 2s linear infinite alternate; }
+
+/******************************************************************************
+ * ANIMATION KEYFRAMES
+ *****************************************************************************/
+
+@keyframes rotating {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes rotating-counterclock {
+    from { transform: rotate(360deg); }
+    to   { transform: rotate(0deg); }
+}
+
+@keyframes heartbeat {
+    0%, 10%, 50%, 100% { transform: scale(0.8); }
+    5%  { transform: scale(0.9); }
+    15% { transform: scale(1); }
+}
+
+@keyframes breathing {
+    0%, 60%, 100% { transform: scale(0.9); }
+    25% { transform: scale(1); }
+}
+
+@keyframes deform {
+    0%   { transform: scale(0.95, 1.05); }
+    100% { transform: scale(1.05, 0.95); }
+}
+
+/******************************************************************************
+ * BORDER PULSATE ANIMATION
+ *****************************************************************************/
+
+.border-pulsate { animation: border-pulsate 1.5s infinite; }
+
+@keyframes border-pulsate {
+    0%, 100% { border-color: var(--color-red-500); }
+    50%      { border-color: var(--color-black); }
+}
+
+/******************************************************************************
+ * HOVER EFFECT
+ *****************************************************************************/
+
+.hover-effect {
+    &:hover, &:focus {
+        box-shadow: var(--shadow-focus);
+        cursor: pointer;
+
+        * { color: var(--color-50) !important; }
+    }
+}
+
+/******************************************************************************
+ * CIRCULAR SPINNER
+ *
+ * Keys: spinner
+ *****************************************************************************/
+
+.spinner {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    img { width: 10rem; height: 10rem; }
+}
+
+@media (max-width: 750px) {
+    .spinner img { width: 4rem; height: 4rem; }
+}
+
+/******************************************************************************
+ * ANIMATED BUBBLE BUTTON
+ *****************************************************************************/
+
+.btn-bubble.animate {
+    position: relative;
+    pointer-events: none;
+
+    &::after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        top: -.5rem; left: -.5rem;
+        width: calc(100% + 1rem);
+        height: calc(100% + 1rem);
+        border-radius: 50%;
+        background-image: conic-gradient(var(--color-red-300) 30deg, transparent 120deg);
+        animation: orbit 2s linear infinite;
+    }
+}
+
+@keyframes orbit { 100% { transform: rotate(-360deg); } }
+
+/******************************************************************************
+ * OBSERVER ANIMATIONS
+ *
+ * Keys: slide-left, slide-right, slide-up, slide-down, slide-grow,
+ *       sequential-fade-in, rotate-right, spin, spin-more, fade-in
+ *****************************************************************************/
+
+[data-animation] {
+    transition: opacity 500ms ease-out, transform 500ms ease-out;
+    opacity: 0;
+}
+
+/* Slide Left & Right */
+[data-animation="slide-right"] { transform: translateX(-5rem); }
+[data-animation="slide-left"]  { transform: translateX(5rem); }
+.slide-right, .slide-left      {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Slide Up & Down */
+[data-animation="slide-up"]   { transform: translateY(5rem); }
+[data-animation="slide-down"] { transform: translateY(-5rem); }
+.slide-up, .slide-down {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Grow */
+[data-animation="slide-grow"] {
+    transform: scale(.9);
+    opacity: .65;
+}
+.slide-grow {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Sequential Fade-In */
+[data-animation="sequential-fade-in"] {
+    opacity: 1;
+    transition: none;
+}
+[data-animation="sequential-fade-in"] > a { opacity: 0; }
+
+.sequential-fade-in > a {
+    $duration: 0.15s; $increment: 0.15s;
+    @for $i from 1 through 25 {
+        &:nth-child(#{$i}) {
+            animation: fadeInSequential 0.5s forwards $duration;
+            $duration: $duration + $increment;
+        }
+    }
+}
+
+@keyframes fadeInSequential { from { opacity: 0; } to { opacity: 1; } }
+
+/* 3D Rotation */
+[data-animation="rotate-right"] { opacity: 1; }
+.rotate-right { transform: perspective(400px) rotateY(45deg) translateX(0.5vw); }
+
+/* Spin */
+[data-animation="spin"] { transform: translateY(100%) rotate(180deg) !important; }
+.spin { opacity: 1; transform: translateY(100%) rotate(0) !important; }
+
+[data-animation="spin-more"] { transform: rotate(180deg); }
+.spin-more {
+    opacity: 1;
+    transform: rotate(0);
+}
+
+/* Fade in */
+.fade-in {opacity: 1;}

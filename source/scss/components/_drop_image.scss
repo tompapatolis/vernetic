@@ -1,0 +1,54 @@
+/******************************************************************************
+ * DROP IMAGE COMPONENT
+ *
+ * Provides a drag-and-drop area for image uploads:
+ * - `.drop-image` → Base container with dashed border
+ * - `.drop-image__view` → Inner container for display content
+ * - `.drop-image--pulsate` → Animated border effect
+ *
+ * Features:
+ * - Uses `aspect-ratio: 16/9` for consistent sizing
+ * - Supports hover interaction (`cursor: pointer`)
+ * - Optional pulsing border animation (`drop-image-pulsate`)
+ *****************************************************************************/
+
+ .drop-image {
+    display: block;
+    background-color: var(--color-950);
+    border-radius: .5rem;
+    overflow: hidden;
+    border: 3px dashed var(--color-600);
+    aspect-ratio: 16 / 9;
+
+    &:hover { cursor: pointer; }
+
+    /* Inner View */
+    &__view {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        font-family: var(--ff-monospace);
+        font-size: var(--fs-200);
+        color: var(--color-300);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    /* Pulsating Border Animation */
+    &--pulsate {
+        border-style: solid;
+        animation: drop-image-pulsate 350ms infinite alternate;
+    }
+}
+
+/* Border Pulsation Animation */
+@keyframes drop-image-pulsate {
+    0%   { border-color: var(--color-orange-400); }
+    100% { border-color: var(--color-orange-800); }
+}

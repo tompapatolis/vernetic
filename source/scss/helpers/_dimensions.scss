@@ -1,0 +1,50 @@
+/******************************************************************************
+ * DIMENSIONS UTILITIES
+ *
+ * Provides utility classes for:
+ * - Fixed pixel-based sizes (20px - 800px)
+ * - Responsive small-screen variations (w-sm-* and h-sm-*)
+ * - Viewport-relative sizes (w-*vw and h-*vh)
+ * - Helper classes for automatic, full, and max-width adjustments
+ *
+ * Keys:
+ * - Fixed: 20, 40, 60, ..., 800
+ * - Viewport: 1, 2, 3, ..., 20 (vw/vh)
+ *****************************************************************************/
+
+ // Fixed Dimensions (20px - 800px)
+ @for $i from 1 through 40 {
+     .w-#{$i * 20}     { width: #{$i * 20}px; max-width: 100%; }      // Width
+     .h-#{$i * 20}     { height: #{$i * 20}px; }                      // Height
+     .mw-#{$i * 20}    { min-width: #{$i * 20}px; max-width: 100%; }  // Min Width
+     .w-max-#{$i * 20} { max-width: #{$i * 20}px; }                   // Max Width
+     .mh-#{$i * 20}    { min-height: #{$i * 20}px; }                  // Min Height
+ }
+
+ // Small-Screen Adjustments
+ @media (max-width: 750px) {
+     [class*="mh-"] { min-height: auto !important; }
+     [class*="mw-"] { min-width: auto !important; }
+
+     @for $i from 1 through 40 {
+         .w-sm-#{$i * 20} { width: #{$i * 20}px !important; max-width: 100%; }
+         .h-sm-#{$i * 20} { height: #{$i * 20}px !important; }
+     }
+ }
+
+ // Viewport-Based Dimensions (1vw - 20vw & 1vh - 20vh)
+ @for $i from 1 through 20 {
+     .w-#{$i}vw { width: #{$i}vw; max-width: 100%; } // Width in vw
+     .h-#{$i}vh { height: #{$i}vh; }                // Height in vh
+ }
+
+ /******************************************************************************
+  * DIMENSIONS HELPERS
+  *****************************************************************************/
+
+ .w-auto   { width: auto; }               // Auto Width
+ .h-auto   { height: auto; }              // Auto Height
+ .w-fit    { width: fit-content; }        // Fit Content Width
+ .mw-0     { min-width: 0 !important; }   // Reset Min Width
+ .w-full   { width: 100%; height: auto; } // Full Width
+ .w-max-hd { max-width: 1920px; }         // Max Width for HD Screens

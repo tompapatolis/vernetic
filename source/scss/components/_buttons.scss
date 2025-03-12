@@ -1,0 +1,311 @@
+/******************************************************************************
+ * BUTTON UTILITIES
+ *
+ * Provides a versatile button system with various styles:
+ * - `.btn` → Base button styling
+ * - `.btn-{size}` → Different size options (tiny, small, large)
+ * - `.btn-{variant}` → Modifiers for appearance (shadow, round, square)
+ * - `.btn-{color}-{shade}` → Color variations (gray, red, orange, green, blue)
+ * - `.btn-icon` → Icon-only buttons
+ * - `.btn-split` → Buttons with attached sections
+ * - `.btn-cnt` → Buttons with counters
+ * - `.btn-blob` → Irregular shape buttons
+ * - `.btn-circ` → Circular buttons
+ *****************************************************************************/
+
+/* Base Button */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    color: var(--color-100);
+    background: var(--color-700);
+    user-select: none;
+    border: none;
+    padding: .5rem 1rem;
+    font-size: var(--fs-400);
+    line-height: 1.25;
+    border: none;
+    outline: none;
+    border-radius: .25rem;
+    cursor: pointer;
+}
+
+a.btn {
+    text-decoration: none;
+}
+
+.btn:focus, a.btn:focus {outline: none;}
+
+/******************************************************************************
+ * BUTTON MODIFIERS
+ *****************************************************************************/
+
+.btn {
+    &-shadow   {box-shadow: var(--shadow);}
+    &-noshadow {box-shadow: none !important;}
+    &-square   {border-radius: 0;}
+    &-narrow   {padding: 0 .65rem;}
+    &-tiny {
+        line-height: 1;
+        font-size: var(--fs-100);
+        padding: .375rem .65rem;
+    }
+    &-small {
+        line-height: 1;
+        font-size: var(--fs-300);
+        padding: .5rem .75rem;
+    }
+    &-large {
+        font-size: var(--fs-500);
+        padding: .75rem 1.25rem;
+    }
+    &-round {
+        width: 3rem;
+        height: 3rem;
+        padding: 0;
+        border-radius: 50%;
+        line-height: 1;
+        .svg-icon {
+            transform: translateY(-.1rem);
+        }
+    }
+    &-svg {
+        padding: .5rem;
+        aspect-ratio: 1;
+        border-radius: .25rem;
+    }
+}
+
+/* Disabled State */
+.btn.disabled,
+a.btn.disabled {
+    opacity: 0.65;
+    pointer-events: none;
+}
+
+/******************************************************************************
+ * BUTTON COLOR UTILITIES
+ *
+ * Dynamically generates button styles for different colors:
+ * - `.btn-{shade}` → Standard grayscale buttons (e.g., `.btn-500`)
+ * - `.btn-{color}-{shade}` → Color-specific buttons (red, orange, green, blue)
+ * - Applies background, text color, and hover effects dynamically
+ *****************************************************************************/
+
+$button_colors: (
+    gray: (
+        50 900 300 950, 100 900 400 100, 200 900 500 100, 300  50 600 100,
+       400 100 700 200, 500 100 800 200, 600 100 900 200, 700 100 500  50,
+       800 100 600  50, 900 200 700 100, 950 200 700 100
+    ),
+    red: (
+         50 900 300 900, 100 900 400 100, 200 900 500 100, 300  50 600 100,
+        400  50 700 200, 500 100 800 200, 600 100 900 200, 700 100 500  50,
+        800 200 600 100, 900 200 700 100, 950 200 700 100
+    ),
+    orange: (
+         50 900 300 900, 100 900 400 100, 200 900 500 100, 300  50 600 100,
+        400  50 700 100, 500 100 800 100, 600 100 900 100, 700 100 500  50,
+        800 200 600 100, 900 200 700 100, 950 200 700 100
+    ),
+    green: (
+         50 900 300 900, 100 900 400 900, 200 900 500  50, 300 900 600 100,
+        400 900 700 200, 500 900 800 100, 600  50 900 200, 700 100 900 200,
+        800 200 600  50, 900 200 700 100, 950 200 700 100
+    ),
+    blue: (
+         50 900 300 900, 100 900 400 100, 200 900 500 100, 300  50 600 100,
+        400  50 700 100, 500 100 800 100, 600 100 900 100, 700 100 500  50,
+        800 200 600 100, 900 200 700 100, 950 200 700 100
+    )
+);
+
+@each $color, $shades in $button_colors {
+    @each $key, $text, $hover_bg, $hover_text in $shades {
+        // Special case: No prefix for gray (e.g., .btn-500 instead of .btn-gray-500)
+        $prefix: if($color == gray, "", "#{$color}-");
+
+        .btn-#{$prefix}#{$key},
+        a.btn-#{$prefix}#{$key} {
+            background: var(--color-#{$prefix}#{$key});
+            color: var(--color-#{$prefix}#{$text});
+
+            &:hover, &:focus, &:active, &.active {
+                background: var(--color-#{$prefix}#{$hover_bg});
+                color: var(--color-#{$prefix}#{$hover_text});
+            }
+        }
+    }
+}
+
+/******************************************************************************
+ * BUTTONS WITH ICONS
+ *****************************************************************************/
+
+.btn-icon {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    border-radius: .5rem;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+
+    .svg-icon {
+        width:  2rem;
+        height: 2rem;
+        margin: .75rem auto;
+    }
+
+    &.active {
+        outline: 2px solid currentColor;
+        outline-offset: .2rem;
+    }
+
+    span {
+        font-size: var(--fs-300);
+        font-family: var(--ff-heading);
+        line-height: 1.15;
+        text-align: center;
+        font-weight: 400;
+        padding: .5rem;
+        border-top: 1px solid rgba(0,0,0,.5);
+    }
+}
+
+/******************************************************************************
+ * SPLIT BUTTON
+ *****************************************************************************/
+
+.btn-split {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    font-family: var(--ff-heading);
+
+    span {
+        display: flex;
+        align-items: center;
+        padding: .65rem 1rem;
+        border-left: 1px solid rgba(0,0,0,.45);
+        flex: 1;
+    }
+
+    .svg-icon {
+        width:  1.375em;
+        height: 1.375em;
+        margin: 0 .5rem;
+    }
+}
+
+.btn-split.btn-split-right {
+    span {
+        border-right: 1px solid rgba(0,0,0,.45);
+        border-left: none;
+    }
+}
+
+.btn-split.btn-small {
+    span {padding: .5rem .75rem;}
+    .svg-icon {
+        width:  1.375em;
+        height: 1.375em;
+        margin: 0 .5rem;
+    }
+}
+
+.btn-split.btn-large {
+    span {padding: 1rem 1.375rem;}
+    .svg-icon {
+        width:  1.5em;
+        height: 1.5em;
+        margin: 0 1rem;
+    }
+}
+
+@media(max-width: 990px) {
+    .btn-split {box-shadow: none;}
+}
+
+/******************************************************************************
+ * COUNTER BUTTON
+ *****************************************************************************/
+
+.btn-cnt {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    font-family: var(--ff-heading);
+    font-weight: 400;
+
+    &__title {
+        display: flex;
+        align-items: center;
+        gap: .25rem;
+        padding: .65rem 1rem;
+        border-right: 1px solid rgba(0,0,0,.25);
+        flex: 1;
+        line-height: 1.25;
+    }
+
+    &:not(:has(> .btn-cnt__cnt)) {border-left: 8px solid rgba(0,0,0,.15);}
+    &__title:not(:has(~ .btn-cnt__cnt)) {border-right: none;}
+
+    &__cnt {
+        min-width: 0;
+        display: flex;
+        align-items:center;
+        justify-content:center;
+        padding: .65rem 1rem;
+        font-family: var(--ff-heading);
+    }
+
+    &.active {box-shadow: var(--shadow-focus);}
+
+    &--pill {
+        border-radius: 9999px;
+        box-shadow: inset 25px 0px 25px -25px rgba(0,0,0,0.15), var(--shadow);
+    }
+
+    &--pill:hover {
+        border-left-color: var(--color-red-300);
+        box-shadow: inset 0  25px 25px -25px rgba(0,0,0,0.45), inset 25px 0px 25px -25px rgba(0,0,0,0.15), var(--shadow);
+    }
+
+    &--pill &__cnt {padding: .65rem 1.75rem .65rem 1.5rem;}
+    &--pill &__title:has(~ .btn-cnt__cnt) {padding: .65rem .5rem .65rem 1.25rem;}
+}
+
+/******************************************************************************
+ * BLOB BUTTON
+ *****************************************************************************/
+
+.btn-blob {
+    padding: 1rem 1.25rem 1.1rem 1.1rem;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    @media(max-width: 750px) {box-shadow: none;}
+}
+
+/******************************************************************************
+ * CIRCULAR BUTTON
+ *****************************************************************************/
+
+.btn-circ {
+    padding: 0;
+    line-height: 1;
+    width:  calc(6rem + 1vw);
+    height: calc(6rem + 1vw);
+    border-radius: 50%;
+    font-family: var(--ff-heading);
+}

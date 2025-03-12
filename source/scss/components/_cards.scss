@@ -1,0 +1,44 @@
+/******************************************************************************
+ * CARD COMPONENTS
+ *
+ * Provides flexible card styles:
+ * - `.card` → Standard card with an image and text
+ * - `.textcard` → Text-based card with link interactions
+ *
+ * Features:
+ * - Hover & Active States: Changes text color and adds underlines
+ * - `.card__image`: Ensures consistent aspect ratio for images
+ * - `.textcard__more`: Underlined by default, removed on hover
+ *****************************************************************************/
+
+/* Common Card */
+.card {
+    text-decoration: none;
+    color: var(--color-200);
+
+    &:hover,
+    &:active {
+        color: var(--color-100);
+        .card__title { text-decoration: underline; }
+    }
+
+    &__image {
+        width: 100%;
+        aspect-ratio: 1;
+    }
+}
+
+/* Text Card */
+.textcard {
+    text-decoration: none;
+    color: inherit;
+
+    &__more { text-decoration: underline; }
+
+    &:hover,
+    &:active {
+        color: var(--color-white);
+        .textcard__title { text-decoration: underline; }
+        .textcard__more { text-decoration: none; }
+    }
+}

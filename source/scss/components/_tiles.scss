@@ -1,0 +1,213 @@
+/******************************************************************************
+ * TILE COMPONENTS
+ *
+ * Provides multiple tile styles:
+ * - `.tile` → Standard tile with centered content
+ * - `.tile-cnt` → Tile with a two-span counter layout
+ * - `.countered-tile` → Tiles with automatic numbering
+ * - `.tile-infogram` → Grid-based informational tile
+ * - `.tile-type` → Alternative tile layout with multiple spans
+ * - `.tile-colorful` → Colored tiles with gradient backgrounds
+ * - `.base-tile` → Basic tile with a header and body
+ *
+ * Features:
+ * - Supports various layouts using Flexbox & Grid
+ * - Responsive adjustments for different tile types
+ * - Uses CSS counters for numbered tiles
+ *****************************************************************************/
+
+ /* Standard Tile */
+.tile {
+    border-radius: .5rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    font-size: var(--fs-400);
+    font-family: var(--ff-count);
+    line-height: 1.25;
+    border: 1px solid rgba(255,255,255,.15);
+    box-shadow: var(--shadow);
+}
+
+/* Numbered Tile Content */
+.tile-cnt {
+    padding: .75rem .5rem;
+
+    > span:nth-of-type(1) {
+        flex:1;
+        font-size: var(--fs-700);
+        font-family: var(--ff-count);
+        font-weight: bold;
+    }
+    > span:nth-of-type(2) {
+        font-size: var(--fs-300);
+        text-align: center;
+        font-family: var(--ff-heading);
+    }
+}
+
+/******************************************************************************
+ * NUMBERED TILE
+ *
+ * Uses CSS counter to automatically number tiles.
+ *****************************************************************************/
+
+.numbered-tile,
+.countered-tile {
+    counter-reset: tileCounter;
+
+    > .tile,
+    > .tile-infogram {
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Adds auto-incrementing number badge */
+    > .tile::after,
+    > .tile-infogram::after {
+        counter-increment: tileCounter;
+        content: counter(tileCounter);
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: var(--color-blue-700);
+        padding: .125rem 5rem;
+        transform: rotate(45deg) translate(50%, 50%);
+        transform-origin: 100% 0;
+        font-size: var(--fs-200);
+        font-weight: 500;
+        color: var(--color-blue-50);
+        box-shadow: -3px 3px 3px rgba(0,0,0,.15);
+        line-height: 1;
+        font-family: var(--ff-heading);
+    }
+}
+
+/******************************************************************************
+ * TILE INFOGRAPH
+ *
+ * Grid-based tile for displaying structured information.
+ *****************************************************************************/
+
+.tile-infogram {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: .375rem;
+    align-items: center;
+    line-height: 1;
+    border: 1px solid rgba(255,255,255,.15);
+    box-shadow: var(--shadow);
+    border-radius: .5rem;
+    padding: .5rem;
+    font-family: var(--ff-heading);
+
+    &__img {
+        grid-area: 1 / 1 / 4 / 2; /* Starts at row 1, column 1, spans to row 4, column 2 */
+        margin-right: .5rem;
+        opacity: .85;
+        height: 100%;
+        max-height: 70px;
+        width: auto;
+        align-self: center;
+    }
+    &__cell-1 {
+        grid-area: 1 / 2 / 2 / 3; /* Starts at row 1, column 2, spans to row 2, column 3 */
+        font-weight: 500;
+    }
+    &__cell-2 {
+        grid-area: 2 / 2 / 3 / 3; /* Starts at row 2, column 2, spans to row 3, column 3 */
+        font-size: var(--fs-600);
+
+    }
+    &__cell-3 {
+        grid-area: 3 / 2 / 4 / 3; /* Starts at row 3, column 2, spans to row 4, column 3 */
+    }
+}
+
+/******************************************************************************
+ * TILE TYPE
+ *
+ * Alternative tile layout with three content spans.
+ *****************************************************************************/
+
+.tile-type {
+    gap: .5rem;
+    line-height: 1;
+
+    > span:nth-of-type(1) {
+        flex:1;
+        font-size: var(--fs-500);
+        font-family: var(--ff-count);
+    }
+    > span:nth-of-type(2) {
+        font-size: var(--fs-700);
+        text-align: center;
+        font-family: var(--ff-count);
+        font-weight: bold;
+    }
+    > span:nth-of-type(3) {
+        font-size: var(--fs-300);
+    }
+}
+
+/******************************************************************************
+ * COLORFUL TILES
+ *
+ * Applies unique styles for the first four tiles, using gradients.
+ *****************************************************************************/
+
+.tile-colorful:nth-child(1) {
+    border-color: var(--color-red-400);
+    color: var(--color-red-50);
+    background-image: linear-gradient(to bottom right, var(--color-red-500), var(--color-red-800));
+    > span:nth-of-type(2) {
+        color: var(--color-red-100);
+    }
+}
+.tile-colorful:nth-child(2) {
+    border-color: var(--color-blue-400);
+    color: var(--color-blue-50);
+    background-image: linear-gradient(to bottom right, var(--color-blue-500), var(--color-blue-800));
+    > span:nth-of-type(2) {
+        color: var(--color-blue-200);
+    }
+}
+.tile-colorful:nth-child(3) {
+    border-color: var(--color-green-500);
+    color: var(--color-green-50);
+    background-image: linear-gradient(to bottom right, var(--color-green-600), var(--color-green-900));
+    > span:nth-of-type(2) {
+        color: var(--color-green-100);
+    }
+}
+.tile-colorful:nth-child(4) {
+    border-color: var(--color-600);
+    color: var(--color-50);
+    background-image: linear-gradient(to bottom right, var(--color-700), var(--color-900));
+    > span:nth-of-type(2) {
+        color: var(--color-100);
+    }
+}
+
+/******************************************************************************
+ * BASE TILE
+ *
+ * Simple tile with a header and body section.
+ *****************************************************************************/
+
+.base-tile {
+    border-radius: .5rem;
+    box-shadow: var(--shadow);
+    background-image: linear-gradient(to bottom right, var(--color-700), var(--color-800));
+
+    &__title {
+        border-bottom: 1px solid rgba(0,0,0,.35);
+        padding: 1rem 1.25rem;
+    }
+
+    &__body {padding: 1rem 1.25rem;}
+}

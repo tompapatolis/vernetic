@@ -1,0 +1,63 @@
+/******************************************************************************
+ * GRID TABLE UTILITIES
+ *
+ * Provides a flexible, responsive table using CSS Grid:
+ * - `.grid-table` → Base table structure
+ * - `.grid-table-{n}` → Defines column count (1-20)
+ * - `.grid-table-md-{n}` / `.grid-table-sm-{n}` → Responsive columns for medium/small screens
+ * - `.grid-table--striped` → Adds alternating row colors for all grid tables
+ *
+ * Features:
+ * - Uses CSS Grid for dynamic column layouts
+ * - Automatically aligns last columns to the right
+ * - Optional striped background for better readability
+ *****************************************************************************/
+
+/* Base Grid Table */
+.grid-table {
+    display: grid;
+    font-family: var(--ff-heading);
+    font-size: var(--fs-200);
+
+    > * {
+        border-bottom: 1px solid rgba(255, 255, 255, .1);
+        padding: .375rem .5rem;
+        line-height: 1.25 !important;
+    }
+
+    &__head {
+        font-family: var(--ff-heading);
+        font-size: var(--fs-300);
+        font-weight: 500;
+    }
+
+    /* Striped Table */
+    &--striped {
+        > *:nth-child(odd) {
+            background: rgba(0, 0, 0, .15);
+            background: var(--color-800);
+        }
+    }
+}
+
+/* Grid Table Columns */
+@for $i from 1 through 20 {
+    .grid-table-#{$i} {
+        grid-template-columns: repeat($i, auto);
+        > *:nth-last-child(-n + #{$i}) {border-bottom: none;} /* Remove border for last row items */
+        > *:nth-child(#{$i}n + #{$i}) {text-align: right;} /* Align last column items to the right */
+    }
+}
+
+/* Responsive Grid Table */
+@media (max-width: 990px) {
+    @for $i from 1 through 20 {
+        .grid-table-md-#{$i} {grid-template-columns: repeat($i, auto);}
+    }
+}
+
+@media (max-width: 750px) {
+    @for $i from 1 through 20 {
+        .grid-table-sm-#{$i} {grid-template-columns: repeat($i, auto);}
+    }
+}

@@ -1,0 +1,110 @@
+@use "sass:map";
+/******************************************************************************
+ * CONTAINER UTILITIES
+ *****************************************************************************/
+
+/**
+ * Container Sizes
+ *
+ * Define fixed container sizes for responsive layouts:
+ * - `xxs`: Very small devices (e.g., compact phones).
+ * - `xs` : Small phones.
+ * - `sm` : Larger phones and small tablets.
+ * - `md` : Small tablets.
+ * - `d`  : Default size (large tablets, small laptops).
+ * - `lg` : Laptops and desktops.
+ * - `xl` : Large desktops.
+ * - `2xl`: Extra large screens.
+ * - `3xl`: Ultra-wide monitors.
+ */
+ $container_sizes: (
+    'xxs' : 250px,   // Very small devices (e.g., compact phones)
+    'xs'  : 450px,   // Small phones
+    'sm'  : 750px,   // Larger phones and small tablets
+    'md'  : 800px,   // Small tablets
+    'd'   : 890px,   // Default container (large tablets, small laptops)
+    'lg'  : 990px,   // Laptops and desktops
+    'xl'  : 1200px,  // Large desktops
+    '2xl' : 1450px,  // Extra large screens
+    '3xl' : 1680px   // Ultra-wide monitors
+);
+
+/**
+ * Base Container Styles
+ *
+ * - `width`: Default container width.
+ * - `max-width`: Ensures container doesn't exceed viewport width.
+ * - `margin`: Centers the container horizontally.
+ * - `padding`: Adds horizontal spacing inside the container.
+ * - `overflow`: Hides overflow content by default.
+ */
+.container {
+    width: map.get($container_sizes, 'd'); // Default width
+    max-width: 100%;                       // Full width for smaller viewports
+    margin: 0 auto;                        // Center container
+    padding: 0 1rem;                       // Default padding
+    overflow: hidden;                      // Hide overflow
+
+    /**
+     * Fluid Container
+     *
+     * - `&--fluid`: Enables full-width container with responsive padding.
+     */
+    &--fluid {
+        width: auto;
+        margin: 0;
+        padding: 0 2vw;
+        overflow: visible;
+    }
+
+    /**
+     * Overflow Utility
+     *
+     * - `&--overflow`: Explicitly sets overflow to visible.
+     */
+    &--overflow {
+        overflow: visible !important;
+    }
+
+    /**
+     * No Padding Utility
+     *
+     * - `&--p0`: Removes all padding from the container.
+     */
+    &--p0 {
+        padding: 0;
+    }
+}
+
+/**
+ * Specific Container Sizes
+ *
+ * Generates container modifiers for each predefined size:
+ * - Example: `.container--xxs`, `.container--lg`, `.container--3xl`.
+ */
+.container {
+    @each $key, $size in $container_sizes {
+        &--#{$key} {
+            width: $size;
+        }
+    }
+}
+
+/**
+ * Responsive Container Styles
+ *
+ * Ensures the container adapts to smaller screens:
+ * - Sets container to full width with no margin.
+ * - Includes utility class `.container--max` to remove horizontal padding.
+ */
+ @media (max-width: 750px) {
+    .container {
+        width: 100% !important;           // Full width for smaller screens
+        margin: 0;                        // Remove horizontal margin
+
+        &--max {
+            padding-left: 0;
+            padding-right: 0;             // Remove horizontal padding
+        }
+    }
+}

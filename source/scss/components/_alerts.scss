@@ -1,0 +1,54 @@
+/********************************************************************************************
+ * ALERT COMPONENT
+ *
+ * A flexible alert system with support for:
+ * - Variants: info, success, warning (`.alert--info`, `.alert--success`, `.alert--warning`)
+ * - Right-aligned option (`.alert--right`)
+ *******************************************************************************************/
+
+.alert {
+    display: flex;
+    overflow: hidden;
+    border-radius: .5rem;
+    border: 1px solid rgba(255,255,255,.15);
+
+    /* Alert Icon */
+    &__icon {
+        display: flex;
+        align-items: center;
+        padding: .5rem 1rem;
+    }
+
+    &__icon .svg-icon {
+        width: 2.5em;
+        height: 2.5em;
+        color: rgba(255,255,255,.95);
+    }
+
+    /* Alert Body */
+    &__body {
+        padding: .75rem 1rem;
+        font-size: var(--fs-300);
+        line-height: 1.5;
+        color: var(--color-200);
+    }
+
+    &__body p {
+        font-size: var(--fs-300);
+        margin-bottom: .5rem;
+        line-height: 1.5;
+        &:last-child { margin-bottom: 0; }
+    }
+
+    &__body h1, h2, h3, h4, h5 {
+        color: var(--color-100);
+        margin-bottom: .25rem;
+    }
+
+    /* Alignment & Variants */
+    &--right { margin-left: auto; } /* Aligns the alert to the right */
+
+    &--info .alert__icon { background: var(--color-800); } /* Info alert */
+    &--success .alert__icon { background: var(--color-green-600); } /* Success alert */
+    &--warning .alert__icon { background: var(--color-red-600); } /* Warning alert */
+}

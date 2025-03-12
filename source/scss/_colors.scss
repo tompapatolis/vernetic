@@ -1,0 +1,166 @@
+@use 'sass:math';
+@use "sass:map";
+/******************************************************************************
+ * COLOR UTILITIES
+ *
+ * Generates:
+ * - Global text colors: `.color-{shade}` (e.g., `.color-100`, `.color-500`)
+ * - Global background colors: `.bg-{shade}` (e.g., `.bg-100`, `.bg-500`)
+ * - Color-specific text colors: `.color-{color}-{shade}` (e.g., `.color-red-500`)
+ * - Color-specific background colors: `.bg-{color}-{shade}` (e.g., `.bg-blue-300`)
+ *
+ * Available Shades:
+ * 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950, 1000, a100, a200, a400, a700, white, black
+ *
+ * Available Colors:
+ * red, orange, green, blue
+ *****************************************************************************/
+
+$shades-ext: (
+    '50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950', '1000',
+    'a100', 'a200', 'a400', 'a700', 'white', 'black'
+);
+$shades: ('50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950');
+$colors: ('red', 'orange', 'green', 'blue');
+
+// Global Shades
+@each $shade in $shades-ext {
+    .color-#{$shade} { color: var(--color-#{$shade}) !important; }
+    .bg-#{$shade}    { background-color: var(--color-#{$shade}) !important; }
+}
+
+// Color-Specific Shades
+@each $color in $colors {
+    @each $shade in $shades {
+        .color-#{$color}-#{$shade} { color: var(--color-#{$color}-#{$shade}) !important; }
+        .bg-#{$color}-#{$shade}    { background-color: var(--color-#{$color}-#{$shade}) !important; }
+    }
+}
+
+/******************************************************************************
+ * COLOR ROOT VARIABLES
+ *
+ * Purpose:
+ * - Defines CSS variables (`--color-*`) for a structured color system.
+ * - Uses HSL for better flexibility in adjusting shades dynamically.
+ * - Includes a neutral (gray) scale and various color scales (red, orange, green, blue).
+ *
+ * Structure:
+ * - `$color-hues`: Base hue and saturation values for each color family.
+ * - `$shade_builder`: Defines neutral (gray) shades.
+ * - `$color_builder`: Defines shades for primary colors.
+ * - `:root`: Generates HSL-based CSS variables dynamically.
+ *
+ * Features:
+ * - Each color has multiple shades (e.g., `--color-red-500`, `--color-gray-100`).
+ * - Uses SCSS maps and loops to generate values efficiently.
+ * - Ensures saturation does not exceed 100% (`math.min()` is applied).
+ *
+ *****************************************************************************/
+
+$color-hues: (
+    gray:   (hue: 214, sat:  24%),
+    red:    (hue:   5, sat: 100%),
+    orange: (hue:  23, sat: 100%),
+    green:  (hue:  70, sat:  87%),
+    blue:   (hue: 213, sat:  96%)
+);
+
+$shade_builder: (
+    '50'  5  11% 97%,  '100'  3   3% 91%,  '200' -1   4% 85%,  '300'  0   1% 65%,  '400'  0   2% 53%,
+   '500'  0   0% 43%,  '600' -2   2% 37%,  '700' -2   6% 30%,  '800' -2   8% 25%,  '900' -1  12% 16%,
+   '950' -1  16% 10%, '1000' -1  12%  9%, 'a100'  1 100% 81%, 'a200'  1 100% 71%, 'a400'  2 100% 61%,
+  'a700'  2 100% 56%
+);
+
+$color_builder: (
+    '50'  5  11% 97%, '100'  3   3% 91%, '200' -1   4% 82%, '300'  0   1% 65%, '400'  0   2% 53%,
+   '500'  0   0% 43%, '600' -2   2% 37%, '700' -2   6% 30%, '800' -2   8% 25%, '900' -1  12% 16%,
+   '950' -1   8% 10%
+);
+
+:root {
+
+    @each $shade, $h, $s, $l in $shade_builder {
+        --color-#{$shade}: hsl(#{map.get($color-hues, gray, hue) + $h}, #{math.min(map.get($color-hues, gray, sat) + $s, 100%)}, #{$l});
+    }
+    @each $shade, $h, $s, $l in $color_builder {
+        --color-red-#{$shade}: hsl(#{map.get($color-hues, red, hue) + $h}, #{math.min(map.get($color-hues, red, sat) + $s, 100%)}, #{$l});
+    }
+    @each $shade, $h, $s, $l in $color_builder {
+        --color-orange-#{$shade}: hsl(#{map.get($color-hues, orange, hue) + $h}, #{math.min(map.get($color-hues, orange, sat) + $s, 100%)}, #{$l});
+    }
+    @each $shade, $h, $s, $l in $color_builder {
+        --color-green-#{$shade}: hsl(#{map.get($color-hues, green, hue) + $h}, #{math.min(map.get($color-hues, green, sat) + $s, 100%)}, #{$l});
+    }
+    @each $shade, $h, $s, $l in $color_builder {
+        --color-blue-#{$shade}: hsl(#{map.get($color-hues, blue, hue) + $h}, #{math.min(map.get($color-hues, blue, sat) + $s, 100%)}, #{$l});
+    }
+
+    --color-black: #111;
+    --color-white: #FFF;
+}
+
+/******************************************************************************
+ * COLOR SET UTILITIES
+ *
+ * Generates paired background and foreground color utilities.
+ *
+ * Format:
+ * - `.set-{shade}` → Grayscale set
+ * - `.set-{color}-{shade}` → Color sets (red, orange, green, blue)
+ *
+ * Example Usage:
+ * - `.set-500` → Background: `--color-500`, Foreground: `--color-200`
+ * - `.set-red-400` → Background: `--color-red-400`, Foreground: `--color-red-100`
+ *
+ * Available Shades:
+ * 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950
+ *****************************************************************************/
+
+// Grayscale Color Set (Background | Foreground)
+$set_grayscale_matrix: (50 900, 100 900, 200 900, 300 900, 400 100, 500 200,
+                        600 200, 700 200, 800 200, 900 200, 950 300);
+
+// Red Color Set (Background | Forecolor)
+$set_red_matrix: (50 900, 100 900, 200 900, 300 50, 400 100, 500 100,
+                  600 200, 700 200, 800 200, 900 200, 950 300);
+
+// Orange Color Set (Background | Forecolor)
+$set_orange_matrix: (50 900, 100 900, 200 900, 300 900, 400 100, 500 100,
+                     600 200, 700 200, 800 200, 900 300, 950 400);
+
+// Green Color Set (Background | Forecolor)
+$set_green_matrix: (50 900, 100 900, 200 900, 300 900, 400 900, 500 50,
+                    600 100, 700 100, 800 200, 900 300, 950 300);
+
+// Blue Color Set (Background | Forecolor)
+$set_blue_matrix: (50 900, 100 900, 200 900, 300 900, 400 100, 500 100,
+                   600 100, 700 200, 800 200, 900 300, 950 300);
+
+// Generate grayscale color set
+@each $bg, $color in $set_grayscale_matrix {
+    .set-#{$bg} {
+        color: var(--color-#{$color}) !important;
+        background-color: var(--color-#{$bg}) !important;
+    }
+}
+
+// Generate color-specific sets
+$color_sets: (red: $set_red_matrix, orange: $set_orange_matrix,
+              green: $set_green_matrix, blue: $set_blue_matrix);
+
+@each $color, $matrix in $color_sets {
+    @each $bg, $fg in $matrix {
+        .set-#{$color}-#{$bg} {
+            color: var(--color-#{$color}-#{$fg}) !important;
+            background-color: var(--color-#{$color}-#{$bg}) !important;
+        }
+    }
+}
+
+/******************************************************************************
+ * COLOR HELPERS
+ *****************************************************************************/
+
+.bg-dark-glass { background-color: rgba(0, 0, 0, 0.15); }

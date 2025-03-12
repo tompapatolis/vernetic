@@ -1,0 +1,92 @@
+/******************************************************************************
+ * PAGINATION COMPONENT
+ *
+ * Provides a flexible, responsive pagination system:
+ * - `.pagination` → Base pagination container
+ * - `.pagination__prev`, `.pagination__next` → Navigation controls
+ * - `.pagination__current` → Current page indicator
+ * - `.pagination__more` → Dropdown for additional pages
+ * - `.pagination__list` → Hidden list of extra page numbers
+ * - `.pagination__link` → Individual page links
+ *
+ * Features:
+ * - Uses CSS Grid for structured layout
+ * - Hover and active states for navigation elements
+ * - Responsive adjustments for small screens
+ *****************************************************************************/
+
+ .pagination {
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    border-top: 1px solid rgba(255, 255, 255, .15);
+
+    /* Navigation Controls */
+    &__prev,
+    &__next {
+        color: var(--color-200);
+        text-decoration: underline;
+        &:hover,
+        &:active { color: var(--color-green-300); }
+    }
+
+    &__prev { justify-self: end; }
+    &__current { justify-self: end; }
+
+    /* Dropdown for More Pages */
+    &__more {
+        position: relative;
+        color: var(--color-200);
+        &:hover,
+        &:active { color: var(--color-green-300); }
+    }
+
+    &__list {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: var(--color-950);
+        transform: translateY(-100%);
+        padding: .5rem;
+        max-height: 40vh;
+        overflow-y: auto;
+    }
+
+    /* Page Links */
+    &__link {
+        display: block;
+        white-space: nowrap;
+        color: var(--color-100);
+        line-height: 1;
+        padding: .5rem .75rem;
+        text-decoration: none;
+        text-align: center;
+        &:hover,
+        &:active {
+            background: var(--color-700);
+            color: var(--color-white);
+        }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 750px) {
+        grid-template-columns: 1fr auto auto;
+        align-items: center;
+        gap: .75rem;
+        padding-top: 1rem !important;
+
+        &__prev,
+        &__next {
+            border: 1px solid var(--color-300);
+            border-radius: .25rem;
+            padding: .75rem;
+
+            .svg-icon { font-size: 1.25em; }
+
+            &:hover,
+            &:active {
+                background: var(--color-950);
+                border-color: var(--color-500);
+            }
+        }
+    }
+}

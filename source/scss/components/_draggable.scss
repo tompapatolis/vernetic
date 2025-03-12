@@ -1,0 +1,50 @@
+/******************************************************************************
+ * DRAGLIST COMPONENT
+ *
+ * Provides a sortable list with drag-and-drop functionality:
+ * - `.draglist` → Base list container
+ * - `.draglist__item` → Individual draggable items
+ * - `.draglist__dragging` → Highlighted when actively dragged
+ * - `.draglist--saved` → Outlined state for saved items
+ * - `.draglist.sortable-pages` → Adjusted layout for sortable pages
+ *
+ * Features:
+ * - Uses `display: grid` for structured item alignment
+ * - Cursor styling for draggable interaction
+ * - Custom styling for drag and save states
+ *****************************************************************************/
+
+.draglist {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    margin-bottom: .5rem;
+
+    /* Draggable Items */
+    &__item {
+        display: grid;
+        grid-template-columns: auto 200px 1fr;
+        align-items: center;
+        gap: .5rem;
+        font-family: var(--ff-heading);
+        padding: .25rem;
+        line-height: 1;
+        background: var(--color-800);
+        color: var(--color-100);
+        cursor: move;
+
+        .svg-icon { color: var(--color-300); }
+    }
+
+    /* Drag & Save States */
+    &__dragging { background: var(--color-green-700); }
+    &--saved {
+        outline: 2px solid var(--color-green-300);
+        outline-offset: 2px;
+    }
+}
+
+/* Layout Adjustment for Sortable Pages */
+.draglist.sortable-pages .draglist__item {
+    grid-template-columns: auto 1fr;
+}

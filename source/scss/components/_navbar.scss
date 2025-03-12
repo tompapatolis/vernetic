@@ -1,0 +1,282 @@
+/******************************************************************************
+ * NAVIGATION BAR (NAVBAR)
+ *
+ * Provides a responsive, fixed navigation bar with:
+ * - `.navbar` → Fixed top navigation with flex layout
+ * - `.navbar--dynamic` → Transparent navbar with no shadow
+ * - `.navbar--scrolled` → Changes background on scroll
+ * - `.navbar__item` → Standard navigation links
+ * - `.navbar__logo` → Logo section with spacing
+ * - `.navbar__toggle` → Toggle button for sidebar/dropdowns
+ * - `.navbar__sidebar-left / navbar__sidebar-right` → Sidebar menus
+ *****************************************************************************/
+
+.navbar {
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+	display: flex;
+	height: var(--navbar-height);
+	z-index: 900;
+	line-height: 1;
+    background: var(--color-1000);
+
+    /* Dynamic Navbar (Transparent, No Shadow) */
+    &--dynamic {
+        box-shadow: none;
+        background: transparent;
+        border-color: transparent;
+        backdrop-filter: none;
+    }
+
+    /* Background transition when scrolled */
+    &--scrolled {
+        transition: background 350ms ease-in-out;
+        background: var(--color-1000);
+    }
+
+    /* Navigation Items */
+    &__item {
+        display: flex;
+        align-items:center;
+        justify-content:center;
+        gap: .25rem;
+        color: var(--color-100);
+        text-decoration: none !important;
+        padding: 0 .75rem;
+        &:hover,
+        &.active {
+            background: var(--color-800);
+            color:var(--color-50);
+        }
+    }
+
+    /* Logo */
+    &__logo .navbar__item {
+        padding: 0 .25rem;
+        &:hover,
+        &.active {background: inherit;}
+        @media(min-width: 990px) {padding: 0 1rem;}
+    }
+
+    /* Right Aligned Items */
+    &__right {
+        justify-content: flex-end;
+        flex:1;
+    }
+
+    /* Toggle Button */
+    &__toggle {
+        &:has(> .active) {background: var(--color-900);}
+
+        @media(min-width: 750px) {
+            &:hover {background: var(--color-900);}
+        }
+    }
+
+    /* Membership Badge */
+    &__member {
+        font-family: var(--ff-heading);
+        color: var(--color-800);
+        background: var(--color-green-500);
+        padding: .25rem .375rem;
+        border-radius: .25rem;
+        font-size: var(--fs-200);
+        line-height: 1;
+        font-weight: 500;
+    }
+
+    /* Sidebar Buttons (Hamburger & Meatballs) */
+    &__hamburger,
+    &__meatballs  {
+        color: inherit;
+        padding: 0 .5rem;
+    }
+
+    /* Sidebars */
+    &__sidebar-left,
+    &__sidebar-right {
+        position: fixed;
+        top: var(--navbar-height);
+        height: calc(100dvh - var(--navbar-height));
+        width: var(--sidebar-width);
+        max-width: 100%;
+        background: var(--color-900);
+        padding: .75rem;
+        display: none;
+
+        /* Show sidebar with animation */
+        &.show {
+            display: flex;
+            animation: animate-sidebars forwards 250ms ease-in-out;
+        }
+
+        @media(max-width: 750px) {width: 100%;}
+    }
+
+    /* Left Sidebar */
+    &__sidebar-left {
+        left:0;
+        z-index: 800;
+        transform: translateX(-100%);
+        flex-direction:column;
+    }
+
+    /* Right Sidebar */
+    &__sidebar-right {
+        right:0;
+        z-index: 801;
+        transform: translateX(100%);
+        flex-direction:column;
+        background-image: radial-gradient(400px circle at 5% 33%, var(--color-800), transparent);
+    }
+
+    /* Observer Element for Scroll Detection */
+    &__observe {
+        position: absolute;
+        top: var(--navbar-height);
+        width: 1px;
+        height: 1px;
+        background: transparent;
+        font-size: 0;
+        line-height: 0;
+    }
+
+    /* Button Active State */
+    &__btn.active {outline-color: var(--color-a200);}
+
+}
+
+/* Sidebar Animation */
+@keyframes animate-sidebars {
+    100% {transform: translateX(0);}
+}
+
+/******************************************************************************
+ * DROPDOWN MENU
+ *
+ * Provides a dropdown structure with:
+ * - `.dropdown` → Wrapper element
+ * - `.dropdown__body` → Dropdown content container
+ * - `.dropdown__toggle` → Trigger button
+ * - `.dropdown--show` → Shows dropdown on interaction
+ *****************************************************************************/
+
+.dropdown {
+    position: relative;
+
+    /* Dropdown Content */
+    &__body {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        min-width: 100%;
+        z-index: -1;
+        transform: translateY(100%);
+        background: var(--color-800);
+        display: none;
+    }
+
+    /* Right-Aligned Dropdown */
+    &__body--dropright {
+        left: auto;
+        right: 0;
+    }
+
+    /* Full-Width Fluid Dropdown */
+    &__body--fluid {
+        position: fixed;
+        transform: none;
+        left: 1rem;
+        right: 1rem;
+        top: var(--navbar-height);
+        bottom: auto;
+    }
+
+    /* Dropdown Toggle */
+    &__toggle {
+        gap: 0;
+        padding: 0 .25rem 0 .75rem !important;
+    }
+
+    /* Show Dropdown */
+    &--show {
+        .dropdown__body {display: block;}
+        .dropdown__toggle {
+            background: var(--color-800);
+            color:var(--color-50);
+        }
+    }
+
+    /* Dropdown List */
+    &__list {box-shadow: var(--shadow);}
+
+    /* Dropdown Items */
+    &__item {
+        display: grid;
+        grid-template-columns: 2.5rem 1fr;
+        border-top: 1px solid var(--color-900);
+        text-decoration: none;
+        white-space: nowrap;
+        color: var(--color-100);
+        line-height: 1;
+
+        &:hover,
+        &.active {
+            background: var(--color-600);
+            color: var(--color-50);
+        }
+    }
+
+    /* Dropdown Icon */
+    &__icon {
+        background: rgba(0,0,0,.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Dropdown Label */
+    &__label {
+        font-size: var(--fs-300);
+        padding: .75rem 1.5rem .75rem 1rem;
+    }
+}
+
+/******************************************************************************
+ * SIDEBAR NAVIGATION (Sidenav)
+ *****************************************************************************/
+
+.sidenav {
+    overflow-y: auto;
+
+    /* Sidebar Title */
+    &__title {border-bottom: 1px solid var(--color-500);}
+
+    /* Sidebar Links */
+    &__link {
+        display: block;
+        line-height: 2;
+        color: var(--color-200);
+        padding: 0 .75rem;
+        &:hover,
+        &.active {
+            text-decoration-line: underline;
+            text-decoration-thickness: 2px;
+            text-decoration-color: var(--color-red-300);
+            color: var(--color-white);
+        }
+    }
+}
+
+/******************************************************************************
+ * NAVBAR UTILITIES
+ *****************************************************************************/
+
+.no-scroll {
+    overflow: hidden;
+    position: fixed;
+    inset: 0 0 auto 0; // Safari
+}
+

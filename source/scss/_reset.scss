@@ -1,0 +1,181 @@
+/******************************************************************************
+ * VERNETIC MODERN CSS RESET
+ *
+ * Purpose:
+ * - Normalize styles across browsers for consistent rendering.
+ * - Remove default browser inconsistencies in layout and appearance.
+ * - Provide a clean foundation for modern responsive websites.
+ ******************************************************************************/
+
+/* Universal Box-Sizing
+   - Ensures consistent box-sizing across all elements.
+   - Includes `::before` and `::after` pseudo-elements.
+   - Resets margin and padding to eliminate browser defaults.
+*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Full Height Layout
+   - Ensures the `html` and `body` elements take up at least the full viewport height.
+*/
+html,
+body {
+    min-height: 100vh;
+}
+
+/* Body Defaults
+   - Sets a base font size and line-height for readability.
+   - Removes bold styling some browsers apply by default.
+*/
+body {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Link Reset
+   - Removes default underline from links.
+*/
+a {
+    text-decoration: none;
+}
+
+/* Media Elements
+   - Ensures images, videos, and pictures are responsive.
+   - Prevents media elements from overflowing their containers.
+*/
+img,
+picture,
+video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Image Styling
+   - Provides fallback styling for broken or missing images.
+   - Ensures images align correctly in text-based elements.
+*/
+img {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    font-style: italic;
+}
+
+/* Form Elements Reset
+   - Ensures text inputs, buttons, and selects inherit font styles.
+   - Prevents unexpected max-width issues.
+*/
+input,
+textarea,
+button,
+select {
+    font: inherit;
+    max-width: 100%;
+}
+
+/* Input & Select Defaults
+   - Removes default browser styles.
+   - Ensures uniform width and removes rounded borders.
+*/
+input,
+select {
+    width: 100%;
+    appearance: none;
+    border-radius: 0;
+    outline: none;
+}
+
+/* Textarea Styling
+   - Removes unwanted borders and enables smooth scrolling.
+   - Prevents unwanted resizing.
+*/
+textarea {
+    width: 100%;
+    border: none;
+    overflow: auto;
+    outline: none;
+    box-shadow: none;
+    resize: none;
+}
+
+/* Submit Button
+   - Ensures submit buttons do not default to full width.
+*/
+input[type="submit"] {
+    width: auto;
+}
+
+/* Chrome Autofill Styling
+   - Prevents unwanted yellow autofill background in Chrome.
+*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    box-shadow: 0 0 0 30px #0f161f inset !important;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: #f5f7fa !important;
+}
+
+/* Table Reset
+   - Ensures tables collapse borders properly for a cleaner layout.
+*/
+table {
+    border-collapse: collapse;
+}
+
+/* Button Reset
+   - Removes default browser styles.
+   - Ensures buttons remain visually consistent.
+*/
+button,
+button:focus {
+    outline: none;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+}
+
+/* Button Interaction
+   - Ensures buttons remain accessible and inherit text color.
+*/
+button {
+    cursor: pointer;
+    color: inherit;
+}
+
+/* Responsive Content Handling
+   - Ensures images, iframes, and tables do not exceed their containers.
+*/
+img,
+iframe,
+table {
+    max-width: 100%;
+}
+
+/* Text Overflow Protection
+   - Prevents long text from breaking layouts.
+   - Allows wrapping in narrow spaces.
+*/
+p,
+a,
+table {
+    overflow-wrap: anywhere;
+}
+
+/* Editable Content Focus Reset
+   - Removes focus outline on elements with `contenteditable`.
+*/
+[contenteditable]:focus {
+    outline: 0;
+}

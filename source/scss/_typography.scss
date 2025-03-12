@@ -1,0 +1,167 @@
+/******************************************************************************
+ * TYPOGRAPHY
+ *
+ * Provides styling for headings, paragraphs, lists, blockquotes, and code blocks.
+ * - Ensures consistency in font sizes, weights, and spacing.
+ * - Supports responsive typography for improved readability.
+ ******************************************************************************/
+
+/* Headings */
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    font-family: var(--ff-heading);
+    line-height: 1.25;
+    margin-bottom: .75ex;
+    font-weight: bold;
+}
+
+h1, .h1 {font-size: var(--fs-800em);}
+h2, .h2 {font-size: var(--fs-700em);}
+h3, .h3 {font-size: var(--fs-600em); font-weight: 600;}
+h4, .h4 {font-size: var(--fs-500em); font-weight: 500;}
+h5, .h5 {font-size: var(--fs-400em); font-weight: 500;}
+h6, .h6 {font-size: var(--fs-300em); font-weight: 500;}
+
+/* Sleek Headings */
+h1, h2, h3, h4, h5, h6 {
+    &.sleek-heading {
+        display: flex;
+        align-items: center;
+        gap: .375rem;
+        margin-bottom: 0;
+
+        svg {
+            color: var(--color-a200);
+            font-size: 1.25em;
+        }
+
+        &::after {
+            content: '';
+            height: 1px;
+            flex: 1 1 0;
+            background:  rgba(255,255,255,.15);
+        }
+    }
+}
+
+/******************************************************************************
+ * PARAGRAPHS
+ ******************************************************************************/
+
+p {
+    font-size: var(--fs-400);
+    line-height: var(--line-height);
+    margin-bottom: 3ex;
+}
+
+.p-no-margin > p,
+.no-mb > p {
+    margin-bottom: 0 !important; // Ensures no bottom spacing for all paragraphs inside.
+}
+
+.last-p-m0 p:last-child,
+.last-no-mb p:last-child {
+    margin-bottom: 0 !important; // Removes bottom margin only for the last paragraph inside.
+}
+
+
+/******************************************************************************
+ * LISTS
+ ******************************************************************************/
+
+ol,
+ul,
+dl {
+    margin: 1em 0 2em 0;
+    padding: 0 0 0 2.5em;
+
+}
+
+ul,
+dl {
+    @media(max-width: 750px) {padding: 0 0 0 1.5em;}
+}
+
+li {
+    margin-bottom: .5em;
+    line-height: 1.5em;
+
+    @media(max-width: 750px) {margin-bottom: .375em;}
+}
+
+ul li::marker {color: var(--color-red-300);}
+ol li::marker {color: var(--color-red-300);}
+
+ol ol,
+ul ul,
+ol ul,
+ul ol {
+	margin-bottom: 0;
+}
+
+/* Clear List */
+ul.clear-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+    > li {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+/******************************************************************************
+ * BLOCKQUOTES
+ ******************************************************************************/
+
+blockquote {
+	border-left: 5px solid var(--color-a400);
+	padding: 1.5em;
+	font-style: italic;
+    color: var(--color-200);
+	background: var(--color-950);
+	margin: 2rem 0;
+
+	p {font-size: var(--fs-300);}
+	p:last-child {margin-bottom:0 !important;}
+}
+
+/******************************************************************************
+ * EMBEDDED CONTENT
+ ******************************************************************************/
+
+.raw-html-embed:not(.ck-widget),
+.raw-html-embed:not(.ck-widget) iframe {
+    aspect-ratio: 16 / 9;
+	width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+/******************************************************************************
+ * CODE BLOCKS
+ ******************************************************************************/
+
+.code {
+    position: relative;
+    border-radius: .5rem;
+    overflow: hidden;
+    border: 1px solid var(--color-700);
+
+    pre {
+        white-space: pre-wrap;
+        overflow-x: auto;
+        font-size: var(--fs-100);
+        line-height: 1.25;
+        padding: 1rem 1.5rem;
+        tab-size: 4;
+        font-weight: 400;
+    }
+
+    code {font-family: var(--ff-monospace);}
+}

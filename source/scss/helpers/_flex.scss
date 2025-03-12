@@ -1,0 +1,87 @@
+/******************************************************************************
+ * FLEX CONTAINER TYPES
+ *****************************************************************************/
+
+.flex {
+    display: flex; /* Block-level flex container */
+}
+
+.flex-inline {
+    display: inline-flex; /* Inline-level flex container */
+}
+
+/******************************************************************************
+ * FLEX DIRECTION UTILITIES
+ *****************************************************************************/
+
+.flex-row {
+    flex-direction: row; /* Horizontal layout (default) */
+}
+
+.flex-column {
+    flex-direction: column; /* Vertical layout */
+}
+
+/******************************************************************************
+ * FLEX WRAPPING UTILITIES
+ *****************************************************************************/
+
+.flex-wrap {
+    flex-wrap: wrap; /* Items wrap onto multiple lines */
+}
+
+/******************************************************************************
+ * FLEX ALIGNMENT
+ *****************************************************************************/
+
+.flex-center {
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.flex-space,
+.flex-spread {
+    justify-content: space-between; /* Space between items */
+}
+
+.flex-vc {
+    align-items: center; /* Align items to center vertically */
+}
+
+.flex-vt {
+    align-items: flex-start; /* Align items to the top */
+}
+
+.flex-vb {
+    align-items: flex-end; /* Align items to the bottom */
+}
+
+.flex-hc {
+    justify-content: center; /* Center items horizontally */
+}
+
+.flex-hr {
+    justify-content: flex-end; /* Align items to the right */
+}
+
+.flex-end {
+    justify-content: flex-end; /* Alias for flex-hr */
+}
+
+/******************************************************************************
+ * FLEX UTILITIES
+ *****************************************************************************/
+
+.flex-v {
+    display: flex; /* Enable flexbox */
+    align-items: center; /* Align items vertically */
+    gap: .25em; /* Small gap between items */
+}
+
+.flex-self-end {
+    margin-left: auto; /* Push item to the end */
+}
+
+.flex-1 {
+    flex: 1; /* Make item take up all available flex space */
+}
