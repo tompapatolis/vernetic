@@ -47,7 +47,7 @@
         padding: 0 .75rem;
         &:hover,
         &.active {
-            background: var(--color-800);
+            background: var(--color-700);
             color:var(--color-50);
         }
     }
@@ -104,6 +104,7 @@
         max-width: 100%;
         background: var(--color-900);
         padding: .75rem;
+        scrollbar-color: var(--color-700) var(--color-900);
         display: none;
 
         /* Show sidebar with animation */
@@ -120,7 +121,8 @@
         left:0;
         z-index: 800;
         transform: translateX(-100%);
-        flex-direction:column;
+        flex-direction: column;
+        overflow-y: auto;
     }
 
     /* Right Sidebar */
@@ -141,6 +143,18 @@
         background: transparent;
         font-size: 0;
         line-height: 0;
+    }
+
+    &__btn {
+        grid-template-rows: subgrid !important;
+        gap: 0;
+        grid-row: span 2;
+
+        span {
+            align-self: stretch;
+            display: grid;
+            place-content: center;
+        }
     }
 
     /* Button Active State */
@@ -279,4 +293,3 @@
     position: fixed;
     inset: 0 0 auto 0; // Safari
 }
-

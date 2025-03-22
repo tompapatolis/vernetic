@@ -1,0 +1,75 @@
+/******************************************************************************
+ * TABLE STYLING
+ *
+ * Provides a consistent, accessible, and responsive table design:
+ * - `table` → Base table styles with full width and structured layout
+ * - `thead` → Header row with distinct background and bold text
+ * - `tbody tr` → Alternating row colors for readability
+ * - `tr:hover` → Hover effect for better interaction
+ *
+ * Features:
+ * - Uses `border-collapse: collapse` for cleaner layout
+ * - Alternates row colors for visual clarity
+ * - Applies hover effects to enhance user experience
+ * - Supports border-radius for rounded corners
+ *****************************************************************************/
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-800); // Base background color
+    margin: 2rem 0;
+    color: var(--color-100);
+    border-radius: .5rem;
+    overflow: hidden;
+    font-size: var(--fs-300);
+    box-shadow: 1px 3px 5px rgba(0,0,0,.25);
+
+    // Table Headers
+    thead {
+        font-family: var(--ff-heading);
+        font-size: var(--fs-500);
+        background-color: var(--color-950);
+        color: var(--color-300);
+
+        th {
+            padding: 1rem; // Space around header text
+            text-align: left; // Align header text to the left
+            border-bottom: 1px solid var(--color-300); // Separator line below the header
+            font-weight: 500;
+        }
+
+        th:last-child {
+            width: 1%;
+            white-space: nowrap;
+        }
+    }
+
+    // Table Body
+    tbody {
+        tr {
+            &:not(:last-child) {
+                border-bottom: 1px solid var(--color-300); // Separator line between rows
+            }
+
+            &:nth-child(odd) {
+                background-color: var(--color-600); // Alternate row color
+            }
+
+            &:hover {
+                background-color: var(--color-500); // Hover effect for rows
+                color: var(--color-50);
+            }
+
+            td {
+                padding: .5rem 1rem; // Space around cell text
+                text-align: left; // Align cell text to the left
+            }
+
+            td:last-child {
+                width: 1%;
+                white-space: nowrap;
+            }
+        }
+    }
+}

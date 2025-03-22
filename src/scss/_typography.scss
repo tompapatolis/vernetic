@@ -68,21 +68,34 @@ p {
     margin-bottom: 0 !important; // Removes bottom margin only for the last paragraph inside.
 }
 
+/******************************************************************************
+ * HORIZONTAL RULES
+ ******************************************************************************/
+
+hr {
+    margin: 3rem 0;
+    border: 1px solid var(--color-600);
+}
 
 /******************************************************************************
  * LISTS
  ******************************************************************************/
 
 ol,
-ul,
-dl {
+ul {
     margin: 1em 0 2em 0;
     padding: 0 0 0 2.5em;
 
+    // Nested
+    ul, ol {
+        margin-top: 0.5em;
+        padding-left: 1.5em; // Less indentation for better readability
+    }
+
 }
 
-ul,
-dl {
+ul {
+    list-style-type: disc;
     @media(max-width: 750px) {padding: 0 0 0 1.5em;}
 }
 
@@ -93,21 +106,23 @@ li {
     @media(max-width: 750px) {margin-bottom: .375em;}
 }
 
+/* Marker Colors */
 ul li::marker {color: var(--color-red-300);}
 ol li::marker {color: var(--color-red-300);}
+ol ul li::marker {color: var(--color-green-300);}
 
 ol ol,
 ul ul,
 ol ul,
 ul ol {
-	margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 /* Clear List */
 ul.clear-list {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
     > li {
         margin: 0;

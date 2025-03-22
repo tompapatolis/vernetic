@@ -1,3 +1,4 @@
+@use "sass:math";
 /******************************************************************************
  * ASPECT RATIO UTILITIES
  *
@@ -5,12 +6,12 @@
  *****************************************************************************/
 
  $aspect-ratios: (
-    "1"  : 1,          // Square (1:1)
-    "169": 16 / 9,   // Widescreen video (16:9)
-    "32" : 3 / 2,     // Photography standard (3:2)
-    "43" : 4 / 3,     // Legacy TV or image format (4:3)
-    "74" : 7 / 4,     // Wide presentation format (7:4)
-    "golden": 1.618  // Golden ratio (1.618:1)
+    "1"  : 1,                  // Square (1:1)
+    "169": math.div(16, 9),    // Widescreen video (16:9)
+    "32" : math.div(3, 2),     // Photography standard (3:2)
+    "43" : math.div(4, 3),     // Legacy TV or image format (4:3)
+    "74" : math.div(7, 4),     // Wide presentation format (7:4)
+    "golden": 1.618            // Golden ratio (1.618:1)
 );
 
 @each $key, $value in $aspect-ratios {
@@ -173,7 +174,7 @@ $border-radius: (
  * Keys: md, lg, xl, 2x, 3x, 4x, 5x
  *****************************************************************************/
 
- .svg-icon {
+.svg-icon {
     width: 1em;
     height: 1em;
     fill: currentcolor;
@@ -191,6 +192,10 @@ $border-radius: (
         width: 1.75em;
         height: 1.75em;
     }
+    &.svg-icon-animate {
+        animation: animateSvgIcon 2s linear infinite;
+    }
+
 
     // Dynamic multipliers (2x–5x)
     @for $i from 2 through 5 {
@@ -199,6 +204,11 @@ $border-radius: (
             height: #{$i}em;
         }
     }
+}
+
+@keyframes animateSvgIcon {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
 }
 
 /******************************************************************************
@@ -224,6 +234,17 @@ $border-radius: (
  */
 .pos-absolute {
     position: absolute;
+}
+
+/**
+ * Sticky Positioning
+ *
+ * - `.pos-sticky`: Positions the element based on the user's scroll position.
+ * - The element toggles between `relative` and `fixed`, depending on the scroll.
+ * - Requires `top`, `right`, `bottom`, or `left` for proper behavior.
+ */
+.pos-sticky {
+    position: sticky;
 }
 
 /******************************************************************************

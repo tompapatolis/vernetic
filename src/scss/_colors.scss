@@ -59,11 +59,11 @@ $colors: ('red', 'orange', 'green', 'blue');
  *****************************************************************************/
 
 $color-hues: (
-    gray:   (hue: 214, sat:  24%),
-    red:    (hue:   5, sat: 100%),
-    orange: (hue:  23, sat: 100%),
-    green:  (hue:  70, sat:  87%),
-    blue:   (hue: 213, sat:  96%)
+    'gray':   (hue: 214, sat:  24%),
+    'red':    (hue:   5, sat: 100%),
+    'orange': (hue:  23, sat: 100%),
+    'green':  (hue:  70, sat:  87%),
+    'blue':   (hue: 213, sat:  96%)
 );
 
 $shade_builder: (
@@ -82,19 +82,19 @@ $color_builder: (
 :root {
 
     @each $shade, $h, $s, $l in $shade_builder {
-        --color-#{$shade}: hsl(#{map.get($color-hues, gray, hue) + $h}, #{math.min(map.get($color-hues, gray, sat) + $s, 100%)}, #{$l});
+        --color-#{$shade}: hsl(#{map.get($color-hues, 'gray', hue) + $h}, #{math.min(map.get($color-hues, 'gray', sat) + $s, 100%)}, #{$l});
     }
     @each $shade, $h, $s, $l in $color_builder {
-        --color-red-#{$shade}: hsl(#{map.get($color-hues, red, hue) + $h}, #{math.min(map.get($color-hues, red, sat) + $s, 100%)}, #{$l});
+        --color-red-#{$shade}: hsl(#{map.get($color-hues, 'red', hue) + $h}, #{math.min(map.get($color-hues, 'red', sat) + $s, 100%)}, #{$l});
     }
     @each $shade, $h, $s, $l in $color_builder {
-        --color-orange-#{$shade}: hsl(#{map.get($color-hues, orange, hue) + $h}, #{math.min(map.get($color-hues, orange, sat) + $s, 100%)}, #{$l});
+        --color-orange-#{$shade}: hsl(#{map.get($color-hues, 'orange', hue) + $h}, #{math.min(map.get($color-hues, 'orange', sat) + $s, 100%)}, #{$l});
     }
     @each $shade, $h, $s, $l in $color_builder {
-        --color-green-#{$shade}: hsl(#{map.get($color-hues, green, hue) + $h}, #{math.min(map.get($color-hues, green, sat) + $s, 100%)}, #{$l});
+        --color-green-#{$shade}: hsl(#{map.get($color-hues, 'green', hue) + $h}, #{math.min(map.get($color-hues, 'green', sat) + $s, 100%)}, #{$l});
     }
     @each $shade, $h, $s, $l in $color_builder {
-        --color-blue-#{$shade}: hsl(#{map.get($color-hues, blue, hue) + $h}, #{math.min(map.get($color-hues, blue, sat) + $s, 100%)}, #{$l});
+        --color-blue-#{$shade}: hsl(#{map.get($color-hues, 'blue', hue) + $h}, #{math.min(map.get($color-hues, 'blue', sat) + $s, 100%)}, #{$l});
     }
 
     --color-black: #111;
@@ -147,8 +147,8 @@ $set_blue_matrix: (50 900, 100 900, 200 900, 300 900, 400 100, 500 100,
 }
 
 // Generate color-specific sets
-$color_sets: (red: $set_red_matrix, orange: $set_orange_matrix,
-              green: $set_green_matrix, blue: $set_blue_matrix);
+$color_sets: ('red': $set_red_matrix, 'orange': $set_orange_matrix,
+              'green': $set_green_matrix, 'blue': $set_blue_matrix);
 
 @each $color, $matrix in $color_sets {
     @each $bg, $fg in $matrix {
