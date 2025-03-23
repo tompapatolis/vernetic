@@ -1,17 +1,31 @@
-/**
- * Vernetic Framework
- * Website : https://vernetic.io
- * Version : 2024
- * Author  : Tom Papatolis
- * ♛ Your daily dosage of awesomeness
- * ◌⎯⎯⎯⎯⎯⎯◖ ROOT ◗⎯⎯⎯⎯⎯⎯◌
- */
+/******************************************************************************
+ *                                                                            *
+ *                              V E R N E T I C                               *
+ *                                                                            *
+ *                      Lightweight. Smart. Blazing Fast.                     *
+ *                                                                            *
+ *----------------------------------------------------------------------------*
+ * Author       : Tom Papatolis                                               *
+ * Website      : https://tpapatolis.com                                      *
+ * GitHub       : https://github.com/tompapatolis/vernetic                    *
+ * Version      : 7.0.0                                                         *
+ *----------------------------------------------------------------------------*
+ *                                                                            *
+ *      ██    ██ ███████ ██████  ███    ██ ███████ ████████ ██  ██████        *
+ *      ██    ██ ██      ██   ██ ████   ██ ██         ██    ██ ██             *
+ *      ██    ██ █████   ██████  ██ ██  ██ █████      ██    ██ ██             *
+ *       ██  ██  ██      ██   ██ ██  ██ ██ ██         ██    ██ ██             *
+ *        ████   ███████ ██   ██ ██   ████ ███████    ██    ██  ██████        *
+ *                                                                            *
+ ******************************************************************************/
 
 import * as navigation from './_navigation.js';
 import * as utils from './_utils.js';
 import * as component from './_components.js';
 // import * as content from './_content.js';
 import * as animations from './_animations.js';
+
+import * as componentNew from './components/treemenu.js'
 
 /**
  * Loader
@@ -57,6 +71,9 @@ import * as animations from './_animations.js';
     component.initModal();
     component.tabs();
     component.tabsVertical();
+
+    // New
+    componentNew.initializeTreeMenu();
 
 })();
 
