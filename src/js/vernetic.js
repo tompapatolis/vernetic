@@ -27,6 +27,9 @@ import * as animations from './_animations.js';
 
 import * as componentNew from './components/treemenu.js'
 
+import { icons } from './system';
+icons.injectVerneticIcons();
+
 /**
  * Loader
  */
