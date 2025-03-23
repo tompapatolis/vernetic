@@ -46,7 +46,7 @@ a.btn {
     &-shadow   {box-shadow: var(--shadow);}
     &-noshadow {box-shadow: none !important;}
     &-square   {border-radius: 0;}
-    &-narrow   {padding: 0 .65rem;}
+    &-narrow   {padding: .25rem .65rem;}
     &-tiny {
         line-height: 1;
         font-size: var(--fs-100);
