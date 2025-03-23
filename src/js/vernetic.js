@@ -19,80 +19,62 @@
  *                                                                            *
  ******************************************************************************/
 
-import * as navigation from './_navigation.js';
-import * as utils from './_utils.js';
-import * as component from './_components.js';
-// import * as content from './_content.js';
-import * as animations from './_animations.js';
+ /**
+ * MAIN INITIALIZATION SCRIPT
+ *
+ * Loads and initializes all core Vernetic UI components on page load.
+ * Designed for modularity, performance, and clean separation of concerns.
+ *
+ * Each component is responsible for guarding its own execution context
+ * (e.g. checking if related elements exist before attaching events).
+ *
+ * Add or remove modules below as needed.
+ */
 
-import * as componentNew from './components/treemenu.js'
+/******************************************************************************
+ * COMPONENTS
+ *****************************************************************************/
 
-import { icons } from './system/icons.js';
+import * as navigation from './components/navigation.js';
+navigation.initNavbar();
+navigation.activeNav();
+navigation.dropdownToggle();
+navigation.navChange();
+navigation.pagination();
+
+import * as treemenu from './components/treemenu.js'
+treemenu.initializeTreeMenu();
+
+import * as draggable from './components/draggable.js';
+draggable.draggable();
+
+import * as dropImage from './components/dropImage.js';
+dropImage.dropImage();
+
+import * as modals from './components/modals.js';
+modals.initModal();
+
+import * as tabs from './components/tabs.js';
+tabs.tabs();
+tabs.tabsVertical();
+
+/******************************************************************************
+ * UTILITIES
+ *****************************************************************************/
+
+import * as utils from './utils/utils.js';
+utils.deleteButtonInForm();
+utils.validatePassword();
+utils.jumpNext();
+utils.copyShareUrl();
+
+/******************************************************************************
+ * SYSTEM
+ *****************************************************************************/
+
+import * as icons from './system/icons.js';
 icons.injectVerneticIcons();
 
-/**
- * Loader
- */
-
-(function verneticLoader() {
-    // Get the id attribute of the body tag
-    const bodyId = document.body.id;
-
-    // Use a switch statement based on the body id
-    switch (bodyId) {
-        case 'members-register':
-            utils.validatePassword();
-            break;
-        case 'members-activate':
-            utils.jumpNext();
-            break;
-        case 'admin-edit':
-            component.dropImage();
-            break;
-        case 'admin-page_order':
-        case 'admin-sort_settings':
-        case 'admin-sort_sections':
-            component.draggable();
-            break;
-        case 'site-page':
-            animations.parallax();
-            break;
-        case 'site-post':
-            utils.copyShareUrl();
-            break;
-        default:
-            // Code to execute when body id does not match any case
-    }
-
-    // Load for all pages
-    navigation.initNavbar();
-    navigation.activeNav();
-    navigation.dropdownToggle();
-    navigation.navChange();
-    navigation.pagination();
-    utils.deleteButtonInForm();
-    component.initModal();
-    component.tabs();
-    component.tabsVertical();
-
-    // New
-    componentNew.initializeTreeMenu();
-
-})();
-
-/**
- * Disabled
- */
-
-// utils.copyThis();
-// utils.sharePopupCentered();
-// utils.showIconsList();
-// utils.convToSymbol();
-// utils.escapeHtml();
-// utils.syntaxHighlight();
-// utils.copyCode();
-// utils.copyTableCell();
-// animations.newObserveElements();
-// component.incPanels();
-// component.accordion();
-// component.panels();
+import * as animations from './system/animations.js';
+animations.newObserveElements();
+animations.parallax();

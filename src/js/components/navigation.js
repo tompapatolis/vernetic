@@ -1,25 +1,30 @@
-/**
- * Vernetic Framework
- * Website : https://vernetic.io
- * Version : 2023
- * Author  : Tom Papatolis
- * ◌⎯⎯⎯⎯⎯⎯◖ Navigation ◗⎯⎯⎯⎯⎯⎯◌
- */
-
-
-
-/**
- * Initialize Navbar
- */
+/******************************************************************************
+ * NAVBAR TOGGLE & SIDEBAR HANDLING
+ *
+ * Purpose:
+ * - Handles interactions for left and right navbar toggles (hamburger & meatballs)
+ * - Toggles corresponding sidebars and overlay visibility
+ * - Prevents page scrolling when sidebar is open
+ *
+ * Behavior:
+ * - Left toggle controls `.navbar__sidebar-left`
+ * - Right toggle controls `.navbar__sidebar-right`
+ * - Overlay click resets all active states and closes both sidebars
+ *
+ * Notes:
+ * - Uses `swapIcon()` and `revertIcon()` to change SVG icons on toggle
+ * - Early exit if no relevant elements are found in the DOM
+ *****************************************************************************/
 
 export function initNavbar() {
+    if (!document.querySelector('.navbar')) return; // Exit early if navbar does not exist
+
     const navToggleLeft  = document.querySelector('.navbar__hamburger');
     const navToggleRight = document.querySelector('.navbar__meatballs');
     const sidebarLeft    = document.querySelector('.navbar__sidebar-left');
     const sidebarRight   = document.querySelector('.navbar__sidebar-right');
     const overlay        = document.querySelector('.overlay');
     const body           = document.body;
-
 
     if ( navToggleLeft )  {
         navToggleLeft.addEventListener('click', (e) => {
@@ -86,12 +91,25 @@ function revertIcon(element, icon) {
     element.setAttribute('href', newHref);
 }
 
-/**
- * Highlight Active Navigation Item
- */
+/******************************************************************************
+ * HIGHLIGHT ACTIVE NAVIGATION ITEM
+ *
+ * Purpose:
+ * - Highlights the active navigation link within containers that use the
+ *   `data-nav-active` attribute to indicate which link should be marked active.
+ *
+ * Behavior:
+ * - Loops through each group with `[data-nav-active]`
+ * - Compares each link’s `data-match` to the group’s `data-nav-active` value
+ * - Adds the `active` class to matching link(s)
+ *
+ * Notes:
+ * - Exits early if no `[data-nav-active]` containers are found
+ *****************************************************************************/
 
  export function activeNav() {
     const navActive = document.querySelectorAll('[data-nav-active]');
+    if (!navActive.length) return; // Exit early if '[data-nav-active]' does not exist
 
     navActive.forEach(itemGroup => {
 
@@ -107,16 +125,29 @@ function revertIcon(element, icon) {
     });
 }
 
-/**
- * Dropdown Menus
- * https://www.youtube.com/watch?v=S-VeYcOCFZw
- * https://github.com/WebDevSimplified/advanced-dropdown/blob/main/script.js
+/******************************************************************************
+ * DROPDOWN MENUS
  *
- */
+ * Source:
+ * - Inspired by Web Dev Simplified:
+ *   https://www.youtube.com/watch?v=S-VeYcOCFZw
+ *   https://github.com/WebDevSimplified/advanced-dropdown/blob/main/script.js
+ *
+ * Purpose:
+ * - Toggles visibility of `.dropdown` menus on click
+ * - Closes other open dropdowns when a new one is toggled
+ * - Collapses all dropdowns when clicking outside
+ *
+ * Behavior:
+ * - Adds/removes `.dropdown--show` class on click
+ * - Listens to clicks outside to close any open dropdowns
+ *
+ * Notes:
+ * - Exits early if no `.dropdown` exists in the DOM
+ *****************************************************************************/
 
 export function dropdownToggle() {
-    const exists = document.querySelector('.dropdown');
-    if ( !exists ) {return;}
+    if (!document.querySelector('.dropdown')) return; // Exit early
 
     const dropdowns       = document.querySelectorAll('.dropdown');
     const dropdownToggles = document.querySelectorAll('.dropdown__toggle');
@@ -144,9 +175,22 @@ export function dropdownToggle() {
 
 }
 
-/**
- * Changing a navigation's style on scroll
- */
+/******************************************************************************
+ * NAVBAR STYLE ON SCROLL
+ *
+ * Purpose:
+ * - Dynamically changes the navbar’s appearance when the user scrolls past
+ *   a specific marker element (`.navbar__observe`)
+ *
+ * Behavior:
+ * - Adds `.navbar--scrolled` to `.navbar--dynamic` when `.navbar__observe`
+ *   leaves the viewport
+ * - Removes the class when the marker is back in view
+ *
+ * Notes:
+ * - Exits early if `.navbar--dynamic` is not found in the DOM
+ * - Uses IntersectionObserver for efficient scroll detection
+ *****************************************************************************/
 
 export function navChange() {
     const navbarDynamic = document.querySelector('.navbar--dynamic');
@@ -168,9 +212,20 @@ export function navChange() {
     observer.observe(navbarObserve);
 }
 
-/**
- * Pagination
- */
+/******************************************************************************
+ * PAGINATION TOGGLE
+ *
+ * Purpose:
+ * - Toggles the visibility of additional pagination items when the user
+ *   clicks the "More" button (`.pagination__more`)
+ *
+ * Behavior:
+ * - Clicking the button shows/hides the `.pagination__list`
+ * - Clicking anywhere outside the button hides the list
+ *
+ * Notes:
+ * - Exits early if `.pagination__more` is not found in the DOM
+ *****************************************************************************/
 
 export function pagination() {
     const paginationButton = document.querySelector('.pagination__more');
