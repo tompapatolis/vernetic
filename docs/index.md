@@ -26,8 +26,30 @@ Vernetic thrives thanks to its vibrant community. As an open-source project, it 
 
 ## Ready to Experience the Difference?
 
-Dive in today and experience firsthand the transformative power of simplicity. Your next project deserves the clarity, speed, and flexibility that only Vernetic can provide.
+Get started by adding Vernetic to your page. Include the following tags in your HTML:
 
-Welcome aboard!
+**CSS Link** (in the `<head>`):
 
-Created with ❤️ by [Tom Papatolis](https://tpapatolis.com/)
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tompapatolis/vernetic@v7.0.0/dist/css/vernetic.css">
+```
+
+**JavaScript** (in the `<head>`):
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/tompapatolis/vernetic@v7.0.0/dist/js/vernetic.js" defer></script>
+
+```
+
+**Icon Sprite** (anywhere in the `<body>`):
+
+```html
+<svg class="svg-icon">
+  <use href="https://cdn.jsdelivr.net/gh/tompapatolis/vernetic@v7.0.0/dist/icons/vernetic.svg#box"></use>
+</svg>
+```
+
+
+---
+
+Made with ♥ by [Tom Papatolis](https://tpapatolis.com/)

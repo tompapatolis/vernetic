@@ -8,7 +8,7 @@
  * Author       : Tom Papatolis                                               *
  * Website      : https://tpapatolis.com                                      *
  * GitHub       : https://github.com/tompapatolis/vernetic                    *
- * Version      : 2.0                                                         *
+ * Version      : 7.0.0                                                         *
  *----------------------------------------------------------------------------*
  *                                                                            *
  *      ██    ██ ███████ ██████  ███    ██ ███████ ████████ ██  ██████        *
@@ -46,5 +46,5 @@
 @use 'components/tiles';
 @use 'components/grid_tables';
 @use 'components/pagination';
-// @use 'components/tables';
-// @use 'components/treemenu';
+@use 'components/tables';
+@use 'components/treemenu';

@@ -4,135 +4,135 @@
 
 .tree-menu,
 .tree-menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    font-family: var(--ff-heading);
-    line-height: 1.8;
-    position: sticky;
-    top: 6rem;
-}
+     list-style: none;
+     margin: 0;
+     padding: 0;
+     font-family: var(--ff-heading);
+     line-height: 1.8;
+     position: sticky;
+     top: 6rem;
+ }
 
-/* Nested lists are hidden by default and indented when expanded */
-.tree-menu ul {
-    margin: .5rem 0 0 1.5rem;
-    color: var(--color-50);
-}
+ /* Nested lists are hidden by default and indented when expanded */
+ .tree-menu ul {
+     margin: .5rem 0 0 1.5rem;
+     color: var(--color-50);
+ }
 
-.tree-menu ul ul {
-    display: none; /* Hide nested <ul> by default */
-}
+ .tree-menu ul ul {
+     display: none; /* Hide nested <ul> by default */
+ }
 
-/* Interactive list items */
-.tree-menu li {
-    cursor: pointer;
-    position: relative;
-    user-select: none;
-    white-space: nowrap;
-}
+ /* Interactive list items */
+ .tree-menu li {
+     cursor: pointer;
+     position: relative;
+     user-select: none;
+     white-space: nowrap;
+ }
 
-/* Folder icon (collapsed) */
-.tree-menu li[data-type="folder"] span::before {
-    content: '';
-    display: inline-block;
-    width:  1.25rem;
-    height: 1.25rem;
-    background: url('../gfx/chevron-right.svg?v=green') no-repeat center center;
-    background-size: contain;
-    position: absolute;
-    left: -1.5rem;
-    top: .125rem;
-}
+ /* Folder icon (collapsed) */
+ .tree-menu li[data-type="folder"] span::before {
+     content: '';
+     display: inline-block;
+     width:  1.25rem;
+     height: 1.25rem;
+     background: url('../gfx/chevron-right.svg?v=blue') no-repeat center center;
+     background-size: contain;
+     position: absolute;
+     left: -1.5rem;
+     top: .125rem;
+ }
 
-/* Folder icon (expanded) */
-.tree-menu li.expanded[data-type="folder"] span::before {
-    transform: rotate(90deg);
-}
+ /* Folder icon (expanded) */
+ .tree-menu li.expanded[data-type="folder"] span::before {
+     transform: rotate(90deg);
+ }
 
-/* File icon */
-.tree-menu li[data-type="file"] a::before {
-    content: '';
-    display: inline-block;
-    width:  1.25rem;
-    height: 1.25rem;
-    background: url('../gfx/markdown.svg?v=green') no-repeat center center;
-    background-size: contain;
-    position: absolute;
-    left: -1.5rem;
-    top: .125rem;
-}
+ /* File icon */
+ .tree-menu li[data-type="file"] a::before {
+     content: '';
+     display: inline-block;
+     width:  1.25rem;
+     height: 1.25rem;
+     background: url('../gfx/markdown.svg?v=blue') no-repeat center center;
+     background-size: contain;
+     position: absolute;
+     left: -1.5rem;
+     top: .125rem;
+ }
 
-/* Visible nested lists for expanded folders */
-.tree-menu li.expanded > ul {
-    display: block;
-}
+ /* Visible nested lists for expanded folders */
+ .tree-menu li.expanded > ul {
+     display: block;
+ }
 
-/* File Links */
-.tree-menu li[data-type="file"] a {
-    color: inherit;
-    display: inline-block;
+ /* File Links */
+ .tree-menu li[data-type="file"] a {
+     color: inherit;
+     display: inline-block;
 
-    &:visited {
-        color: inherit;
-    }
+     &:visited {
+         color: inherit;
+     }
 
-    &:hover,
-    &.active {
-        color: var(--color-50);
-        text-decoration: underline;
-        text-decoration-thickness: 2px;
-        text-decoration-color: var(--color-red-300); /* Change the underline color */
-    }
-}
+     &:hover,
+     &.active {
+         color: var(--color-50);
+         text-decoration: underline;
+         text-decoration-thickness: 2px;
+         text-decoration-color: var(--color-red-300); /* Change the underline color */
+     }
+ }
 
-/******************************************************************************
-* TREE MENU COMPACT
-*****************************************************************************/
+ /******************************************************************************
+  * TREE MENU COMPACT
+  *****************************************************************************/
 
-.tree-menu-compact {
+ .tree-menu-compact {
 
-    a {
-        color: var(--color-100);
-        &:hover {text-decoration: underline;}
-    }
+     a {
+         color: var(--color-100);
+         &:hover {text-decoration: underline;}
+     }
 
-    ul {
-        list-style: none;
-        margin: 0 0 .5rem 1rem;
-        padding: 0;
-    }
+     ul {
+         list-style: none;
+         margin: 0 0 .5rem 1rem;
+         padding: 0;
+     }
 
-    li {
-        margin-bottom: 0;
-        line-height: 1.6;
-    }
+     li {
+         margin-bottom: 0;
+         line-height: 1.6;
+     }
 
-    li[data-type="folder"] span {
-        font-family: var(--ff-heading);
-        font-weight: 500;
-    }
+     li[data-type="folder"] span {
+         font-family: var(--ff-heading);
+         font-weight: 500;
+     }
 
-    /* Color Folders */
-    ul li[data-type="folder"] > span {
-        color: var(--color-50);
-        font-size: var(--fs-600);
-    }
-    ul ul li[data-type="folder"] > span {
-        color: var(--color-green-300);
-        font-size: var(--fs-500);
-    }
-    ul ul ul li[data-type="folder"] > span {
-        color: var(--color-red-300);
-        font-size: var(--fs-400);
-    }
-    ul ul ul ul li[data-type="folder"] > span {
-        color: var(--color-blue-300);
-        font-size: var(--fs-300);
-    }
-    ul ul ul ul ul li[data-type="folder"] > span {
-        color: var(--color-orange-300);
-        font-size: var(--fs-300);
-    }
+     /* Color Folders */
+     ul li[data-type="folder"] > span {
+         color: var(--color-50);
+         font-size: var(--fs-600);
+     }
+     ul ul li[data-type="folder"] > span {
+         color: var(--color-green-300);
+         font-size: var(--fs-500);
+     }
+     ul ul ul li[data-type="folder"] > span {
+         color: var(--color-red-300);
+         font-size: var(--fs-400);
+     }
+     ul ul ul ul li[data-type="folder"] > span {
+         color: var(--color-blue-300);
+         font-size: var(--fs-300);
+     }
+     ul ul ul ul ul li[data-type="folder"] > span {
+         color: var(--color-orange-300);
+         font-size: var(--fs-300);
+     }
 
 }
 
