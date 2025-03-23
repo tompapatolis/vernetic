@@ -7,7 +7,7 @@
  *
  * Source:
  * - Fetched from: jsDelivr CDN (vernetic@v7.0.2)
- *   URL: https://cdn.jsdelivr.net/gh/tompapatolis/vernetic@v7.0.2/dist/icons/vernetic.svg
+ *   URL: https://cdn.jsdelivr.net/gh/tompapatolis/vernetic@v7.0.4/dist/icons/vernetic.svg
  *
  * Notes:
  * - Fetch uses CORS mode
@@ -16,11 +16,12 @@
  *****************************************************************************/
 
 export function injectVerneticIcons() {
-    fetch('https://cdn.jsdelivr.net/gh/tompapatolis/vernetic@v7.0.2/dist/icons/vernetic.svg', { mode: 'cors' })
+    fetch('https://cdn.jsdelivr.net/gh/tompapatolis/vernetic@v7.0.4/dist/icons/vernetic.svg', { mode: 'cors' })
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+            console.log('test');
             return response.text();
         })
         .then(spriteText => {
