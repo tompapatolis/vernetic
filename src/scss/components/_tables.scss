@@ -15,6 +15,7 @@
  *****************************************************************************/
 
 table {
+    table-layout: auto;
     width: 100%;
     border-collapse: collapse;
     background-color: var(--color-800); // Base background color
@@ -39,10 +40,10 @@ table {
             font-weight: 500;
         }
 
-        th:last-child {
-            width: 1%;
-            white-space: nowrap;
-        }
+        // th:last-child {
+        //     width: 1%;
+        //     white-space: nowrap;
+        // }
     }
 
     // Table Body
@@ -66,10 +67,10 @@ table {
                 text-align: left; // Align cell text to the left
             }
 
-            td:last-child {
-                width: 1%;
-                white-space: nowrap;
-            }
+            // td:last-child {
+            //     width: 1%;
+            //     white-space: nowrap;
+            // }
         }
     }
 }

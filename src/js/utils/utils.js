@@ -130,14 +130,11 @@ export function copyShareUrl() {
             // Copy the URL to the clipboard
             navigator.clipboard.writeText(shareUrl)
                 .then(() => {
+                    const copyButtonSpan = copyButton.querySelector('span');
                     // Change button text to "Copied!"
-                    copyButton.querySelector('span').textContent = 'Copied!';
+                    copyButtonSpan.textContent = 'Copied!';
+                    setTimeout(() => { copyButtonSpan.textContent = 'Copy'; }, 2000);
 
-                    // Add the disabled class
-                    copyButton.classList.add('disabled');
-
-                    // Disable the button entirely
-                    copyButton.disabled = true;
                 })
                 .catch(err => {
                     console.error('Failed to copy: ', err);

@@ -16,7 +16,7 @@
  *****************************************************************************/
 
 export function injectVerneticIcons() {
-    fetch('https://cdn.jsdelivr.net/gh/tompapatolis/vernetic@v7.0.6/dist/icons/vernetic.svg', { mode: 'cors' })
+    fetch('https://cdn.jsdelivr.net/gh/tompapatolis/vernetic@v7.0.7/dist/icons/vernetic.svg', { mode: 'cors' })
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
