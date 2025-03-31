@@ -68,6 +68,6 @@ Because I needed a framework that:
 
 So I made it.
 
->>> THE DOCUMENTATION IS FINALLY OUT
->>> [Check it out at vernetic.org](https://vernetic.org/)
->>> GO. READ. BUILD.
+# >>> THE DOCUMENTATION IS FINALLY OUT! <<<
+
+[👉 Check it out at vernetic.org](https://vernetic.org/)
