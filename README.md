@@ -48,7 +48,7 @@ Anywhere in your `<body>`:
 
 ```html
 <svg class="svg-icon">
-	<use href="#box"></use>
+  <use href="#box"></use>
 </svg>
 ```
 
