@@ -1,174 +1,158 @@
-# Animations Documentation
+# Animation Utilities
 
-Comprehensive guide for implementing **Animation Utilities** in your project to enhance user interaction and visual appeal.
-
----
-
-## Table of Contents
-
-1. [Overview](#overview)
-2. [Animation Classes](#animation-classes)
-    - [Rotation](#rotation-animations)
-    - [Heartbeat](#heartbeat-animation)
-    - [Breathing](#breathing-animation)
-    - [Deformation](#deform-animation)
-    - [Border Pulsation](#border-pulsation)
-    - [Hover Effects](#hover-effects)
-3. [Spinner Component](#spinner-component)
-4. [Observer-based Animations](#observer-based-animations)
-5. [HTML Usage Examples](#html-usage-examples)
-6. [Customization](#customization)
-7. [Accessibility](#accessibility)
-8. [Best Practices](#best-practices)
+Reusable utility classes and keyframe animations for visual effects like spinning, sliding, scaling, and fading.
 
 ---
 
-## Overview
+### Table of Contents
 
-The **Animation Utilities** enhance user experience by providing dynamic visual interactions including rotations, pulsations, and transitions.
+- [Standard Animations](#standard-animations)
+- [Border Pulsate Animation](#border-pulsate-animation)
+- [Hover Effect](#hover-effect)
+- [Circular Spinner](#circular-spinner)
+- [Animated Bubble Button](#animated-bubble-button)
+- [Observer-Based Animations](#observer-based-animations)
 
 ---
 
-## Animation Types
+## Standard Animations
 
-### Rotate Animation
+These classes apply predefined CSS keyframe animations.
 
-```html
-<div class="animate-rotate">Rotating Element</div>
-```
+| Class                          | Animation               | Description                                   | 
+| ------------------------------ | ----------------------- | --------------------------------------------- |
+| `.animate-rotate`              | `rotating`              | Rotates element clockwise continuously        |
+| `.animate-rotate-counterclock` | `rotating-counterclock` | Rotates element counterclockwise continuously |
+| `.animate-heartbeat`           | `heartbeat`             | Pulses the element with a heartbeat effect    |
+| `.animate-breathing`           | `breathing`             | Smooth in-out scale effect like breathing     |
+| `.animate-deform`              | `deform`                | Alternating squish/stretch animation          |
 
-### Heartbeat Animation
-
-```html
-<div class="animate-heartbeat">Heartbeat Effect</div>
-```
-
-### Breathing Animation
+**Example:**
 
 ```html
-<div class="animate-breathing">Breathing Effect</div>
-```
-
-### Deform Animation
-
-```html
-<div class="animate-deform">Deform Effect</div>
+<div class="animate-rotate">🔄</div>
 ```
 
 ---
 
-## Border Pulsation
+## Border Pulsate Animation
 
-Applies a pulsating border effect:
+| Class             | Description                                | 
+| ----------------- | ------------------------------------------ |
+| `.border-pulsate` | Pulses the border color between two values |
 
-```html
-<div class="animate-border-pulsate">Border Pulsate</div>
+**Keyframes:**
+
+```css
+@keyframes border-pulsate {
+	0%, 100% { border-color: var(--color-red-500); }
+	50%      { border-color: var(--color-black); } }
+}
 ```
 
 ---
 
-## Hover Effects
+## Hover Effect
 
-Interactive element enhancements:
+Adds a shadow and lightens child text on hover/focus.
+
+| Class           | Description                                     | 
+| --------------- | ----------------------------------------------- |
+| `.hover-effect` | Adds shadow and light text color on hover/focus |
+
+**Effect:**
+
+- `box-shadow: var(--shadow-focus);`
+- Text color: `var(--color-50)` (on all child elements)
+
+**Example:**
 
 ```html
-<button class="hover-effect">Hover Me</button>
+<div class="hover-effect">Hover me</div>
 ```
 
 ---
 
-## Spinner Component
+## Circular Spinner
 
-Loading spinner centered within a container:
+Used to center and size a spinner image, responsive for small screens.
+
+| Class      | Description                       | 
+| ---------- | --------------------------------- |
+| `.spinner` | Centers and sizes spinner element |
+
+**Default Size:** `10rem`  
+**Mobile Size:** `4rem` at `max-width: 750px`
+
+**Example:**
 
 ```html
 <div class="spinner">
-  <img src="spinner.svg" alt="Loading...">
+	<img src="spinner.svg" />
 </div>
 ```
 
 ---
 
-## Observer-based Animations
+## Animated Bubble Button
 
-Trigger animations upon element visibility:
+Adds a spinning conic background to buttons.
 
-```html
-<div data-animation="slide-right">Content slides in</div>
-```
+| Class                 | Description                                      | 
+| --------------------- | ------------------------------------------------ |
+| `.btn-bubble.animate` | Adds a rotating conic gradient around the button |
 
-**Available Options:**
+**Effect:**
 
-- `slide-right`
-- `slide-left`
-- `slide-up`
-- `slide-down`
-- `slide-grow`
-- `spin`
-- `spin-more`
-- `fade-in`
+- Uses `::after` with a `conic-gradient`
+- Rotates using `@keyframes orbit`
 
----
-
-## HTML Usage Examples
-
-### Rotate Example
+**Example:**
 
 ```html
-<div class="animate-rotate">Circular Loader</div>
-```
-
-### Observer Animation Example
-
-```html
-<section data-animation="slide-up">Visible on Scroll</section>
+<button class="btn-bubble animate">Click me</button>
 ```
 
 ---
 
-## Spinner Component
+## Observer-Based Animations
 
-Loading spinner example:
+These animations are applied using `data-animation` attributes and are triggered by an intersection observer when the element enters the viewport.
+
+| Attribute/Class                       | Description                                | 
+| ------------------------------------- | ------------------------------------------ |
+| `data-animation="slide-left"`         | Slides in from the right                   |
+| `data-animation="slide-right"`        | Slides in from the left                    |
+| `data-animation="slide-up"`           | Slides in from below                       |
+| `data-animation="slide-down"`         | Slides in from above                       |
+| `data-animation="slide-grow"`         | Fades in and scales up                     |
+| `data-animation="rotate-right"`       | Rotates element in 3D                      |
+| `data-animation="spin"`               | Rotates 180° from below                    |
+| `data-animation="spin-more"`          | Rotates element fully                      |
+| `data-animation="sequential-fade-in"` | Sequentially fades in children             |
+
+**Example:**
 
 ```html
-<div class="spinner">
-  <img src="spinner.gif" alt="Loading...">
-</div>
+<div data-animation="slide-up">Slide Up on View</div>
+```
+
+**Sequential Example:**
+
+```html
+<nav data-animation="sequential-fade-in">
+	<a>Link 1</a>
+	<a>Link 2</a>
+	<a>Link 3</a>
+</nav>
 ```
 
 ---
 
-## Customization
-
-Easily adjust animations through CSS variables:
-
-- Adjust duration, colors, and transforms using CSS keyframes.
-
----
-
-## Accessibility
-
-- Ensure animations don't trigger accessibility issues.
-- Avoid fast flashing or overly aggressive movements.
-
----
-
-## Best Practices
-
-- Use subtle animations for better UX.
-- Avoid overusing animations to prevent user fatigue.
-- Ensure animations complement the overall design style.
-
----
-
-Effectively integrate animations into your interfaces to enhance visual appeal and interaction.
-
----
-
-| Release Meta             | v7.0.0 |
+| Release Meta             | v7.0.x |
 | ------------------------ | ------ |
-| SCSS Code Reviewed       | false  |
-| Documentation Reviewed   | false  |
-| JavaScript Code Reviewed | false  |
-| JavaScript Dependency    | null   | 
-| Icon Dependency          | null   |
+| SCSS Code Reviewed       | true   |
+| Documentation Reviewed   | true   |
+| JavaScript Code Reviewed | true   | 
+| JavaScript Dependency    | true   |
+| Icon Dependency          | false  |

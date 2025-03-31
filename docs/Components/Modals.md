@@ -1,191 +1,106 @@
-# Modal Component Documentation
+# Modal Component
 
-Detailed documentation for the **Modal Component**, providing a versatile and interactive dialog interface designed to capture user attention and present focused information.
+The `modal` component provides a flexible and animated dialog for displaying overlays, forms, confirmations, and more. It includes structured header and footer sections, an optional overlay backdrop, and a smooth bounce animation when triggered.
 
 ---
 
-## Table of Contents
+### Table of Contents
 
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Base Structure](#base-structure)
-4. [Modal Visibility](#modal-visibility)
-5. [Modal Sections](#modal-sections)
-    - [Header](#modal-header)
-    - [Footer](#modal-footer)
-6. [Modal Overlay](#modal-overlay)
-7. [Animations](#animations)
-8. [Usage Examples](#usage-examples)
-9. [Customization](#customization)
-10. [Accessibility](#accessibility)
-11. [Best Practices](#best-practices)
+- [Overview](#overview)
+- [Structure](#structure)
+- [Modifiers](#modifiers)
+- [Overlay Behavior](#overlay-behavior)
+- [Animation](#animation)
+- [Usage Example](#usage-example)
 
 ---
 
 ## Overview
 
-The **Modal Component** provides an interactive dialog interface, commonly used for displaying contextual content, confirmations, or forms, overlaying the main application content.
+| Class                   | Description                                              | 
+| ----------------------- | -------------------------------------------------------- |
+| `.modal`                | Base container for the modal dialog                      |
+| `.modal--show`          | Makes the modal visible and triggers bounce animation    |
+| `.modal__header`        | Optional header section with title and actions           |
+| `.modal__footer`        | Optional footer for buttons or metadata                  |
+| `.modal__overlay`       | Fullscreen background overlay (used alongside the modal) |
+| `.modal__overlay--show` | Makes the overlay visible                                |
 
 ---
 
-## Features
+## Structure
 
-- Visually engaging animations (bounce effect)
-- Structured layout with header, body, and footer sections
-- Background overlay for focus and clarity
-- Fully responsive design and positioning
+The modal is hidden by default (`visibility: hidden`, `opacity: 0`) and centered on the screen using `transform: translate(-50%, -60%)`. It uses a **bounce animation** when shown to give a subtle motion effect.
 
----
-
-## Modal Visibility
-
-Control modal visibility with the `.modal--show` class:
-
-```html
-<div class="modal modal--show">
-  <!-- Content here -->
-</div>
-```
+The header and footer sections provide semantic structure for layout consistency.
 
 ---
 
-## Base Structure
+## Modifiers
 
-Basic HTML structure:
+These utility classes provide optional enhancements to customize the appearance and behavior of your modal:
 
-```html
-<div class="modal">
-  <div class="modal__header">
-    <h3 class="modal__title">Modal Title</h3>
-    <button class="modal__close">&times;</button>
-  </div>
-  <div class="modal__body">
-    <!-- Content here -->
-  </div>
-  <div class="modal__footer">
-    <button class="btn">Close</button>
-    <button class="btn btn-primary">Save</button>
-  </div>
-</div>
-```
+| Class            | Effect                                                      | 
+| ---------------- | ----------------------------------------------------------- |
+| `.modal--show`   | Shows the modal with animation                              |
+| `.modal__title`  | Stylized title inside the header                            |
+| `.modal__footer` | Optional footer for confirm/cancel actions or extra content |
 
 ---
 
-## Modal Sections
+## Overlay Behavior
 
-### Modal Header
+The `.modal__overlay` class creates a semi-transparent dark background behind the modal.  
+This overlay is hidden by default and becomes visible by adding `.modal__overlay--show`.
 
-- Class: `.modal__header`
-- Contains title and optional close button
-
-```html
-<div class="modal__header">
-  <h3 class="modal__title">Example Title</h3>
-</div>
-```
-
-### Modal Footer
-
-- Class: `.modal__footer`
-- Typically used for action buttons
-
-```html
-<div class="modal__footer">
-  <button class="btn">Cancel</button>
-  <button class="btn btn-primary">Submit</button>
-</div>
-```
+- Uses `transition: opacity` for fade-in/fade-out
+- Helps isolate modal focus and darken the background
 
 ---
 
-## Modal Overlay
+## Animation
 
-Adds background dimming effect:
+The modal uses a keyframe animation called `bounce-modal` which scales it in from `0.75` to `1`:
 
-```html
-<div class="modal__overlay modal__overlay--show"></div>
-```
-
----
-
-## Animations
-
-Bounce animation when modal appears:
-
-```css
-.modal--show {
-  animation: bounce-modal 150ms cubic-bezier(0.280, 0.840, 0.420, 1);
-}
-
+```scss
 @keyframes bounce-modal {
-  from { transform: scale3d(0.75, 0.75, 0.75) translate(-50%, -60%); }
-  to { transform: scale3d(1, 1, 1) translate(-50%, -60%); }
+    from { transform: scale3d(0.75, 0.75, 0.75) translate(-50%, -60%); }
+    to   { transform: scale3d(1, 1, 1) translate(-50%, -60%); }
 }
 ```
 
+This animation is applied when `.modal--show` is added.
+
 ---
 
-## Usage Examples
-
-Full modal example with overlay:
+## Usage Example
 
 ```html
-<div class="modal modal--show">
-  <div class="modal__header">
-    <h3 class="modal__title">Example Modal</h3>
-    <button class="modal__close">&times;</button>
-  </div>
-  <div class="modal__body">
-    <p>This is a modal dialog example.</p>
-  </div>
-  <div class="modal__footer">
-    <button class="btn">Cancel</button>
-    <button class="btn btn-primary">Confirm</button>
-  </div>
+<div class="modal modal--show" role="dialog" aria-modal="true">
+    <div class="modal__header">
+        <h3 class="modal__title">Modal Title</h3>
+        <button class="btn btn-600">×</button>
+    </div>
+
+    <div class="modal__body">
+        <p>This is the modal content.</p>
+    </div>
+
+    <div class="modal__footer">
+        <button class="btn">Cancel</button>
+        <button class="btn btn-red-300">Save</button>
+    </div>
 </div>
+
 <div class="modal__overlay modal__overlay--show"></div>
 ```
 
 ---
 
-## Customization
-
-Easily customize via CSS variables:
-
-- Box shadow, colors, animation duration, and easing
-
-```css
-.modal {
-  --shadow: 0 10px 20px rgba(0,0,0,0.25);
-}
-```
-
----
-
-## Accessibility
-
-- Ensure modal dialog is keyboard navigable.
-- Clearly label buttons and actions.
-- Trap focus within the modal when active.
-
----
-
-## Best Practices
-
-- Use modals sparingly for critical interactions.
-- Clearly indicate how to close or submit actions.
-- Provide an overlay to focus user attention effectively.
-
----
-
-Use this Modal Component effectively to enhance user interactions with clear, structured dialogs.
-
----
-
-| Release Meta             | v7.0.0 |
+| Release Meta             | v7.0.x |
 | ------------------------ | ------ |
-| SCSS Code Reviewed       | false  |
-| Documentation Reviewed   | false  |
+| SCSS Code Reviewed       | true   |
+| Documentation Reviewed   | true   |
 | JavaScript Code Reviewed | false  |
-| JavaScript Dependency    | null   | 
-| Icon Dependency          | null   |
+| JavaScript Dependency    | false  |
+| Icon Dependency          | false  | 

@@ -1,164 +1,104 @@
-# Dimensions Utilities Documentation
-
-Detailed documentation for **Dimensions Utilities**, providing classes for fixed, responsive, and viewport-relative sizing, including examples and best practices.
-
----
+# Dimensions Utilities
+Utility classes to control the width and height of elements using fixed pixel values, viewport-relative units, and responsive behaviors.
 
 ## Table of Contents
 
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Fixed Dimension Classes](#fixed-dimension-classes)
-4. [Responsive Small-Screen Classes](#responsive-small-screen-classes)
-5. [Viewport-Relative Dimension Classes](#viewport-relative-dimension-classes)
-6. [Dimension Helper Classes](#dimension-helper-classes)
-7. [HTML Usage Examples](#html-usage-examples)
-8. [Responsive Behavior](#responsive-behavior)
-9. [Customization](#customization)
-10. [Best Practices](#best-practices)
+- [Fixed Pixel-Based Sizes](#fixed-pixel-based-sizes)
+- [Responsive Small-Screen Variants](#responsive-small-screen-variants)
+- [Viewport-Relative Sizes](#viewport-relative-sizes)
+- [Dimension Helper Classes](#dimension-helper-classes)
 
 ---
 
-## Overview
+## Fixed Pixel-Based Sizes
 
-The **Dimensions Utilities** provide simple and consistent classes to set element sizes precisely, responsively, or relative to viewport dimensions.
+These classes apply fixed dimensions ranging from `20px` to `800px`, in 20px increments.
 
----
+| Class Prefix     | Description                              | 
+| ---------------- | ---------------------------------------- |
+| `.w-{value}`     | Sets `width`, with `max-width: 100%`     |
+| `.h-{value}`     | Sets `height`                            |
+| `.mw-{value}`    | Sets `min-width`, with `max-width: 100%` |
+| `.w-max-{value}` | Sets `max-width`                         |
+| `.mh-{value}`    | Sets `min-height`                        |
 
-## Features
+**Available values:**  
+`20`, `40`, `60`, `80`, `100`, `120`, `140`, `160`, `180`, `200`,  
+`220`, `240`, `260`, `280`, `300`, `320`, `340`, `360`, `380`, `400`,  
+`420`, `440`, `460`, `480`, `500`, `520`, `540`, `560`, `580`, `600`,  
+`620`, `640`, `660`, `680`, `700`, `720`, `740`, `760`, `780`, `800`
 
-- Fixed pixel dimensions (20px - 800px)
-- Small-screen responsive overrides
-- Viewport-relative sizing
-- Utility classes for common sizing needs
+**Examples:**
 
----
-
-## Fixed Dimension Classes
-
-Generated fixed-size classes from **20px** to **800px**, incrementing by **20px**:
-
-|Example Class|CSS Result|
-|---|---|
-|`.w-20`|`width: 20px;`|
-|`.h-40`|`height: 40px;`|
-|`.mw-60`|`min-width: 60px;`|
-|`.w-max-100`|`max-width: 100px;`|
-|`.mh-200`|`min-height: 200px;`|
-
-**Note:** Classes available every 20px increment up to 800px.
+```html
+<div class="w-400"> <!-- width: 400px; max-width: 100%; --> </div>
+<div class="h-200"> <!-- height: 200px --> </div>
+```
 
 ---
 
-## Responsive Small-Screen Classes
+## Responsive Small-Screen Variants
 
-Automatically adjust sizes for screens smaller than 750px:
+On viewports `≤ 750px`, you can override fixed sizes with responsive variants:
 
-|Example Class|CSS Result (on small screens)|
-|---|---|
-|`.w-sm-40`|`width: 40px !important;`|
-|`.h-sm-100`|`height: 100px !important;`|
+| Class Prefix    | Description                           | 
+| --------------- | ------------------------------------- |
+| `.w-sm-{value}` | Responsive `width` for small screens  |
+| `.h-sm-{value}` | Responsive `height` for small screens |
+
+Additionally:
+
+- All `.mw-*` and `.mh-*` classes are reset to `auto` on small screens.
+    
+
+**Example:**
+
+```html
+<div class="w-600 w-sm-300"> <!-- 600px wide normally, 300px on small screens --> </div>
+```
 
 ---
 
-## Viewport-Relative Dimension Classes
+## Viewport-Relative Sizes
 
-Set dimensions relative to viewport size (1vw - 20vw and 1vh - 20vh):
+Use percentages of the viewport for fluid, responsive layouts:
 
-|Example Class|CSS Result|
-|---|---|
-|`.w-10vw`|`width: 10vw;`|
-|`.h-15vh`|`height: 15vh;`|
+| Class      | Description                               | 
+| ---------- | ----------------------------------------- |
+| `.w-{n}vw` | Width as a percentage of viewport width   |
+| `.h-{n}vh` | Height as a percentage of viewport height |
 
-**Available range:** `1vw` through `20vw` and `1vh` through `20vh`.
+**Available values:**  
+`1` to `20` (`vw`, `vh`)
+
+**Example:**
+
+```html
+<div class="w-20vw"> <!-- width: 20vw --> </div>
+<div class="h-10vh"> <!-- height: 10vh --> </div>
+```
 
 ---
 
 ## Dimension Helper Classes
 
-Common utility classes:
+These helper classes support common layout use cases and resets.
 
-|Class|Effect|
-|---|---|
-|`.w-auto`|`width: auto;`|
-|`.h-auto`|`height: auto;`|
-|`.w-fit`|`width: fit-content;`|
-|`.mw-0`|`min-width: 0 !important;`|
-|`.w-full`|`width: 100%; height: auto;`|
-|`.w-max-hd`|`max-width: 1920px;`|
-
----
-
-## HTML Usage Examples
-
-### Fixed dimensions
-
-```html
-<div class="w-200 h-200">Fixed Size Box</div>
-```
-
-### Responsive dimensions
-
-```html
-<div class="w-400 w-sm-200">Responsive Box</div>
-```
-
-### Viewport-relative dimensions
-
-```html
-<div class="w-10vw h-10vh">Viewport Box</div>
-```
-
-### Full width
-
-```html
-<div class="w-full">Full Width Box</div>
-```
+| Class       | Effect                       |
+| ----------- | ---------------------------- |
+| `.w-auto`   | `width: auto;`               |
+| `.h-auto`   | `height: auto;`              |
+| `.w-fit`    | `width: fit-content;`        |
+| `.mw-0`     | `min-width: 0 !important;`   |
+| `.w-full`   | `width: 100%; height: auto;` |
+| `.w-max-hd` | `max-width: 1920px;`         |
 
 ---
 
-## Responsive Behavior
-
-Responsive CSS automatically adjusts classes on small screens:
-
-```css
-@media (max-width: 750px) {
-  [class*="mh-"] { min-height: auto !important; }
-  [class*="mw-"] { min-width: auto !important; }
-}
-```
-
----
-
-## Customization
-
-Modify or extend these utility classes directly in SCSS loops:
-
-```scss
-// Extend to larger sizes
-@for $i from 1 through 50 {
-  .w-#{$i * 20} { width: #{$i * 20}px; }
-}
-```
-
----
-
-## Best Practices
-
-- Use fixed dimensions sparingly to maintain responsiveness.
-- Prefer viewport-relative classes for responsive layouts.
-- Test dimensions thoroughly across devices and screen sizes.
-
----
-
-Use these Dimension Utilities to precisely control layout sizing for robust and adaptable web designs.
-
----
-
-| Release Meta             | v7.0.0 |
+| Release Meta             | v7.0.x |
 | ------------------------ | ------ |
-| SCSS Code Reviewed       | false  |
-| Documentation Reviewed   | false  |
+| SCSS Code Reviewed       | true   |
+| Documentation Reviewed   | true   |
 | JavaScript Code Reviewed | false  |
-| JavaScript Dependency    | null   | 
-| Icon Dependency          | null   |
+| JavaScript Dependency    | false  |
+| Icon Dependency          | false  | 

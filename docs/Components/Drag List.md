@@ -1,151 +1,74 @@
-# Draglist Component Documentation
+# Draggable Sortable List
 
-Detailed documentation for the **Draglist Component**, a flexible and intuitive drag-and-drop interface element designed to enable easy item sorting and interactive layout management.
-
----
-
-## Table of Contents
-
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Component Structure](#component-structure)
-    - [`.draglist`](#draglist)
-    - [`.draglist__item`](#draglist__item)
-    - [`.draglist__dragging`](#draglist__dragging)
-    - [`.draglist--saved`](#draglist--saved)
-    - [Sortable Pages Layout](#sortable-pages-layout)
-4. [Usage](#usage)
-    - [HTML Example](#html-example)
-5. [Customization](#customization)
-6. [Interaction States](#interaction-states)
-    - [Dragging State](#dragging-state)
-    - [Saved State](#saved-state)
-7. [Accessibility](#accessibility)
-8. [Best Practices](#best-practices)
+This module enables drag-and-drop reordering of `.draglist__item` elements inside a `.draglist` container. It provides **real-time DOM manipulation** and **visual feedback** using only native browser drag events.
 
 ---
 
-## Overview
+### Table of Contents
 
-The **Draglist Component** provides an intuitive, visually clear system for users to rearrange items through drag-and-drop actions, enhancing interactivity and organization.
-
----
-
-## Features
-
-- Draggable and sortable items
-- Visual feedback during interactions
-- Specific styles for active dragging and saved states
-- Adjustable layouts for specialized uses
-- Grid-based flexible layout
+- [Purpose](#purpose)
+- [Requirements](#requirements)
+- [Behavior](#behavior)
+- [How It Works](#how-it-works)
+- [Usage](#usage)
 
 ---
 
-## Component Structure
+## Purpose
 
-### `.draglist`
+- Allows users to rearrange list items by dragging and dropping
+- Applies styling classes for active feedback
+- Reorders DOM elements live as the user drags
 
-- Container for draggable items
-- Provides a responsive, flexible layout
+---
 
-### `.draglist__item`
+## Requirements
 
-- Individual draggable elements
-- Grid-based layout with defined columns
+- Container must have the class `.draglist`
+- Items must have the class `.draglist__item`
+- Each item must include `draggable="true"`
 
-### `.draglist__dragging`
+If no `.draglist` is found on the page, the script exits silently.
 
-- Applied to the actively dragged item
-- Provides visual feedback during dragging
+---
 
-### `.draglist--saved`
+## Behavior
 
-- Outlines saved items clearly for visual confirmation
+| Event       | Effect                                                                             | 
+| ----------- | ---------------------------------------------------------------------------------- |
+| `dragstart` | Adds `.draglist__dragging` to the item                                             |
+| `dragend`   | Removes `.draglist__dragging` from the item                                        |
+| `dragover`  | Continuously calculates the closest drop target and reorders the list in real time |
 
-### Layout Adjustment for Sortable Pages
+---
 
-- `.draglist.sortable-pages` offers a simplified two-column layout
+## How It Works
+
+1. Grabs all `.draglist__item` elements.
+2. On `dragstart`, highlights the current item.
+3. On `dragover`, uses the vertical mouse position (`e.clientY`) to determine where the dragged item should be inserted.
+4. Uses `insertBefore()` to move the item in the DOM.
+5. On `dragend`, removes the dragging class.
 
 ---
 
 ## Usage
 
-### HTML Example
+Wrap your sortable items in a container with the `.draglist` class. Each item should have the `.draglist__item` class and include the `draggable="true"` attribute. You can optionally add a `data-id` for tracking or saving the new order.
 
 ```html
-<ul class="draglist">
-  <li class="draglist__item">Item 1</li>
-  <li class="draglist__item draglist--saved">Saved Item</li>
-  <li class="draglist__item draglist__dragging">Currently Dragging</li>
-</ul>
-```
-
-Sortable Pages variant:
-
-```html
-<ul class="draglist sortable-pages">
-  <li class="draglist__item">Sortable Item 1</li>
-</ul>
+<div class="draglist">
+    <div class="draglist__item" draggable="true" data-id="1">Item 1</div>
+    <div class="draglist__item" draggable="true" data-id="2">Item 2</div>
+</div>
 ```
 
 ---
 
-## Customization
-
-- Modify colors and fonts easily using CSS variables:
-    - Font family: `--ff-heading`
-    - Colors: `var(--color-green-300)`, `var(--color-green-600)` etc.
-- Adjust grid layout as per content requirements:
-
-```css
-.draglist__item {
-  grid-template-columns: auto 150px 1fr;
-}
-```
-
----
-
-## Interaction States
-
-### Dragging State
-
-Active drag items highlighted with `.draglist__dragging`:
-
-```css
-.draglist__dragging {
-  background-color: var(--highlight-color);
-}
-```
-
-### Saved State
-
-Clearly marks saved state:
-
-```css
-.draglist--saved {
-  outline: 2px solid var(--color-green-300);
-  outline-offset: 2px;
-}
-```
-
----
-
-## Best Practices
-
-- Clearly indicate draggable items with consistent styles.
-- Provide visual feedback during dragging and after save actions.
-- Ensure draggable areas are adequately sized for usability.
-
----
-
-Implement these practices to ensure a user-friendly and effective sorting interface.
-
----
-
-| Release Meta             | v7.0.0 |
+| Release Meta             | v7.0.x |
 | ------------------------ | ------ |
-| SCSS Code Reviewed       | false  |
-| Documentation Reviewed   | false  |
-| JavaScript Code Reviewed | false  |
-| JavaScript Dependency    | null   | 
-| Icon Dependency          | null   |
+| SCSS Code Reviewed       | true   |
+| Documentation Reviewed   | true   |
+| JavaScript Code Reviewed | true   |
+| JavaScript Dependency    | true   |
+| Icon Dependency          | false  | 

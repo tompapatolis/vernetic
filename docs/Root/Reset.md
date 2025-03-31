@@ -1,197 +1,46 @@
-# Vernetic Modern CSS Reset Documentation
+# Vernetic Modern CSS Reset
 
-## Table of Contents
-
-1. [Universal Box-Sizing](#universal-box-sizing)
-2. [Full Height Layout](#full-height-layout)
-3. [Body Defaults](#body-defaults)
-4. [Link Reset](#link-reset)
-5. [Responsive Media Elements](#responsive-media-elements)
-6. [Image Styling](#image-styling)
-7. [Form Elements Reset](#form-elements-reset)
-8. [Input & Select Defaults](#input-select-defaults)
-9. [Textarea Styling](#textarea-styling)
-10. [Submit Button Styling](#submit-button-styling)
-11. [Chrome Autofill Styling](#chrome-autofill-styling)
-12. [Table Reset](#table-reset)
-13. [Button Reset and Interaction](#button-reset-and-interaction)
-14. [Responsive Content Handling](#responsive-content-handling)
-15. [Text Overflow Protection](#text-overflow-protection)
-16. [Editable Content Focus Reset](#editable-content-focus-reset)
+This CSS reset normalizes styles across browsers to eliminate inconsistencies and create a clean, reliable base for modern web development. It avoids opinionated styles while optimizing for responsiveness, readability, and accessibility.
 
 ---
 
-## Universal Box-Sizing
+### Features Overview
 
-Applies consistent box-sizing across all elements:
-
-- **Selectors**: `*`, `*::before`, `*::after`
-- **Effects**:
-    - Sets `box-sizing: border-box`
-    - Removes default margins and paddings
-
----
-
-## Full Height Layout
-
-Ensures the page occupies the full viewport height:
-
-- **Selectors**: `html`, `body`
-- **Effects**: `min-height: 100vh`
-
----
-
-## Body Defaults
-
-Sets default typography and resets font weight:
-
-- **Selectors**: `body`
-- **Effects**:
-    - Font size: `1rem`
-    - Font weight: `400`
-    - Line height: `1.5`
+| Feature                             | Description                                                                                                 | 
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Universal Box-Sizing**            | Applies `box-sizing: border-box` to all elements and pseudo-elements, and resets margin and padding to `0`. |
+| **Full Height Layout**              | Ensures `html` and `body` span the full viewport height (`min-height: 100vh`).                              |
+| **Base Body Styles**                | Sets a readable font size, resets default bold weight, and sets `line-height: 1.5`.                         |
+| **Link Reset**                      | Removes the default underline on `<a>` tags.                                                                |
+| **Responsive Media**                | Makes `img`, `video`, and `picture` elements responsive (`max-width: 100%`).                                |
+| **Image Fallback Styling**          | Adds fallback background styling and vertical alignment for images.                                         |
+| **Form Font Inheritance**           | Inputs, buttons, textareas, and selects inherit font styles from `body`.                                    |
+| **Input Reset**                     | Removes default appearance, outline, and border-radius for consistent styling.                              |
+| **Textarea Reset**                  | Prevents resizing, removes borders and shadows, and enables smooth scrolling.                               |
+| **Submit Button Fix**               | Keeps `<input type="submit">` width set to `auto`.                                                          |
+| **Chrome Autofill Fix**             | Overrides yellow autofill background and sets readable text color.                                          |
+| **Table Reset**                     | Collapses table borders for a cleaner look.                                                                 |
+| **Button Reset**                    | Removes all native button styling and outline.                                                              |
+| **Button Interaction Enhancements** | Ensures buttons are accessible and retain inherited text color.                                             |
+| **Content Responsiveness**          | Applies `max-width: 100%` to images, iframes, and tables to prevent overflow.                               |
+| **Text Overflow Protection**        | Applies `overflow-wrap: anywhere` to paragraphs, links, and tables.                                         |
+| **Contenteditable Focus Reset**     | Removes outlines from focused `[contenteditable]` elements.                                                 |
 
 ---
 
-## Link Reset
+### Why Use This Reset?
 
-Removes underline styling from links:
-
-- **Selectors**: `a`
-- **Effects**: `text-decoration: none`
-
----
-
-## Responsive Media Elements
-
-Ensures media elements are responsive and don't overflow:
-
-- **Selectors**: `img`, `picture`, `video`
-- **Effects**:
-    - `display: block`
-    - `max-width: 100%`
-    - `height: auto`
+- Removes inconsistent default browser styles
+- Sets a clean foundation for responsive, accessible UI
+- Works seamlessly with utility-first or component-based CSS systems
+- Minimal but effective — avoids heavy opinionation
 
 ---
 
-## Image Styling
-
-Fallback styling for images:
-
-- **Selectors**: `img`
-- **Effects**:
-    - `background-size: cover`
-    - `background-position: center`
-    - `vertical-align: middle`
-
----
-
-## Form Elements Reset
-
-Standardizes font inheritance and sizing for forms:
-
-- **Selectors**: `input`, `textarea`, `button`, `select`
-- **Effects**:
-    - Inherits fonts (`font: inherit`)
-    - Prevents width issues (`max-width: 100%`)
-
----
-
-## Input & Select Defaults
-
-Removes default browser styles:
-
-- **Selectors**: `input`, `select`
-- **Effects**:
-    - `width: 100%`
-    - Removes browser defaults (`appearance: none`, `border-radius: 0`, `outline: none`)
-
----
-
-## Textarea Styling
-
-Ensures consistency and usability for textareas:
-
-- **Selectors**: `textarea`
-- **Effects**:
-    - No borders (`border: none`)
-    - No outline or shadow (`outline: none`, `box-shadow: none`)
-    - No resize (`resize: none`)
-
----
-
-## Submit Button Styling
-
-Prevents submit buttons from defaulting to full width:
-
-- **Selectors**: `input[type="submit"]`
-- **Effects**: `width: auto`
-
----
-
-## Chrome Autofill Styling
-
-Prevents unwanted autofill background and text colors in Chrome:
-
-- **Selectors**: Chrome autofill pseudo-selectors
-- **Effects**:
-    - Custom background and text fill colors
-
----
-
-## Table Reset
-
-Ensures clean and consistent table borders:
-
-- **Selectors**: `table`
-- **Effects**: `border-collapse: collapse`
-
----
-
-## Button Reset and Interaction
-
-Removes default button styles and ensures accessibility:
-
-- **Selectors**: `button`, `button:focus`
-- **Effects**:
-    - Removes outline and border
-    - Transparent background
-    - Inherits text color
-    - Pointer cursor (`cursor: pointer`)
-
----
-
-## Responsive Content Handling
-
-Ensures responsive behavior for various embedded elements:
-
-- **Selectors**: `img`, `iframe`, `table`
-- **Effects**: `max-width: 100%`
-
----
-
-## Text Overflow Protection
-
-Prevents text from breaking layouts:
-
-- **Selectors**: `p`, `a`, `table`
-- **Effects**: `overflow-wrap: anywhere`
-
----
-
-## Editable Content Focus Reset
-
-Removes default browser outlines from editable content:
-
-- **Selectors**: `[contenteditable]:focus`
-- **Effects**: `outline: 0`
-
----
-
-| Release Meta             | v7.0.0 |
+| Release Meta             | v7.0.x |
 | ------------------------ | ------ |
-| SCSS Code Reviewed       | false  |
-| Documentation Reviewed   | false  |
+| SCSS Code Reviewed       | true   |
+| Documentation Reviewed   | true   |
 | JavaScript Code Reviewed | false  |
-| JavaScript Dependency    | null   | 
-| Icon Dependency          | null   |
+| JavaScript Dependency    | false  |
+| Icon Dependency          | false  | 

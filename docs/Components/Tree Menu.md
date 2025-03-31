@@ -1,204 +1,180 @@
-# Tree Menu Component Documentation
+# Tree Menu
 
-Comprehensive documentation for the **Tree Menu Component**, providing intuitive and interactive hierarchical navigation for structured content or file directories.
+The Tree Menu is a collapsible, nested navigation component ideal for file browsers, documentation structures, and multi-level category trees. It supports folders and files, visual indicators, sticky positioning, and a compact variation for smaller layouts.
 
 ---
 
 ## Table of Contents
 
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Base Structure](#base-structure)
-4. [Tree Menu Elements](#tree-menu-elements)
-    - [Folder Items](#folder-items)
-    - [File Items](#file-items)
-5. [Tree Menu Variations](#tree-menu-variations)
-    - [Standard Tree Menu](#standard-tree-menu)
-    - [Compact Tree Menu](#compact-tree-menu)
-6. [Icons and Indicators](#icons)
-7. [Interactive States](#interactive-states)
-    - [Expanded State](#expanded-state)
-    - [Collapsed State](#collapsed-state)
-8. [Responsive Behavior](#responsive-behavior)
-9. [HTML Usage Examples](#html-usage-examples)
-10. [Customization](#customization)
-11. [Accessibility](#accessibility)
-12. [Best Practices](#best-practices)
+- [Overview](#overview)
+- [Expanded and Active States](#expanded-and-active-states)
+- [Folder and File Behavior](#folder-and-file-behavior)
+- [Standard Tree Menu](#standard-tree-menu)
+- [Compact Tree Menu](#compact-tree-menu)
+- [Copy-Paste Example](#copy-paste-example)
 
 ---
 
 ## Overview
 
-The **Tree Menu Component** provides an intuitive, expandable navigation structure ideal for file explorers, documentation, or hierarchical content navigation.
+The Tree Menu is built with nested `<ul>` and `<li>` elements. It can:
+
+- Visually distinguish **folders** and **files**
+- Allow **collapsible folder trees**
+- Automatically highlight the **active file**
+- Stick to the top of the viewport with `position: sticky`
+
+It supports visual folder/file icons using inline SVGs and is fully accessible with keyboard navigation.
 
 ---
 
-## Features
+## Expanded and Active States
 
-- Expandable and collapsible folders
-- Custom icons for folders and files
-- Sticky positioning for persistent navigation
-- Clear visual indicators of state (expanded/collapsed)
-- Multiple nested folder levels
+- Folders are **collapsed** by default.
+- To **open a folder**, add the `.expanded` class to its `<li>`.
+- The currently active file link gets the `.active` class and is usually matched via JavaScript using `data-nav-active` and `data-match`.
+
+--- 
+## Folder and File Behavior
+
+| Attribute / Class    | Purpose                                                                | 
+| -------------------- | ---------------------------------------------------------------------- |
+| `data-type="folder"` | Applies folder icon and makes item expandable                          |
+| `data-type="file"`   | Applies file icon and styles links                                     |
+| `.expanded`          | When applied to a folder `<li>`, shows its nested contents             |
+| `.active`            | Applies to a link (`<a>`) to indicate the current file                 |
+| `data-nav-active`    | Optional attribute used to mark a specific `data-match` link as active |
+| `data-match`         | Used to match against `data-nav-active` for dynamic activation         |
 
 ---
 
-## Base Structure
+## Standard Tree Menu
 
-Basic HTML structure:
+A sticky menu that supports expanding/collapsing nested levels. Use this for main sidebar menus or complex navigation.
 
 ```html
 <ul class="tree-menu">
-  <li data-type="folder">Folder
-    <ul>
-      <li data-type="file"><a href="#">File 1</a></li>
-      <li data-type="folder">Subfolder
+    <li data-type="folder" class="expanded">
+        <span>Documentation</span>
         <ul>
-          <li data-type="file"><a href="#">File 1</a></li>
+            <li data-type="file"><a href="#introduction">Introduction</a></li>
+            <li data-type="folder" class="expanded">
+                <span>Getting Started</span>
+                <ul>
+                    <li data-type="file"><a href="#installation">Installation</a></li>
+                    <li data-type="file"><a href="#configuration">Configuration</a></li>
+                </ul>
+            </li>
+            <li data-type="file"><a href="#faq">FAQ</a></li>
         </ul>
-  </li>
+    </li>
 </ul>
 ```
 
----
+### Features:
 
-## Tree Menu Elements
-
-### Folder Items
-
-Represent expandable content sections:
-
-```html
-<li data-type="folder" class="expanded">Expanded Folder
-  <ul>
-    <li data-type="file">Nested File</li>
-  </ul>
-</li>
-```
-
-### File Items
-
-Links directly to content:
-
-```html
-<li data-type="file">
-  <a href="#">File Link</a>
-</li>
-```
+- Sticky at the top of the screen (`top: 6rem`)
+- Folder icon rotates when `.expanded` is added
+- Only shows subfolders when expanded
+- File links highlight on hover or with `.active`
 
 ---
 
-## Tree Menu Variations
+## Folder and File Behavior
 
-### Compact Variation
+### Folder `<li>`:
 
-For tighter spacing and simplified styles:
+- Must include `data-type="folder"` and a `<span>` label
+- Automatically gets a folder icon
+- Expands when the `expanded` class is present
+
+### File `<li>`:
+
+- Must include `data-type="file"` and a nested `<a>`
+- Gets a file icon positioned before the link
+- Can use `.active` on `<a>` to indicate current file
+
+---
+
+## Compact Tree Menu
+
+Use `.tree-menu-compact` for a smaller, color-coded version ideal for small viewports or inline menu panels.
 
 ```html
-<ul class="tree-menu tree-menu--compact">
-  <!-- compact structure -->
+<ul class="tree-menu tree-menu-compact">
+    <li data-type="folder">
+        <span>Main Folder</span>
+        <ul>
+            <li data-type="folder">
+                <span>Subfolder</span>
+                <ul>
+                    <li data-type="file"><a href="#">File One</a></li>
+                    <li data-type="file"><a href="#">File Two</a></li>
+                </ul>
+            </li>
+            <li data-type="file"><a href="#">Another File</a></li>
+        </ul>
+    </li>
 </ul>
 ```
 
+### Features:
+
+- More compact line height
+- Colored folders based on depth level
+- Minimal spacing for deeply nested trees
+
 ---
 
-## Interactive States
+## Copy-Paste Example
 
-### Expanded State
-
-Shows nested content:
+Here's a full example of the **standard tree menu** with a basic interactive structure:
 
 ```html
-<li data-type="folder" class="expanded">Folder
-  <ul>
-    <!-- Content -->
-  </ul>
-</li>
-```
-
-### Collapsed State
-
-```html
-<li data-type="folder">Collapsed Folder</li>
-```
-
----
-
-## Responsive Behavior
-
-Tree menu remains accessible and usable on smaller screens due to sticky positioning and adaptable font sizes.
-
----
-
-## Icons & Indicators
-
-Folder and file indicators are controlled by CSS:
-
-- Folder collapsed: caret right
-- Folder expanded: rotated caret
-- File icon for visual distinction
-
----
-
-## HTML Usage Examples
-
-Complete tree menu example:
-
-```html
-<ul class="tree-menu">
-  <li data-type="folder">Projects
+<div class="tree-menu" data-nav-active="mark/16">
     <ul>
-      <li data-type="file"><a href="#">Project 1</a></li>
-      <li data-type="folder" class="expanded">Archives
-        <ul>
-          <li data-type="file"><a href="#">2019</a></li>
-          <li data-type="file"><a href="#">2020</a></li>
-        </ul>
-      </li>
+        <li data-type="folder" class="expanded">
+            <span>Components</span>
+            <ul>
+                <li data-type="file"><a href="/mark/14" data-match="mark/14">Tables</a></li>
+                <li data-type="file"><a href="/mark/15" data-match="mark/15">Tabs</a></li>
+                <li data-type="file"><a href="/mark/16" data-match="mark/16" class="active">Tiles</a></li>
+                <li data-type="file"><a href="/mark/17" data-match="mark/17">Tree Menu</a></li>
+            </ul>
+        </li>
+
+        <li data-type="folder">
+            <span>Helpers</span>
+            <ul>
+                <li data-type="file"><a href="/mark/21" data-match="mark/21">Animations</a></li>
+                <li data-type="file"><a href="/mark/22" data-match="mark/22">Containers</a></li>
+                <li data-type="file"><a href="/mark/23" data-match="mark/23">Dimensions</a></li>
+            </ul>
+        </li>
+
+        <li data-type="folder">
+            <span>Root</span>
+            <ul>
+                <li data-type="file"><a href="/mark/31" data-match="mark/31">Base</a></li>
+                <li data-type="file"><a href="/mark/32" data-match="mark/32">Colors</a></li>
+                <li data-type="file"><a href="/mark/33" data-match="mark/33">Reset</a></li>
+                <li data-type="file"><a href="/mark/34" data-match="mark/34">Typography</a></li>
+            </ul>
+        </li>
+
+        <li data-type="file"><a href="/mark/1" data-match="mark/1">about</a></li>
+        <li data-type="file"><a href="/mark/18" data-match="mark/18">contact</a></li>
     </ul>
-  </li>
-</ul>
+</div>
+
 ```
 
 ---
 
-## Customization
-
-Customize colors, spacing, and icons using CSS variables:
-
-```css
-.tree-menu {
-  --folder-icon-color: #007BFF;
-  --file-icon-color: #6c757d;
-}
-```
-
----
-
-## Accessibility
-
-- Clearly label expandable and collapsible elements.
-- Maintain adequate contrast and hover states.
-- Provide keyboard navigation support.
-
----
-
-## Best Practices
-
-- Keep nesting logical and intuitive.
-- Clearly indicate expandable and active items.
-- Limit the depth of nesting to maintain clarity.
-
----
-
-Use the Tree Menu Component effectively to enhance navigation clarity and content discoverability within your applications.
-
----
-
-| Release Meta             | v7.0.0 |
+| Release Meta             | v7.0.x |
 | ------------------------ | ------ |
-| SCSS Code Reviewed       | false  |
-| Documentation Reviewed   | false  |
-| JavaScript Code Reviewed | false  |
-| JavaScript Dependency    | null   | 
-| Icon Dependency          | null   |
+| SCSS Code Reviewed       | true   |
+| Documentation Reviewed   | true   |
+| JavaScript Code Reviewed | true   |
+| JavaScript Dependency    | true   |
+| Icon Dependency          | false  | 

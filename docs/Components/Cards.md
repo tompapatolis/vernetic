@@ -1,139 +1,105 @@
-# Card Components Documentation
+# Card Components
 
-Comprehensive documentation for **Card Components**, designed to provide flexible and interactive card styles suitable for various content types.
+The `card` module provides flexible layout blocks for displaying linked content, either with images or text. These are ideal for use in grids, previews, or feature sections.
 
 ---
 
-## Table of Contents
+### Table of Contents
 
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Component Types](#component-types)
-    - [Standard Card](#standard-card)
-    - [Text Card](#text-card)
-4. [Usage](#usage)
-    - [Standard Card Example](#standard-card-example)
-    - [Text Card Example](#text-card-example)
-5. [Interactive States](#interactive-states)
-6. [Image Handling](#image-handling)
-7. [Customization](#customization)
-8. [Accessibility](#accessibility)
-9. [Best Practices](#best-practices)
+- [Overview](#overview)
+- [Standard Card](#standard-card)
+- [Text Card](#text-card)
+- [Shared Features](#shared-features)
+- [Usage Examples](#usage-examples)
 
 ---
 
 ## Overview
 
-**Card Components** provide an elegant way to present content in visually distinctive sections, offering interactive elements and responsiveness.
+This component includes two card types:
+
+| Class       | Description                              | 
+| ----------- | ---------------------------------------- |
+| `.card`     | Image-based card with hoverable content  |
+| `.textcard` | Text-only card for simple inline layouts |
+
+Cards are interactive by default and include built-in hover and active states.
 
 ---
 
-## Features
+## Standard Card
 
-- Two primary card types (`.card`, `.textcard`)
-- Hover and active states enhancing user interaction
-- Consistent image aspect ratio
-- Clear and intuitive link behaviors
+Used for cards with an image block and linked title/text.
 
----
+### Key Features
 
-## Component Types
+- `.card` is a link-style container
+- `.card__image` maintains a **1:1 aspect ratio**
+- `.card__title` is underlined on hover
 
-### Standard Card
+### Behavior
 
-- Class: `.card`
-- Includes an image and textual content.
-
-### Text Card
-
-- Class: `.textcard`
-- Primarily focused on text-based content and interactive links.
+| State                | Effect                                                            | 
+| -------------------- | ----------------------------------------------------------------- |
+| `:hover` / `:active` | Changes text color to `--color-100` and underlines `.card__title` |
 
 ---
 
-## Usage
+## Text Card
 
-### Standard Card Example
+Used for text-only cards with optional link labels.
+
+### Key Features
+
+- `.textcard__title` is underlined on hover
+- `.textcard__more` is underlined by default but **not** on hover
+
+### Behavior
+
+| State                | Effect                                                                           | 
+| -------------------- | -------------------------------------------------------------------------------- |
+| `:hover` / `:active` | Text color becomes `--color-white`, title underlined, "more" link not underlined |
+
+---
+
+## Shared Features
+
+- Both `.card` and `.textcard` use `text-decoration: none` by default
+- They inherit color from parent or set theme tokens explicitly
+- Designed to work in flex/grid layouts or inline containers
+
+---
+
+## Usage Examples
+
+### Image-Based Card
 
 ```html
-<a href="#" class="card">
-  <img src="image.jpg" alt="Description" class="card__image">
-  <div class="card__content">
-    <h3 class="card__title">Card Title</h3>
-    <p class="card__text">Card description or brief text content.</p>
-  </div>
+<a class="card flex flex-column gap-05" href="#">
+    <img class="card__image" src="image.jpg" alt="Alt Text" loading="lazy">
+    <h3 class="card__title mb-0">Title</h3>
+    <p class="card__body mb-0 lh-125">Subtitle</p>
+    <span class="card__date color-300">Date</span>
 </a>
 ```
 
-### Text Card Example
+---
+
+### Text-Based Card
 
 ```html
-<a href="#" class="textcard">
-  <h3 class="textcard__title">Text Card Title</h3>
-  <p class="textcard__description">Brief text description.</p>
-  <span class="textcard__more">Read More</span>
+<a class="textcard" href="#">
+    <h3 class="textcard__title lh-115 mb-05">Title</h3>
+    <span class="textcard__more lh-125 fs-400">Subtitle or call to action</span>
 </a>
 ```
 
 ---
 
-## Interactive States
-
-Cards support interactive states:
-
-- **Hover & Active**:
-    - Text color changes (`var(--color-100)` or `var(--color-white)`)
-    - Title text becomes underlined.
-    - `.textcard__more` underline removed on hover.
-
----
-
-## Image Handling
-
-To maintain consistency:
-
-- Images within `.card__image` maintain a `1:1` aspect ratio.
-
-```css
-.card__image {
-  width: 100%;
-  aspect-ratio: 1;
-}
-```
-
----
-
-## Customization
-
-- Customize card colors using CSS variables:
-    - Text colors: `var(--color-100)`, `var(--color-200)`, `var(--color-white)`
-    - Easily adjustable through your theme settings.
-
----
-
-## Accessibility
-
-- Use meaningful alt text for `.card__image`.
-- Ensure interactive elements are keyboard navigable.
-
----
-
-## Best Practices
-
-- Clearly indicate interactive cards with hover effects.
-- Use concise and informative titles.
-- Keep card content brief and scannable for better user engagement.
-
----
-
-Utilize these Card Components to enhance content structure and user experience in your interfaces.
-
----
-
-| Release Meta             | v7.0.0 |
+| Release Meta             | v7.0.x |
 | ------------------------ | ------ |
-| SCSS Code Reviewed       | false  |
-| Documentation Reviewed   | false  |
+| SCSS Code Reviewed       | true   |
+| Documentation Reviewed   | true   |
 | JavaScript Code Reviewed | false  |
-| JavaScript Dependency    | null   | 
-| Icon Dependency          | null   |
+| JavaScript Dependency    | false  |
+| Icon Dependency          | false  | 

@@ -1,96 +1,297 @@
-# Color Utilities Documentation
+# Color Utilities
 
-## Table of Contents
-
-1. [Global Text and Background Colors](#global-text-and-background-colors)
-2. [Color-Specific Utilities](#color-specific-utilities)
-3. [Color Set Utilities](#color-set-utilities)
-4. [Color Helpers](#color-helpers)
+Your SCSS color system is a flexible, scalable, and fully customizable utility set for managing theme colors, backgrounds, and foreground/background pairs using **CSS variables**, **HSL**, and **utility classes**.
 
 ---
 
-## Global Text and Background Colors
+### Table of Contents
 
-Quick classes to apply grayscale colors globally:
+- [Overview](#overview)
+- [Available Shades](#available-shades)
+- [Global Color Utilities](#global-color-utilities)
+- [Color-Specific Utilities](#color-specific-utilities)
+- [Color Root Variables](#color-root-variables)
+- [Paired Color Sets](#paired-color-sets)
+- [Customizing Color Schemes](#customizing-color-schemes)
+- [Color Helper Utilities](#color-helper-utilities)
 
-**Available Shades:** `50`, `100`, `200`, `300`, `400`, `500`, `600`, `700`, `800`, `900`, `950`, `1000`, `a100`, `a200`, `a400`, `a700`, `white`, `black`
+---
 
-| Class            | Description      | Example      | 
-| ---------------- | ---------------- | ------------ |
-| `.color-{shade}` | Text color       | `.color-500` |
-| `.bg-{shade}`    | Background color | `.bg-950`    |
+## Overview
 
-Example:
+The system dynamically generates:
+
+- Global text and background color utilities
+- Color-specific text/background utility classes
+- Foreground/background color pair classes
+- Structured `:root` color variable definitions
+
+It uses HSL color values for flexible control and generates semantic class names like `.color-500`, `.bg-red-100`, `.set-blue-500`, etc.
+
+---
+
+## Available Shades
+
+| Standard Shades                                                                    | 
+| ---------------------------------------------------------------------------------- |
+| `50`, `100`, `200`, `300`, `400`, `500`, `600`, `700`, `800`, `900`, `950`, `1000` |
+
+| Accent Shades                  | 
+| ------------------------------ |
+| `a100`, `a200`, `a400`, `a700` |
+
+| Others           | 
+| ---------------- |
+| `white`, `black` |
+
+---
+
+## Global Color Utilities
+
+| Class            | Description                        | 
+| ---------------- | ---------------------------------- |
+| `.color-{shade}` | Sets the text color from grayscale |
+| `.bg-{shade}`    | Sets the background from grayscale |
+
+**Example:**
 
 ```html
-<p class="color-500 bg-950">Text with background</p>
+<p class="color-200 bg-900">Neutral content block</p>
 ```
 
 ---
 
 ## Color-Specific Utilities
 
-Available Colors: `red`, `orange`, `green`, `blue`
+Color families: `red`, `orange`, `green`, `blue`
 
-**Shades available:** `50`, `100`, `200`, `300`, `400`, `500`, `600`, `700`, `800`, `900`, `950`
+| Class                    | Description                               | 
+| ------------------------ | ----------------------------------------- |
+| `.color-{color}-{shade}` | Sets text color from a color family       |
+| `.bg-{color}-{shade}`    | Sets background color from a color family |
 
-| Class                    | Description                            | Example          | 
-| ------------------------ | -------------------------------------- | ---------------- |
-| `.color-{color}-{shade}` | Text color specific to color and shade | `.color-red-500` |
-| `.bg-{color}-{shade}`    | Background color specific              | `.bg-green-300`  |
-
-Example:
+**Example:**
 
 ```html
-<div class="color-red-500 bg-green-50">Red text on green background</div>
+<div class="color-red-100 bg-red-700">Error message</div>
 ```
 
 ---
 
-## Color Set Utilities
+## Color Root Variables
 
-Generates paired background and foreground colors.
+Color variables are defined using HSL for each color and shade.
 
-**Available Color Sets:**
+Each color family has:
 
-- Grayscale: `50`, `100`, `200`, `300`, `400`, `500`, `600`, `700`, `800`, `900`, `950`
-- Red, Orange, Green, Blue: Same shades as above (`50`, `100`, `200`, `300`, `400`, `500`, `600`, `700`, `800`, `900`, `950`)
+```scss
+--color-{color}-{shade}
+```
 
-### Examples:
+**Example:**
 
-- Grayscale: `.set-500` (bg: `500`, fg: `900`)
-- Red: `.set-red-500` (bg: red `500`, fg: `100`)
-- Orange: `.set-orange-300` (bg: orange `300`, fg: `900`)
-- Green: `.set-green-400` (bg: `400`, fg: `900`)
-- Blue: `.set-blue-300` (bg: `300`, fg: `900`)
+```css
+--color-red-500: hsl(5, 100%, 43%);
+--color-blue-100: hsl(213, 98%, 91%);
+--color-500: hsl(214, 24%, 43%); // grayscale
+```
 
-Example:
+**Colors included by default:**
+
+| Family   | Hue  | Saturation | 
+| -------- | ---- | ---------- |
+| `gray`   | 214° | 24%        |
+| `red`    | 5°   | 100%       |
+| `orange` | 23°  | 100%       |
+| `green`  | 70°  | 87%        |
+| `blue`   | 213° | 96%        |
+
+Shades are generated by modifying hue, saturation, and lightness per shade.
+
+---
+
+## Paired Color Sets
+
+Paired utility classes apply both a foreground and a background color. These combinations are predefined to provide visually harmonious and accessible contrast, making them ideal for tags, badges, alerts, buttons, or callouts.
+
+---
+
+### Grayscale Sets
+
+These use the neutral color scale (`--color-{shade}`).
+
+| Class      | Foreground Color | Background Color | 
+| ---------- | ---------------- | ---------------- |
+| `.set-100` | `color-900`      | `color-100`      |
+| `.set-200` | `color-900`      | `color-200`      |
+| `.set-300` | `color-900`      | `color-300`      |
+| `.set-400` | `color-100`      | `color-400`      |
+| `.set-500` | `color-200`      | `color-500`      |
+| `.set-600` | `color-200`      | `color-600`      |
+| `.set-700` | `color-200`      | `color-700`      |
+| `.set-800` | `color-200`      | `color-800`      |
+| `.set-900` | `color-200`      | `color-900`      |
+| `.set-950` | `color-300`      | `color-950`      |
+
+---
+
+### Color Sets (Red, Orange, Green, Blue)
+
+Each color set uses the pattern:  
+`.set-{color}-{shade}` → background: `--color-{color}-{shade}`, foreground: another matching shade for contrast.
+
+#### Red
+
+| Class          | Foreground      | Background      |
+| -------------- | --------------- | --------------- |
+| `.set-red-50`  | `color-red-900` | `color-red-50`  | 
+| `.set-red-100` | `color-red-900` | `color-red-100` |
+| `.set-red-200` | `color-red-900` | `color-red-200` |
+| `.set-red-300` | `color-red-50`  | `color-red-300` |
+| `.set-red-400` | `color-red-100` | `color-red-400` |
+| `.set-red-500` | `color-red-100` | `color-red-500` |
+| `.set-red-600` | `color-red-200` | `color-red-600` |
+| `.set-red-700` | `color-red-200` | `color-red-700` |
+| `.set-red-800` | `color-red-200` | `color-red-800` |
+| `.set-red-900` | `color-red-200` | `color-red-900` |
+| `.set-red-950` | `color-red-300` | `color-red-950` |
+
+#### Orange
+
+| Class             | Foreground         | Background         |
+| ----------------- | ------------------ | ------------------ |
+| `.set-orange-50`  | `color-orange-900` | `color-orange-50`  | 
+| `.set-orange-100` | `color-orange-900` | `color-orange-100` |
+| `.set-orange-200` | `color-orange-900` | `color-orange-200` |
+| `.set-orange-300` | `color-orange-900` | `color-orange-300` |
+| `.set-orange-400` | `color-orange-100` | `color-orange-400` |
+| `.set-orange-500` | `color-orange-100` | `color-orange-500` |
+| `.set-orange-600` | `color-orange-200` | `color-orange-600` |
+| `.set-orange-700` | `color-orange-200` | `color-orange-700` |
+| `.set-orange-800` | `color-orange-200` | `color-orange-800` |
+| `.set-orange-900` | `color-orange-300` | `color-orange-900` |
+| `.set-orange-950` | `color-orange-400` | `color-orange-950` |
+
+#### Green
+
+| Class            | Foreground        | Background        |
+| ---------------- | ----------------- | ----------------- |
+| `.set-green-50`  | `color-green-900` | `color-green-50`  | 
+| `.set-green-100` | `color-green-900` | `color-green-100` |
+| `.set-green-200` | `color-green-900` | `color-green-200` |
+| `.set-green-300` | `color-green-900` | `color-green-300` |
+| `.set-green-400` | `color-green-900` | `color-green-400` |
+| `.set-green-500` | `color-green-50`  | `color-green-500` |
+| `.set-green-600` | `color-green-100` | `color-green-600` |
+| `.set-green-700` | `color-green-100` | `color-green-700` |
+| `.set-green-800` | `color-green-200` | `color-green-800` |
+| `.set-green-900` | `color-green-300` | `color-green-900` |
+| `.set-green-950` | `color-green-300` | `color-green-950` |
+
+#### Blue
+
+| Class           | Foreground       | Background       |
+| --------------- | ---------------- | ---------------- |
+| `.set-blue-50`  | `color-blue-900` | `color-blue-50`  | 
+| `.set-blue-100` | `color-blue-900` | `color-blue-100` |
+| `.set-blue-200` | `color-blue-900` | `color-blue-200` |
+| `.set-blue-300` | `color-blue-900` | `color-blue-300` |
+| `.set-blue-400` | `color-blue-100` | `color-blue-400` |
+| `.set-blue-500` | `color-blue-100` | `color-blue-500` |
+| `.set-blue-600` | `color-blue-100` | `color-blue-600` |
+| `.set-blue-700` | `color-blue-200` | `color-blue-700` |
+| `.set-blue-800` | `color-blue-200` | `color-blue-800` |
+| `.set-blue-900` | `color-blue-300` | `color-blue-900` |
+| `.set-blue-950` | `color-blue-300` | `color-blue-950` |
+
+**Example:**
 
 ```html
-<div class="set-blue-500">Blue set colors</div>
+<div class="set-red-500">Call to action</div>
+<div class="set-100">Neutral Tag</div>
 ```
 
 ---
 
-## Color Helpers
+## Customizing Color Schemes
 
-| Class            | Description                | Example Usage                                        | 
-| ---------------- | -------------------------- | ---------------------------------------------------- |
-| `.bg-dark-glass` | Dark glass-like background | `.bg-dark-gl { background-color: rgba(0,0,0,.45); }` |
+You can define your **own color theme**—such as a custom grayscale or accent color—by reusing the same builder logic provided in the main color system.
 
-Example:
+This allows you to:
 
-```html
-<div class="bg-dark-gl">Dark glass-like background</div>
-```
-
+- Override the default `gray` scale used in `.color-{shade}`, `.bg-{shade}`, or `.set-{shade}`
+- Introduce entirely new color families for use in `.color-{color}-{shade}` or `.set-{color}-{shade}` utilities
+- Keep full control of hue, saturation, and lightness across your design system
 
 ---
 
-| Release Meta             | v7.0.0 |
+### Example: Custom Gray Scale in Your App
+
+You can define a **custom grayscale** palette in your own `app.scss`, independently of the core utility SCSS.
+
+```scss
+@use "sass:math";
+@use "sass:map";
+
+// Define your own hue and saturation for 'gray'
+$color-hues: (
+	'gray': (hue: 206, sat: 9%) // softer, cooler gray
+);
+
+// Reuse the same builder for shade math
+$shade_builder: (
+	'50'   5  11% 97%,  '100'  3   3% 91%,  '200' -1   4% 85%,
+	'300'  0   1% 65%,  '400'  0   2% 53%,  '500'  0   0% 43%,
+	'600' -2   2% 37%,  '700' -2   6% 30%,  '800' -2   8% 25%,
+	'900' -1  12% 16%,  '950' -1  16% 10%, '1000' -1  12% 9%,
+	'a100' 1 100% 81%,  'a200' 1 100% 71%, 'a400' 2  100% 61%, 'a700' 2 100% 56%
+);
+
+// Define the final color tokens in :root
+:root {
+	@each $shade, $h, $s, $l in $shade_builder {
+		--color-#{$shade}: hsl(
+			#{map.get($color-hues, 'gray', hue) + $h},
+			#{math.min(map.get($color-hues, 'gray', sat) + $s, 100%)},
+			#{$l}
+		);
+	}
+
+	// Optional: custom fonts or other overrides
+	--ff-body: 'Fira Sans Extra Condensed';
+	--ff-heading: 'Fira Sans Extra Condensed';
+}
+
+```
+
+---
+
+### Notes
+
+- You can define your own `$color-hues` with any name and apply it using the same technique to generate `--color-{your-color}-{shade}` variables.
+- This approach ensures full design consistency and flexibility—great for creating themes, dark modes, or semantic color palettes.
+- No need to modify the original utility files—you can layer your theme on top.
+
+---
+
+## Color Helper Utilities
+
+| Class            | Description                                                | 
+| ---------------- | ---------------------------------------------------------- |
+| `.bg-dark-glass` | Applies `rgba(0, 0, 0, 0.15)` transparent black background |
+
+**Example:**
+
+```html
+<div class="bg-dark-glass">Glass effect</div>
+```
+
+---
+
+| Release Meta             | v7.0.x |
 | ------------------------ | ------ |
-| SCSS Code Reviewed       | false  |
-| Documentation Reviewed   | false  |
+| SCSS Code Reviewed       | true   |
+| Documentation Reviewed   | true   |
 | JavaScript Code Reviewed | false  |
-| JavaScript Dependency    | null   | 
-| Icon Dependency          | null   |
+| JavaScript Dependency    | false  |
+| Icon Dependency          | false  | 

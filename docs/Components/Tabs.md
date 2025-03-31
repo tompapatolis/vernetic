@@ -1,241 +1,152 @@
-# Tabs Component Documentation
+# Tabs
 
-Comprehensive documentation for the **Tabs Component**, offering a versatile and user-friendly interface for navigating between different content sections within a single view.
+The Tabs component provides a flexible interface for toggling between related content panels. It includes both **horizontal** and **vertical** layouts, with utility classes for layout, transitions, and styling.
 
 ---
 
 ## Table of Contents
 
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Base Structure](#base-structure)
-4. [Tabs Variations](#tabs-variations)
-    - [Horizontal Tabs](#horizontal-tabs)
-    - [Vertical Tabs](#vertical-tabs)
-    - [Toolbox Tabs](#toolbox-tabs)
-5. [Component Structure](#component-structure)
-    - [Header](#header)
-    - [Active Indicator Line](#active-indicator-line)
-    - [Buttons](#buttons)
-    - [Content Panels](#content-panels)
-6. [Animations](#animations)
-7. [Responsive Behavior](#responsive-behavior)
-8. [HTML Usage Examples](#html-usage-examples)
-9. [Customization](#customization)
-10. [Accessibility](#accessibility)
-11. [Best Practices](#best-practices)
+- [Overview](#overview)
+- [Horizontal Tabs](#horizontal-tabs)
+- [Vertical Tabs](#vertical-tabs)
+- [Toolbox Variation](#toolbox-variation)
+- [Tab Animation](#tab-animation)
+- [Class Reference](#class-reference)
 
 ---
 
 ## Overview
 
-The **Tabs Component** facilitates organized content presentation, enabling users to switch smoothly between different views or categories.
+Each tab component includes:
+
+- A header with one or more tab buttons
+- A tab indicator line
+- A body with content panels that toggle based on active tab
+- Smooth animations and responsive styling
+
+You control the visible tab by toggling the `.active` class on both the button and its corresponding content panel.
 
 ---
 
-## Features
+## Horizontal Tabs
 
-- Horizontal and vertical layout options
-- Animated content transitions
-- Clear visual active-state indication
-- Responsive design adjustments
-- Specialized toolbox styling variant
-
----
-
-## Base Structure
-
-Basic HTML structure:
+Use `.tabs` for the base layout, which stacks the header and body vertically. The header buttons are laid out horizontally by default using `flex`.
 
 ```html
 <div class="tabs">
-  <div class="tabs__header">
-    <button class="tabs__button active">Tab 1</button>
-    <button class="tabs__button">Tab 2</button>
-    <span class="tabs__line"></span>
-  </div>
-  <div class="tabs__body">
-    <div class="tabs__content active">Content for Tab 1</div>
-    <div class="tabs__content">Content for Tab 2</div>
-  </div>
+    <div class="tabs__header">
+        <button class="tabs__button active" type="button">Tab One</button>
+        <button class="tabs__button" type="button">Tab Two</button>
+        <button class="tabs__button" type="button">Tab Three</button>
+        <span class="tabs__line"></span>
+    </div>
+
+    <div class="tabs__body">
+        <div class="tabs__content active">
+            <p>This is the content for Tab One.</p>
+        </div>
+        <div class="tabs__content">
+            <p>This is the content for Tab Two.</p>
+        </div>
+        <div class="tabs__content">
+            <p>This is the content for Tab Three.</p>
+        </div>
+    </div>
 </div>
 ```
+
+**Usage Tips:**
+
+- Only one `.tabs__button` and one `.tabs__content` should have the `.active` class at a time.
+- The `.tabs__line` should be placed directly in the `.tabs__header` to act as the visual indicator.
 
 ---
 
-## Tabs Variations
+## Vertical Tabs
 
-### Horizontal Tabs
-
-Default layout with horizontal alignment:
-
-```html
-<div class="tabs">
-  <!-- tabs structure here -->
-</div>
-```
-
-### Vertical Tabs
-
-Vertical alignment for sidebar-style navigation:
+Use `.tabs-vertical` to organize the tab buttons in a column beside the content area.
 
 ```html
 <div class="tabs-vertical">
-  <!-- vertical tabs structure here -->
+    <div class="tabs-vertical__header">
+        <button class="tabs-vertical__button active" type="button">General</button>
+        <button class="tabs-vertical__button" type="button">Appearance</button>
+        <button class="tabs-vertical__button" type="button">Security</button>
+        <span class="tabs-vertical__line"></span>
+    </div>
+
+    <div class="tabs-vertical__body">
+        <div class="tabs-vertical__content active">
+            <p>This is the General tab content.</p>
+        </div>
+        <div class="tabs-vertical__content">
+            <p>This is the Appearance tab content.</p>
+        </div>
+        <div class="tabs-vertical__content">
+            <p>This is the Security tab content.</p>
+        </div>
+    </div>
 </div>
 ```
 
-### Toolbox Tabs
+---
 
-Styled specifically for toolboxes:
+## Toolbox Variation
+
+Use `.tabs--toolbox` as a modifier to reduce padding and font size. This is ideal for dashboard or utility layouts.
 
 ```html
 <div class="tabs tabs--toolbox">
-  <!-- toolbox tabs structure here -->
+    <div class="tabs__header">
+        <button class="tabs__button active" type="button">Logs</button>
+        <button class="tabs__button" type="button">Backups</button>
+    </div>
+    <div class="tabs__body">
+        <div class="tabs__content active">
+            <p>Logs go here.</p>
+        </div>
+        <div class="tabs__content">
+            <p>Backup options here.</p>
+        </div>
+    </div>
 </div>
 ```
 
 ---
 
-## Component Structure
+## Tab Animation
 
-### Header
+- `.tabs__content` uses `@keyframes tabs_moving` for a slide/fade-in animation.
+- `.tabs-vertical__content` uses `@keyframes tabs_moving_vertical` for vertical slide-in.
 
-Container for tab buttons and active indicator:
-
-```html
-<div class="tabs__header">
-  <button class="tabs__button">Tab</button>
-  <span class="tabs__line"></span>
-</div>
-```
-
-### Active Indicator Line
-
-Visual indication of the currently active tab:
-
-```html
-<span class="tabs__line"></span>
-```
-
-### Buttons
-
-Individual clickable tabs:
-
-```html
-<button class="tabs__button">Tab Name</button>
-```
-
-### Content Panels
-
-Content associated with each tab:
-
-```html
-<div class="tabs__content">Tab Content</div>
-```
+Make sure animations only trigger on visible content using the `.active` class.
 
 ---
 
-## Animations
+## Class Reference
 
-Smooth transitions for tab switching:
-
-```css
-@keyframes tabs_moving {
-  from { transform: translateX(2rem); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes tabs_moving_vertical {
-  from { transform: translateY(2rem); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-```
-
----
-
-## Responsive Behavior
-
-Adapts seamlessly on smaller screens, ensuring usability and readability:
-
-```css
-@media(max-width: 750px) {
-  .tabs__button { font-size: smaller; padding: reduced; }
-  .tabs-vertical { grid-template-columns: 1fr; }
-}
-```
+| Class                     | Description                                            | 
+| ------------------------- | ------------------------------------------------------ |
+| `.tabs`                   | Horizontal tab container                               |
+| `.tabs-vertical`          | Vertical tab container (2-column grid layout)          |
+| `.tabs__header`           | Holds tab buttons (horizontal layout)                  |
+| `.tabs__line`             | Active tab underline indicator (horizontal)            |
+| `.tabs__button`           | Individual tab button (use `.active` for selected tab) |
+| `.tabs__body`             | Contains all tab contents                              |
+| `.tabs__content`          | Content panel (use `.active` to show)                  |
+| `.tabs-vertical__header`  | Header for vertical layout (column of buttons)         |
+| `.tabs-vertical__line`    | Vertical tab line indicator                            |
+| `.tabs-vertical__button`  | Tab button for vertical layout                         |
+| `.tabs-vertical__body`    | Container for vertical content panels                  |
+| `.tabs-vertical__content` | Content panel for vertical tabs                        |
+| `.tabs--toolbox`          | Styling modifier for compact tab layout                |
 
 ---
 
-## HTML Usage Examples
-
-### Horizontal Tabs Example
-
-```html
-<div class="tabs">
-  <div class="tabs__header">
-    <button class="tabs__button active">Home</button>
-    <button class="tabs__button">Profile</button>
-    <span class="tabs__line"></span>
-  </div>
-  <div class="tabs__body">
-    <div class="tabs__content active">Welcome to Home!</div>
-    <div class="tabs__content">Profile Content</div>
-  </div>
-</div>
-```
-
-### Vertical Tabs Example
-
-```html
-<div class="tabs-vertical">
-  <div class="tabs__header">
-    <button class="tabs__button active">Dashboard</button>
-    <button class="tabs__button">Settings</button>
-    <span class="tabs__line"></span>
-  </div>
-  <div class="tabs__body">
-    <div class="tabs__content active">Dashboard Overview</div>
-    <div class="tabs__content">Settings Options</div>
-  </div>
-</div>
-```
-
----
-
-## Customization
-
-Custom styling options via CSS variables:
-
-- Active tab colors (`var(--color-a200)`)
-- Font sizes, paddings, animations
-
----
-
-## Accessibility
-
-- Ensure tabs are keyboard navigable.
-- Use clear labeling for tabs and content.
-- Maintain high contrast for active/inactive states.
-
----
-
-## Best Practices
-
-- Limit tab count to essential items.
-- Clearly differentiate active/inactive tabs.
-- Ensure smooth transitions enhance user experience without causing distraction.
-
----
-
-Leverage the Tabs Component to effectively organize content and improve navigational clarity across your user interfaces.
-
----
-
-| Release Meta             | v7.0.0 |
+| Release Meta             | v7.0.x |
 | ------------------------ | ------ |
-| SCSS Code Reviewed       | false  |
-| Documentation Reviewed   | false  |
-| JavaScript Code Reviewed | false  |
-| JavaScript Dependency    | null   | 
-| Icon Dependency          | null   |
+| SCSS Code Reviewed       | true   |
+| Documentation Reviewed   | true   |
+| JavaScript Code Reviewed | true   |
+| JavaScript Dependency    | true   |
+| Icon Dependency          | false  | 

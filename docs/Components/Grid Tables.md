@@ -1,180 +1,95 @@
-# Grid Table Utilities Documentation
+# Grid Table Utilities
 
-Detailed documentation for **Grid Table Utilities**, a powerful CSS Grid-based solution for creating responsive, flexible, and easy-to-manage tables.
+The `grid-table` utility provides a flexible, responsive table layout using **CSS Grid**. It allows precise column control, optional striping, and responsive behavior for smaller screens.
 
 ---
 
-## Table of Contents
+### Table of Contents
 
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Base Structure](#base-structure)
-4. [Column Variations](#column-variations)
-    - [Standard Columns (1-20)](#standard-columns)
-    - [Responsive Columns](#responsive-columns)
-5. [Striped Tables](#striped-tables)
-6. [Usage Examples](#usage-examples)
-7. [Customization](#customization)
-8. [Accessibility](#accessibility)
-9. [Best Practices](#best-practices)
+- [Overview](#overview)
+- [Column Utilities](#column-utilities)
+- [Responsive Columns](#responsive-columns)
+- [Modifiers](#modifiers)
+- [Usage Example](#usage-example)
 
 ---
 
 ## Overview
 
-**Grid Table Utilities** provide dynamic, responsive tables leveraging CSS Grid, ideal for clearly presenting structured data.
+The `.grid-table` class creates a grid-based table layout where each row is made up of individual cells. This is useful for custom table-like layouts where HTML tables aren't flexible enough.
+
+| Class                  | Description                           | 
+| ---------------------- | ------------------------------------- |
+| `.grid-table`          | Base grid layout for table content    |
+| `.grid-table-{n}`      | Defines the number of columns (1–20)  |
+| `.grid-table--striped` | Adds alternating row backgrounds      |
+| `.grid-table__head`    | Optional header style for header rows |
 
 ---
 
-## Features
+## Column Utilities
 
-- Dynamic and responsive column management using CSS Grid
-- Column counts available from 1 to 20
-- Responsive adjustments for medium and small screens
-- Optional striped rows for enhanced readability
-- Automatic right-alignment for last columns
+To define how many columns the table has, use `.grid-table-{n}` where `n` is between **1** and **20**.
 
----
+| Class Example    | Effect             | 
+| ---------------- | ------------------ |
+| `.grid-table-2`  | Creates 2 columns  |
+| `.grid-table-4`  | Creates 4 columns  |
+| `.grid-table-10` | Creates 10 columns |
 
-## Base Structure
-
-Standard HTML structure for a grid table:
-
-```html
-<div class="grid-table grid-table-3">
-  <div class="grid-table__head">Header 1</div>
-  <div class="grid-table__head">Header 2</div>
-  <div class="grid-table__head">Header 3</div>
-
-  <div>Row 1 Col 1</div>
-  <div>Row 1 Col 2</div>
-  <div>Row 1 Col 3</div>
-</div>
-```
+- All columns are set to `auto` width by default.
+- Last column cells are automatically **right-aligned**.
+- Bottom border is removed on the last row.
 
 ---
 
-## Column Variations
+## Responsive Columns
 
-### Standard Columns
+For responsive layouts, use media-specific column utilities:
 
-Define tables with explicit column counts (from 1 to 20):
+| Class                | Screen Width                  | 
+| -------------------- | ----------------------------- |
+| `.grid-table-md-{n}` | Applies at `max-width: 990px` |
+| `.grid-table-sm-{n}` | Applies at `max-width: 750px` |
 
-**Available Classes:**
-
-```
-.grid-table-1, .grid-table-2, ..., .grid-table-20
-```
-
-Example for 4-column table:
-
-```html
-<div class="grid-table grid-table-4">
-  <!-- Your content here -->
-</div>
-```
-
-### Responsive Columns
-
-Adjust tables dynamically based on screen size:
-
-**Medium Screens (max-width: 990px):**
-
-```
-.grid-table-md-1, .grid-table-md-2, ..., .grid-table-md-20
-```
-
-**Small Screens (max-width: 750px):**
-
-```
-.grid-table-sm-1, .grid-table-sm-2, ..., .grid-table-sm-20
-```
-
-Responsive example:
-
-```html
-<div class="grid-table grid-table-6 grid-table-md-4 grid-table-sm-2">
-  <!-- Your content here -->
-</div>
-```
+This allows you to reduce column count on smaller devices.  
+**Available values for `{n}`:** `1` to `20` — matching the full range of column utilities in the default `.grid-table-{n}` classes.
 
 ---
 
-## Striped Tables
+## Modifiers
 
-Enhance readability with alternating row colors:
+| Class                  | Description                                          | 
+| ---------------------- | ---------------------------------------------------- |
+| `.grid-table__head`    | Use on heading rows to apply distinct styling        |
+| `.grid-table--striped` | Applies a zebra-stripe effect for better readability |
+
+---
+
+## Usage Example
 
 ```html
 <div class="grid-table grid-table-3 grid-table--striped">
-  <!-- Your content here -->
+    <div class="grid-table__head">Name</div>
+    <div class="grid-table__head">Role</div>
+    <div class="grid-table__head">Actions</div>
+
+    <div>Maria</div>
+    <div>Editor</div>
+    <div>Edit</div>
+
+    <div>John</div>
+    <div>Contributor</div>
+    <div>Edit</div>
 </div>
 ```
 
 ---
 
-## Usage Examples
-
-Complete HTML example:
-
-```html
-<div class="grid-table grid-table-3 grid-table-md-2 grid-table-sm-1 grid-table--striped">
-  <div class="grid-table__head">Name</div>
-  <div class="grid-table__head">Age</div>
-  <div class="grid-table__head">Location</div>
-
-  <div>John Doe</div>
-  <div>30</div>
-  <div>New York</div>
-
-  <div>Jane Smith</div>
-  <div>25</div>
-  <div>Los Angeles</div>
-</div>
-```
-
----
-
-## Customization
-
-Customize your grid tables with CSS variables:
-
-- Font size and family (`--fs-200`, `--ff-heading`)
-- Background and border colors
-
-Example customization:
-
-```css
-.grid-table {
-  font-size: 1rem;
-  border-color: var(--custom-border-color);
-}
-```
-
----
-
-## Accessibility
-
-- Clearly label column headers
-- Ensure sufficient color contrast in striped tables
-
----
-
-## Best Practices
-
-- Use appropriate column counts for readability
-- Leverage responsive classes to maintain usability across devices
-- Utilize striped rows for large datasets to improve readability
-
----
-
-Utilize Grid Table Utilities effectively for structured, responsive, and readable data presentations.
-
----
-
-| Release Meta             | v7.0.0 |
+| Release Meta             | v7.0.x |
 | ------------------------ | ------ |
-| SCSS Code Reviewed       | false  |
-| Documentation Reviewed   | false  |
+| SCSS Code Reviewed       | true   |
+| Documentation Reviewed   | true   |
 | JavaScript Code Reviewed | false  |
-| JavaScript Dependency    | null   | 
-| Icon Dependency          | null   |
+| JavaScript Dependency    | false  |
+| Icon Dependency          | false  | 

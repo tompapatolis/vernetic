@@ -1,179 +1,133 @@
-# Container Utilities Documentation
+# Container Utilities
 
-Detailed documentation for the **Container Utilities**, including responsive container classes, practical examples, and best practices.
-
----
-
-## Table of Contents
-
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Container Sizes](#container-sizes)
-4. [Base Container Structure](#base-container-structure)
-5. [Container Variations](#container-variations)
-    - [Fluid Container](#fluid-container)
-    - [Overflow Visible Container](#overflow-visible-container)
-    - [No Padding Container](#no-padding-container)
-6. [Responsive Behavior](#responsive-behavior)
-7. [HTML Usage Examples](#html-usage-examples)
-8. [Customization](#customization)
-9. [Accessibility](#accessibility)
-10. [Best Practices](#best-practices)
+Utility classes for applying consistent widths, paddings, and layout behaviors to containers in responsive designs.
 
 ---
 
-## Features
+### Table of Contents
 
-- Defined container sizes for varied devices
-- Responsive adjustments
-- Utility classes for easy layout modifications
-- Easy customization via SCSS variables
-
----
-
-## Container Sizes
-
-Available predefined container sizes:
-
-| Size | Width  | Device Examples                                  |
-| ---- | ------ | ------------------------------------------------ |
-| xxs  | 250px  | Very small devices (e.g., compact phones)        |
-| xs   | 450px  | Small phones                                     |
-| sm   | 750px  | Larger phones and small tablets                  |
-| md   | 800px  | Small tablets                                    |
-| d    | 890px  | Default container (large tablets, small laptops) |
-| lg   | 990px  | Laptops and desktops                             |
-| xl   | 1200px | Large desktops                                   |
-| 2xl  | 1450px | Extra large screens                             |
-| 3xl  | 1680px | Ultra-wide monitors                              | 
+- [Default Container](#default-container)
+- [Container Size Variants](#container-size-variants)
+- [Fluid Container](#fluid-container)
+- [Overflow Utility](#overflow-utility)
+- [No Padding Utility](#no-padding-utility)
+- [Responsive Behavior](#responsive-behavior)
 
 ---
 
-## Base Container Structure
+### Default Container
 
-Basic HTML structure:
+The `.container` class sets a default max-width layout ideal for most viewports.
+
+| Class        | Description                                                       | 
+| ------------ | ----------------------------------------------------------------- |
+| `.container` | Sets width to default (`890px`), centered with horizontal padding |
+
+**Example:**
 
 ```html
-<div class="container">
-  Content here
-</div>
+<div class="container">Content</div>
 ```
 
 ---
 
-## Container Variations
+### Container Size Variants
+
+Use modifier classes to set fixed widths for different breakpoints. These sizes are helpful for defining max-widths based on your layout or design grid.
+
+| Class             | Width    | Description                      | 
+| ----------------- | -------- | -------------------------------- |
+| `.container--xxs` | `250px`  | Very small devices               |
+| `.container--xs`  | `450px`  | Small phones                     |
+| `.container--sm`  | `750px`  | Larger phones / small tablets    |
+| `.container--md`  | `800px`  | Small tablets                    |
+| `.container--d`   | `890px`  | Default (large tablets, laptops) |
+| `.container--lg`  | `990px`  | Laptops and desktops             |
+| `.container--xl`  | `1200px` | Large desktops                   |
+| `.container--2xl` | `1450px` | Extra large screens              |
+| `.container--3xl` | `1680px` | Ultra-wide monitors              |
+
+**Example:**
+
+```html
+<div class="container container--lg">Wide container</div>
+```
+
+---
 
 ### Fluid Container
 
-Full-width container:
+Use `.container--fluid` to make a container span the full width of the viewport with responsive padding.
+
+| Class               | Description                                          | 
+| ------------------- | ---------------------------------------------------- |
+| `.container--fluid` | Full-width container with padding (`max(2vw, 1rem)`) |
+
+**Example:**
 
 ```html
-<div class="container container--fluid">
-  Fluid content
-</div>
+<div class="container container--fluid">Full width section</div>
 ```
 
-### Overflow Visible Container
+---
 
-Allows visible overflow:
+### Overflow Utility
+
+By default, containers hide overflow. Use `.container--overflow` to force overflow to be visible.
+
+| Class                  | Description                          | 
+| ---------------------- | ------------------------------------ |
+| `.container--overflow` | Sets `overflow: visible !important;` |
+
+**Example:**
 
 ```html
-<div class="container container--overflow">
-  Content with visible overflow
-</div>
+<div class="container container--overflow">May overflow content</div>
 ```
 
-### No Padding Container
+---
 
-Removes default padding:
+### No Padding Utility
+
+Use `.container--p0` to remove all internal horizontal padding from the container.
+
+| Class            | Description                        | 
+| ---------------- | ---------------------------------- |
+| `.container--p0` | Removes all padding (`padding: 0`) |
+
+**Example:**
 
 ```html
-<div class="container container--p0">
-  No padding content
-</div>
+<div class="container container--p0">Edge-to-edge content</div>
 ```
 
 ---
 
-## Responsive Behavior
+### Responsive Behavior
 
-Automatically adjusts to screen size:
+On screens **≤ 750px**, containers adapt automatically for mobile-friendly layout:
 
-```css
-@media (max-width: 750px) {
-  .container {
-    width: 100%;
-    margin: 0;
-    padding: 0 1rem;
-  }
+- All containers become `width: 100%`
+- Margins are removed
+- You can use `.container--max` to also remove horizontal padding
 
-  .container--max {
-    padding: 0;
-  }
-}
-```
+| Class             | Description                               | 
+| ----------------- | ----------------------------------------- |
+| `.container`      | Becomes full-width with no margin         |
+| `.container--max` | Removes left/right padding at small sizes |
 
----
-
-## HTML Usage Examples
-
-Use predefined classes to set container widths explicitly:
+**Example:**
 
 ```html
-<div class="container container--sm">
-  Small container content
-</div>
-
-<div class="container container--xl">
-  Extra large container content
-</div>
+<div class="container container--max">Mobile optimized</div>
 ```
 
 ---
 
-## Customization
-
-Customize container sizes by modifying the SCSS map:
-
-```scss
-$container_sizes: (
-    'xxs' : 250px,   // Very small devices (e.g., compact phones)
-    'xs'  : 450px,   // Small phones
-    'sm'  : 750px,   // Larger phones and small tablets
-    'md'  : 800px,   // Small tablets
-    'd'   : 890px,   // Default container (large tablets, small laptops)
-    'lg'  : 990px,   // Laptops and desktops
-    'xl'  : 1200px,  // Large desktops
-    '2xl' : 1450px,  // Extra large screens
-    '3xl' : 1680px   // Ultra-wide monitors
-);
-```
-
----
-
-## Accessibility
-
-- Ensure readable line lengths and adequate spacing.
-- Maintain proper contrast ratios for readability.
-
----
-
-## Best Practices
-
-- Use predefined container classes for consistent designs.
-- Maintain consistent padding and margins.
-- Test responsiveness across multiple devices.
-
----
-
-Leverage these Container Utilities to create robust and visually appealing responsive layouts.
-
----
-
-| Release Meta             | v7.0.0 |
+| Release Meta             | v7.0.x |
 | ------------------------ | ------ |
-| SCSS Code Reviewed       | false  |
-| Documentation Reviewed   | false  |
+| SCSS Code Reviewed       | true   |
+| Documentation Reviewed   | true   |
 | JavaScript Code Reviewed | false  |
-| JavaScript Dependency    | null   | 
-| Icon Dependency          | null   |
+| JavaScript Dependency    | false  |
+| Icon Dependency          | false  | 

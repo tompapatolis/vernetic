@@ -1,126 +1,90 @@
 
-# Root CSS Variables Documentation
+# Base CSS Configuration
 
-## Table of Contents
-
-1. [Color Scheme](#color-scheme)
-2. [Font Families](#font-families)
-3. [Shadow and Effects](#shadow-and-effects)
-4. [Navbar and Sidebar Dimensions](#navbar-and-sidebar-dimensions)
-5. [Basic Body Styling](#basic-body-styling)
+The `base.css` file defines your **global design variables** and foundational **body styling**, ensuring consistency across the entire UI.
 
 ---
 
-## Color Scheme
+### Table of Contents
 
-Defines the overall color scheme of the application:
+- [Root Variables](#root-variables)
+    - [Color Scheme](#color-scheme)
+    - [Font Families](#font-families)
+    - [Shadows & Effects](#shadows--effects)
+    - [Layout Variables](#layout-variables)
+- [Base Body Styling](#base-body-styling)
 
-| Variable         | Description                    | Default Value      | 
-| ---------------- | ------------------------------ | ------------------ |
-| `--color-scheme` | Theme type (`dark` or `light`) | `dark`             |
-| `--text-color`   | Default text color             | `var(--color-100)` |
-| `--bg-color`     | Background color               | `var(--color-900)` |
+---
 
-Example:
+## Root Variables
+
+CSS custom properties defined under `:root` to be reused throughout the app.
+
+### Color Scheme
+
+| Variable         | Description                            | 
+| ---------------- | -------------------------------------- |
+| `--color-scheme` | Defines the global color mode (`dark`) |
+| `--text-color`   | Main text color (uses `--color-100`)   |
+| `--bg-color`     | Background color (uses `--color-900`)  |
 
 ```css
-body {
-  color: var(--text-color);
-  background-color: var(--bg-color);
-}
+color-scheme: var(--color-scheme);
 ```
 
 ---
 
-## Font Families
+### Font Families
 
-Default fonts for various elements:
-
-| Variable         | Description             | Font Stack Example                                   | 
-| ---------------- | ----------------------- | ---------------------------------------------------- |
-| `--ff-body`      | Default body text font  | `'Arimo', system-ui, sans-serif`                     |
-| `--ff-heading`   | Default heading font    | `'Fira Sans Extra Condensed', system-ui, sans-serif` |
-| `--ff-monospace` | Monospace font for code | `'Fira Code', monospace`                             |
-| `--ff-count`     | Special numerical font  | `'Bebas Neue', monospace`                            |
-| `--line-height`  | Default line-height     | `2`                                                  |
-
-Example:
-
-```css
-body {
-  font-family: var(--ff-body);
-  line-height: var(--line-height);
-}
-```
+| Variable         | Description                             | 
+| ---------------- | --------------------------------------- |
+| `--ff-body`      | Default font for paragraphs and content |
+| `--ff-heading`   | Condensed font for headings             |
+| `--ff-monospace` | Monospaced font for code or inline UI   |
+| `--ff-count`     | Decorative font for numeric display     |
+| `--line-height`  | Base line height for all text (`2`)     |
 
 ---
 
-## Shadow and Effects
+### Shadows & Effects
 
-Predefined shadows and effects:
-
-| Variable         | Effect Description           | Example Usage                  | 
-| ---------------- | ---------------------------- | ------------------------------ |
-| `--shadow`       | General element shadow       | `0 2px 5px rgba(0,0,0,0.45)`   |
-| `--shadow-soft`  | Soft subtle shadow           | `var(--shadow-soft)`           |
-| `--shadow-text`  | Text shadow effect           | `2px 4px 3px rgba(0,0,0,0.45)` |
-| `--shadow-focus` | Focus ring shadow effect     | `0 0 0 2px var(--color-a700)`  |
-
-Example:
-
-```css
-.box {
-  box-shadow: var(--shadow);
-}
-```
+| Variable         | Purpose                                        | 
+| ---------------- | ---------------------------------------------- |
+| `--shadow`       | Standard box shadow                            |
+| `--shadow-soft`  | Subtle shadow used for thumbnails, etc.        |
+| `--shadow-focus` | Focus ring used for accessibility interactions |
+| `--shadow-text`  | Text shadow for styled or decorative text      |
 
 ---
 
-## Navbar Variables
+### Layout Variables
 
-Dimensions specific to layout elements:
-
-| Variable          | Description              | Default Value | 
-| ----------------- | ------------------------ | ------------- |
-| `--navbar-height` | Height of navigation bar | `60px`        |
-| `--sidebar-width` | Sidebar width            | `370px`       |
-
-Example:
-
-```css
-.navbar {
-  height: var(--navbar-height);
-}
-
-.sidebar {
-  width: var(--sidebar-width);
-}
-```
+| Variable          | Description                    | 
+| ----------------- | ------------------------------ |
+| `--navbar-height` | Top navigation height (`60px`) |
+| `--sidebar-width` | Sidebar width (`370px`)        |
 
 ---
 
-## Basic Body Styling
+## Base Body Styling
 
-Sets fundamental styles for the body element:
+Global `body` styles that set typography, spacing, and layout context.
 
-Example:
-
-```css
-body {
-  font-family: var(--ff-body);
-  line-height: var(--line-height);
-  color: var(--text-color);
-  background: var(--color-scheme);
-}
-```
-
+| Property           | Value                  | Description                                | 
+| ------------------ | ---------------------- | ------------------------------------------ |
+| `padding-top`      | `var(--navbar-height)` | Pushes content below the fixed navbar      |
+| `font-family`      | `var(--ff-body)`       | Sets the base font                         |
+| `font-size`        | `var(--fs-400)`        | Uses predefined font size scale            |
+| `line-height`      | `var(--line-height)`   | Consistent vertical rhythm across elements |
+| `color`            | `var(--text-color)`    | Global text color                          |
+| `background-color` | `var(--bg-color)`      | Sets the page background color             |
 
 ---
 
-| Release Meta             | v7.0.0 |
+| Release Meta             | v7.0.x |
 | ------------------------ | ------ |
-| SCSS Code Reviewed       | false  |
-| Documentation Reviewed   | false  |
+| SCSS Code Reviewed       | true   |
+| Documentation Reviewed   | true   |
 | JavaScript Code Reviewed | false  |
-| JavaScript Dependency    | null   | 
-| Icon Dependency          | null   |
+| JavaScript Dependency    | false  |
+| Icon Dependency          | false  | 

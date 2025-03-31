@@ -1,4 +1,4 @@
-# Flex Utilities Documentation
+# Flex Utilities
 
 Detailed documentation for **Flex Utilities**, providing classes for creating flexible layouts using CSS Flexbox.
 
@@ -13,7 +13,6 @@ Detailed documentation for **Flex Utilities**, providing classes for creating fl
 5. [Flex Alignment](#flex-alignment)
 6. [Flex Utility Classes](#flex-utility-classes)
 7. [HTML Usage Examples](#html-usage-examples)
-8. [Best Practices](#best-practices)
 
 ---
 
@@ -25,51 +24,51 @@ Detailed documentation for **Flex Utilities**, providing classes for creating fl
 
 ## Flex Container Types
 
-|Class|Description|
-|---|---|
-|`.flex`|Block-level flex container|
-|`.flex-inline`|Inline-level flex container|
+| Class          | Description                 | 
+| -------------- | --------------------------- |
+| `.flex`        | Block-level flex container  |
+| `.flex-inline` | Inline-level flex container |
 
 ---
 
 ## Flex Direction Utilities
 
-|Class|Description|
-|---|---|
-|`.flex-row`|Horizontal layout (default)|
-|`.flex-column`|Vertical layout|
+| Class          | Description                 | 
+| -------------- | --------------------------- |
+| `.flex-row`    | Horizontal layout (default) |
+| `.flex-column` | Vertical layout             |
 
 ---
 
 ## Flex Wrapping Utilities
 
-|Class|Description|
-|---|---|
-|`.flex-wrap`|Allows items to wrap onto multiple lines|
+| Class        | Description                              | 
+| ------------ | ---------------------------------------- |
+| `.flex-wrap` | Allows items to wrap onto multiple lines |
 
 ---
 
 ## Flex Alignment
 
-|Class|Description|
-|---|---|
-|`.flex-center`|Center horizontally and vertically|
-|`.flex-space`, `.flex-spread`|Even spacing between items|
-|`.flex-vc`|Vertically center items|
-|`.flex-vt`|Align items to the top|
-|`.flex-vb`|Align items to the bottom|
-|`.flex-hc`|Horizontally center items|
-|`.flex-hr`, `.flex-end`|Align items to the right|
+| Class          | Description                        |
+| -------------- | ---------------------------------- |
+| `.flex-center` | Center horizontally and vertically |
+| `.flex-space`  | Even spacing between items         |
+| `.flex-vc`     | Vertically center items            |
+| `.flex-vt`     | Align items to the top             |
+| `.flex-vb`     | Align items to the bottom          |
+| `.flex-hc`     | Horizontally center items          |
+| `.flex-hr`     | Align items to the right           |
 
 ---
 
 ## Flex Utility Classes
 
-|Class|Description|
-|---|---|
-|`.flex-v`|Vertically centered flexbox with small gap|
-|`.flex-self-end`|Align self to end within flex container|
-|`.flex-1`|Item takes all available flex space|
+| Class            | Description                                | 
+| ---------------- | ------------------------------------------ |
+| `.flex-v`        | Vertically centered flexbox with small gap |
+| `.flex-self-end` | Align self to end within flex container    |
+| `.flex-1`        | Item takes all available flex space        |
 
 ---
 
@@ -112,22 +111,10 @@ Detailed documentation for **Flex Utilities**, providing classes for creating fl
 
 ---
 
-## Best Practices
-
-- Use meaningful alignment classes to clarify intent.
-- Prefer Flexbox for dynamic, responsive layouts.
-- Avoid excessive nesting of flex containers.
-
----
-
-Leverage these Flex Utilities to effortlessly create structured, responsive layouts.
-
----
-
-| Release Meta             | v7.0.0 |
+| Release Meta             | v7.0.x | 
 | ------------------------ | ------ |
-| SCSS Code Reviewed       | false  |
-| Documentation Reviewed   | false  |
+| SCSS Code Reviewed       | true   |
+| Documentation Reviewed   | true   |
 | JavaScript Code Reviewed | false  |
-| JavaScript Dependency    | null   | 
-| Icon Dependency          | null   |
+| JavaScript Dependency    | false  |
+| Icon Dependency          | false  |

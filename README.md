@@ -1,62 +1,69 @@
+# Vernetic CSS Framework
+
 ![Vernetic](hero.webp)
 
-# Vernetic CSS Framework
-**Precision Design, Uncompromised Performance**
+Hey there!  
+Welcome to the **Vernetic CSS Framework** — handcrafted since **2017**, open-sourced in the year of our nerd 2025, and finally, _finally_, with actual documentation.
+
+If you've ever thought _"I wish I had a clean, modern, no-nonsense CSS framework I could actually read and extend without needing a PhD in utility class memorization"_, you’re in the right place.
+
+> ✨ Vernetic is built with love, SASS, and stubborn refusal to use Bootstrap.
 
 ---
 
-## Enterprise-Grade Styling, Simplified
-**Vernetic** (formerly VerdinCSS) is a battle-tested CSS framework engineered for developers who demand **customization**, **scalability**, and **performance** at scale. Born in 2015 and refined through real-world application, it provides a systematic foundation for typography, color, icons, and responsive layouts—without the bloat.
+## GitHub Project
 
----
+Clone it. Fork it. Star it. Brag about it.
 
-## Why Vernetic?
+**Repo:**  
+[https://github.com/tompapatolis/vernetic](https://github.com/tompapatolis/vernetic)
 
-### For Projects That Outgrow Traditional Frameworks
-While Bootstrap and Foundation excel in simplicity, they struggle with complex applications. Vernetic solves this by offering:
-
-- **Deep Customization**: Modify variables, components, and design tokens to align with *your* brand—not the framework’s defaults.
-- **Lightweight Core**: 9KB compressed (53KB uncompressed) ensures minimal overhead, even for large-scale CMS or enterprise platforms.
-- **Future-Ready Architecture**: Built with maintainability in mind. Update parts of your system without breaking the whole.
-
-### Designed for Developers, Not Trends
-Vernetic avoids opinionated styles, giving you clean, modular CSS to:
-- Accelerate prototyping with ready-to-use utilities.
-- Maintain consistency across teams and projects.
-- Scale designs predictably as requirements evolve.
-
----
-
-## Core Features
-
-- **Modular Structure**: Import only what you need (fonts, grids, icons).
-- **No Dependencies**: Pure CSS—no JavaScript, no lock-in.
-- **Cross-Browser Consistency**: Tested across modern and legacy environments.
-- **Open Source**: Free for commercial use. Modify, fork, or extend without restrictions.
-
----
-
-## Roadmap
-
-- **CDN Hosting**: Embed via CDN for instant integration.
-- **Theme Studio**: Pre-configured templates for rapid onboarding.
-- **Enhanced Documentation**: Interactive examples and API references.
+```bash
+git clone https://github.com/tompapatolis/vernetic
+```
 
 ---
 
 ## Get Started
 
-### Installation
+Add Vernetic to your page with a few simple tags.
 
-```bash
-git clone https://github.com/tompapatolis/vernetic.git
+### CSS
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tompapatolis/vernetic@v7.0.7/dist/css/vernetic.css">
 ```
 
-## Contribute
-Vernetic thrives on community expertise. Submit issues for bugs, feature requests, or improvements. Pull requests are welcomed with clear documentation.
+### JavaScript
+
+Also in your `<head>` (with `defer`, because performance is cool):
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/tompapatolis/vernetic@v7.0.7/dist/js/vernetic.js" defer></script>
+```
+
+### Icon Sprite
+
+Anywhere in your `<body>`:
+
+```html
+<svg class="svg-icon">
+	<use href="#box"></use>
+</svg>
+```
+
+You can browse all available auto-loaded icons here:  
+[https://syndesu.com/site/icons](https://syndesu.com/site/icons)
 
 ---
 
-**Vernetic**: Where flexibility meets industrial-grade CSS.
+## Why Vernetic?
 
----
+Because I needed a framework that:
+
+- Didn’t fight me.
+- Played nice with modern CSS.
+- Wasn’t 1MB of opinionated bloat.
+- And looked ✨ sharp ✨.
+
+So I made it.

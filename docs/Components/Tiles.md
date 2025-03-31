@@ -1,206 +1,167 @@
-# Tile Components Documentation
+# Tiles
 
-Detailed documentation for the versatile **Tile Components**, designed to provide engaging layouts and clear presentation across various content types.
+The tile component system offers a wide range of layout patterns, ideal for dashboards, summaries, info panels, metrics, and content previews. It supports CSS Grid, Flexbox, responsive behavior, counters, color gradients, and more.
 
 ---
 
 ## Table of Contents
 
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Base Structure](#base-structure)
-4. [Tile Variations](#tile-variations)
-    - [Standard Tile](#standard-tile)
-    - [Counter Tile](#counter-tile)
-    - [Numbered Tile](#numbered-tile)
-    - [Infogram Tile](#infogram-tile)
-    - [Tile Type](#tile-type)
-    - [Colorful Tiles](#colorful-tiles)
-    - [Base Tile](#base-tile)
-5. [Responsive Behavior](#responsive-behavior)
-6. [HTML Usage Examples](#html-usage-examples)
-7. [Customization](#customization)
-8. [Accessibility](#accessibility)
-9. [Best Practices](#best-practices)
+- [Overview](#overview)
+- [Standard Tile](#standard-tile)
+- [Counter Tile](#counter-tile)
+- [Auto-Numbered Tile](#auto-numbered-tile)
+- [Infogram Tile](#infogram-tile)
+- [Typed Tile](#typed-tile)
+- [Colorful Tiles](#colorful-tiles)
+- [Base Tile](#base-tile)
+- [Class Reference](#class-reference)
 
 ---
 
 ## Overview
 
-**Tile Components** provide structured, responsive content display solutions for dashboards, summaries, statistics, and informational blocks.
+Tiles are reusable building blocks that adapt to a variety of content types. Each tile is built using semantic utility classes that control structure, spacing, colors, and layout. You can combine tile classes with CSS Grid or Flexbox containers.
 
 ---
 
-## Features
+## Standard Tile
 
-- Flexible layouts using Flexbox and CSS Grid
-- Automatic numbering with CSS counters
-- Gradient and colored background options
-- Highly responsive design
-
----
-
-## Base Structure
-
-Example of basic tile structure:
+A basic centered tile with padding, border, and shadow. Good for standalone stats or icons.
 
 ```html
 <div class="tile">
-  <span>Main Content</span>
+    <span>123</span>
+    <span>Visitors</span>
 </div>
 ```
 
 ---
 
-## Tile Variations
+## Counter Tile
 
-### Standard Tile
-
-Centered content within a styled tile:
-
-```html
-<div class="tile">
-  <span>Standard Tile</span>
-</div>
-```
-
-### Counter Tile
-
-Two-span layout for number and description:
+A variant of `.tile` for simple metric counters. Designed for two stacked spans: a number and a label.
 
 ```html
 <div class="tile tile-cnt">
-  <span>150</span>
-  <span>Followers</span>
+    <span>87</span>
+    <span>Comments</span>
 </div>
 ```
 
-### Numbered Tile
+---
 
-Automatically numbered tiles:
+## Auto-Numbered Tile
+
+Automatically numbers each child `.tile` or `.tile-infogram` using CSS counters.
 
 ```html
-<div class="numbered-tile">
-  <div class="tile">Tile 1</div>
-  <div class="tile">Tile 2</div>
+<div class="countered-tile">
+    <div class="tile">Alpha</div>
+    <div class="tile">Bravo</div>
+    <div class="tile">Charlie</div>
 </div>
 ```
 
-### Infogram Tile
+Adds a diagonal badge in the top-right corner of each tile showing its number.
 
-Grid-based informational tile:
+---
+
+## Infogram Tile
+
+A grid-based layout for rich data or content. Designed to show an image and multiple data fields.
 
 ```html
 <div class="tile-infogram">
-  <img src="icon.png" class="tile-infogram__img">
-  <span class="tile-infogram__cell-1">Title</span>
-  <span class="tile-infogram__cell-2">1234</span>
-  <span class="tile-infogram__cell-3">Description</span>
+    <img class="tile-infogram__img" src="user.png" alt="">
+    <span class="tile-infogram__cell-1">User</span>
+    <span class="tile-infogram__cell-2">Jane Doe</span>
+    <span class="tile-infogram__cell-3">Active Since 2023</span>
 </div>
 ```
 
-### Tile Type
+Perfect for user cards, feature highlights, or profile tiles.
 
-Multi-span alternative layout:
+---
+
+## Typed Tile
+
+A tile format with three stacked spans, useful for combining labels, large numbers, and descriptions.
 
 ```html
 <div class="tile tile-type">
-  <span>Label</span>
-  <span>42</span>
-  <span>Description</span>
+    <span>Status</span>
+    <span>42%</span>
+    <span>Uptime</span>
 </div>
 ```
 
-### Colorful Tiles
+---
 
-Gradient background tiles (auto-colored by position):
+## Colorful Tiles
+
+A visual variation for `.tile` that applies gradient backgrounds and color theming. Each child tile uses `:nth-child()` for unique styles.
 
 ```html
-<div class="tile tile-colorful">
-  <span>Main Stat</span>
-  <span>Description</span>
+<div class="grid grid-col-4 gap-1">
+    <div class="tile tile-colorful">
+        <span>Users</span>
+        <span>1,245</span>
+    </div>
+    <div class="tile tile-colorful">
+        <span>Downloads</span>
+        <span>3,819</span>
+    </div>
+    <div class="tile tile-colorful">
+        <span>Issues</span>
+        <span>27</span>
+    </div>
+    <div class="tile tile-colorful">
+        <span>Events</span>
+        <span>93</span>
+    </div>
 </div>
 ```
 
-### Base Tile
+---
 
-Tile with structured header and body:
+## Base Tile
+
+A styled container tile with a title and content body. Useful for cards, sections, or blocks of UI.
 
 ```html
 <div class="base-tile">
-  <div class="base-tile__title">Header</div>
-  <div class="base-tile__body">Content</div>
+    <div class="base-tile__title">Project Summary</div>
+    <div class="base-tile__body">
+        <p>This section contains the current status of your project including metrics, logs, and related events.</p>
+    </div>
 </div>
 ```
 
 ---
 
-## Responsive Behavior
+## Class Reference
 
-Automatically adjusts content and layout for optimal mobile usability:
-
-```css
-@media(max-width: 750px) {
-  .tile { padding: 0.75rem; font-size: smaller; }
-}
-```
-
----
-
-## HTML Usage Examples
-
-Complete tile examples:
-
-```html
-<!-- Numbered Tiles Example -->
-<div class="numbered-tile">
-  <div class="tile">First</div>
-  <div class="tile">Second</div>
-</div>
-
-<!-- Infogram Tile Example -->
-<div class="tile-infogram">
-  <img src="info.png" class="tile-infogram__img">
-  <span class="tile-infogram__cell-1">Users</span>
-  <span class="tile-infogram__cell-2">1500</span>
-  <span class="tile-infogram__cell-3">Active Today</span>
-</div>
-```
+| Class                        | Description                                                   |
+| ---------------------------- | ------------------------------------------------------------- |
+| `.tile`                      | Centered content block with padding and shadow                |
+| `.tile-cnt`                  | Counter tile with large number and label spans                |
+| `.tile-type`                 | Variant with three stacked values (label, stat, note)         |
+| `.countered-tile`            | Container that auto-numbers child tiles using CSS counters    |
+| `.numbered-tile`             | Alias for `.countered-tile`                                   |
+| `.tile-infogram`             | Grid-based tile with image + multi-cell layout                |
+| `.tile-colorful`             | Tile with colorful gradient backgrounds, styled per nth-child |
+| `.base-tile`                 | Block tile with a title header and content body               |
+| `.base-tile__title`          | Title/header section inside `.base-tile`                      |
+| `.base-tile__body`           | Main content area inside `.base-tile`                         |
+| `.tile-infogram__img`        | Image aligned on the left side of `.tile-infogram`            |
+| `.tile-infogram__cell-1/2/3` | Grid cells for name, value, description                       |
 
 ---
 
-## Customization
-
-Customize using CSS variables:
-
-- Font size and family (`var(--fs-400)`, `var(--ff-heading)`)
-- Color and gradients (`var(--color-red-500)`, `var(--color-blue-700)`, etc.)
-
----
-
-## Accessibility
-
-- Ensure adequate contrast for readability.
-- Provide alternative text for informational images.
-
----
-
-## Best Practices
-
-- Use tiles consistently across interfaces.
-- Limit text content to maintain clarity.
-- Choose colors that complement the overall design scheme.
-
----
-
-Leverage Tile Components to display structured information clearly and attractively across your applications.
-
----
-
-| Release Meta             | v7.0.0 |
+| Release Meta             | v7.0.x |
 | ------------------------ | ------ |
-| SCSS Code Reviewed       | false  |
-| Documentation Reviewed   | false  |
+| SCSS Code Reviewed       | true   |
+| Documentation Reviewed   | true   |
 | JavaScript Code Reviewed | false  |
-| JavaScript Dependency    | null   | 
-| Icon Dependency          | null   |
+| JavaScript Dependency    | false  |
+| Icon Dependency          | false  | 

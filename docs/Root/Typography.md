@@ -1,161 +1,177 @@
-# Typography Documentation
+# Typography System
 
-## Table of Contents
+This SCSS module provides consistent and responsive styling for text elements, ensuring clear hierarchy, readability, and maintainable structure across headings, paragraphs, lists, and other typographic content.
 
-1. [Headings](#headings)
-    - [Available Heading Classes](#available-heading-classes)
-    - [Sleek Headings](#sleek-headings)
-2. [Paragraphs](#paragraphs)
-3. [Lists](#lists)
-4. [Blockquotes](#blockquotes)
-5. [Embedded Content](#embedded-content)
-6. [Code Blocks](#code-blocks)
+---
+
+### Table of Contents
+
+- [Headings](#headings)
+- [Sleek Headings](#sleek-headings)
+- [Paragraphs](#paragraphs)
+- [Horizontal Rules](#horizontal-rules)
+- [Lists](#lists)
+- [Blockquotes](#blockquotes)
+- [Embedded Content](#embedded-content)
+- [Code Blocks](#code-blocks)
 
 ---
 
 ## Headings
 
-All headings use the predefined heading font and consistent line-height and spacing.
+Headings (`h1–h6` and `.h1–.h6`) share a consistent typographic scale, spacing, and font.
 
-### Available Heading Classes
+| Element | Font Size Variable | Font Weight | Notes                  | 
+| ------- | ------------------ | ----------- | ---------------------- |
+| `h1`    | `--fs-800em`       | `bold`      | Most prominent heading |
+| `h2`    | `--fs-700em`       | `bold`      | Section header         |
+| `h3`    | `--fs-600em`       | `600`       | Subsection header      |
+| `h4`    | `--fs-500em`       | `500`       |                        |
+| `h5`    | `--fs-400em`       | `500`       |                        |
+| `h6`    | `--fs-300em`       | `500`       | Smallest heading       |
 
-| Element/Class | Font Size         | Font Weight | 
-| ------------- | ----------------- | ----------- |
-| `h1`, `.h1`   | `var(--fs-800em)` | Bold        |
-| `h2`, `.h2`   | `var(--fs-700em)` | Bold        |
-| `h3`, `.h3`   | `var(--fs-600em)` | 600         |
-| `h4`, `.h4`   | `var(--fs-500em)` | 500         |
-| `h5`, `.h5`   | `var(--fs-400em)` | 500         |
-| `h6`, `.h6`   | `var(--fs-300em)` | 500         |
+All headings use:
 
-Example:
+- `font-family: var(--ff-heading)`
+- `line-height: 1.25`
+- `margin-bottom: 0.75ex`
+
+---
+
+## Sleek Headings
+
+Headings with the `.sleek-heading` class include visual enhancements for use in modern UI elements or component headers.
+
+**Features:**
+
+- Inline layout (`display: flex`)
+- Optional icon support via `svg`
+- Decorative line (`::after`) for emphasis
 
 ```html
-<h1 class="h1">Heading Level 1</h1>
-<h3>Heading Level 3</h3>
-```
-
-### Sleek Headings
-
-A modern heading variant featuring an icon and separator line.
-
-Example:
-
-```html
-<h2 class="sleek-heading">
-  <svg><!-- SVG Icon --></svg>
-  Sleek Heading Example
-</h2>
+<h3 class="sleek-heading">
+	<svg>...</svg>
+	Section Title
+</h3>
 ```
 
 ---
 
 ## Paragraphs
 
-Default styling for paragraphs includes consistent spacing and readability.
+| Element       | Description                                        |
+| ------------- | -------------------------------------------------- |
+| `p`           | Uses `--fs-400`, `line-height: var(--line-height)` |
+| `.no-mb`      | Removes bottom spacing from paragraphs             |
+| `.last-no-mb` | Removes margin only on the last `p` inside         |
 
-| Class          | Effect                                             | 
-| -------------- | -------------------------------------------------- |
-| `p`            | Standard paragraph styling                         |
-| `.p-no-margin` | Removes bottom margin from paragraphs              |
-| `.last-p-m0`   | Removes bottom margin from the last paragraph only |
+**Default spacing:**  
+`margin-bottom: 3ex`
 
-Example:
+---
 
-```html
-<div class="last-p-m0">
-  <p>Paragraph 1</p>
-  <p>Paragraph 2 (no bottom margin)</p>
-</div>
-```
+## Horizontal Rules
+
+| Element | Description                                                            | 
+| ------- | ---------------------------------------------------------------------- |
+| `hr`    | Divider with `1px` solid border in `--color-600`, and `margin: 3rem 0` |
 
 ---
 
 ## Lists
 
-Default list styling with responsive padding and custom markers.
+Unordered (`ul`) and ordered (`ol`) lists have consistent vertical rhythm and spacing.
 
-- **List Types Supported:** `ul`, `ol`, `dl`
+### Features
 
-| Class         | Effect                          | 
-| ------------- | ------------------------------- |
-| `.clear-list` | Removes list styling completely |
+- `padding-left: 2.5em` (adjusts on small screens)
+- Nested lists use `padding-left: 1.5em`
+- `margin: 1em 0 2em 0`
+- `li` spacing: `0.5em` (less on small screens)
+- Custom marker colors:
+    - `ul li::marker`: `--color-red-300`
+    - `ol li::marker`: `--color-red-300`
+    - `ol ul li::marker`: `--color-green-300`
 
-Example:
+### Clear Lists
+
+The `.clear-list` class removes bullets and spacing entirely.
 
 ```html
-<ul class="clear-list">
-  <li>No bullet or padding</li>
-  <li>No bullet or padding</li>
-</ul>
+<ul class="clear-list">   <li>Item</li> </ul>
 ```
-
-Nested lists automatically remove bottom margins.
 
 ---
 
 ## Blockquotes
 
-Styled to visually distinguish quoted content:
+Styled blockquotes provide semantic emphasis for quotes or callouts.
 
-- Border-left: Colored accent (`var(--color-a400)`)
-- Italicized text, reduced font-size (`var(--fs-300)`)
-- Background: Dark background (`var(--color-950)`)
+| Feature     | Value                    | 
+| ----------- | ------------------------ |
+| Left Border | `5px solid --color-a400` |
+| Padding     | `1.5em`                  |
+| Font Style  | `italic`, `--color-200`  |
+| Background  | `--color-950`            |
+| Margin      | `2rem 0`                 |
 
-Example:
-
-```html
-<blockquote>
-  <p>This is a styled blockquote example.</p>
-</blockquote>
-```
+Paragraphs inside use `--fs-300`.
 
 ---
 
 ## Embedded Content
 
-Responsive embedded elements such as iframes or embedded widgets:
+The `.raw-html-embed` class provides responsive styling for embedded iframes or external content.
 
-| Class             | Effect                               | 
-| ----------------- | ------------------------------------ |
-| `.raw-html-embed` | Ensures responsive 16:9 aspect ratio |
-
-Example:
-
-```html
-<div class="raw-html-embed">
-  <iframe src="https://example.com"></iframe>
-</div>
-```
+| Element                  | Description                                              | 
+| ------------------------ | -------------------------------------------------------- |
+| `.raw-html-embed iframe` | Responsive with `aspect-ratio: 16 / 9` and `width: 100%` |
 
 ---
 
 ## Code Blocks
 
-Consistent styling for displaying code snippets:
+For displaying code with readable formatting and syntax highlighting support.
 
-- Monospace font (`var(--ff-monospace)`)
-- Rounded corners and padding
-- Scrollable content
+### Wrapper: `.code`
 
-| Class   | Description                 | 
-| ------- | --------------------------- |
-| `.code` | Container for code snippets |
+| Feature         | Description                          | 
+| --------------- | ------------------------------------ |
+| `border-radius` | Rounded corners                      |
+| `border`        | `1px solid --color-700`              |
+| `overflow`      | Hidden container with scrollable pre |
 
-Example:
+### Inner: `pre`
+
+| Property      | Value         | 
+| ------------- | ------------- |
+| `white-space` | `pre-wrap`    |
+| `padding`     | `1rem 1.5rem` |
+| `tab-size`    | `4`           |
+| `font-size`   | `--fs-100`    |
+| `line-height` | `1.25`        |
+
+### Inner: `code`
+
+| Element  | Font Family Variable  |
+| -------- | --------------------- |
+| `<code>` | `var(--ff-monospace)` | 
+
+
+**Example:**
 
 ```html
 <div class="code">
-  <pre><code>const greeting = "Hello, World!";</code></pre>
+	<pre><code>const message = 'Hello';</code></pre>
 </div>
 ```
 
 ---
 
-| Release Meta             | v7.0.0 |
+| Release Meta             | v7.0.x |
 | ------------------------ | ------ |
-| SCSS Code Reviewed       | false  |
-| Documentation Reviewed   | false  |
+| SCSS Code Reviewed       | true   |
+| Documentation Reviewed   | true   |
 | JavaScript Code Reviewed | false  |
-| JavaScript Dependency    | null   | 
-| Icon Dependency          | null   |
+| JavaScript Dependency    | false  |
+| Icon Dependency          | false  | 

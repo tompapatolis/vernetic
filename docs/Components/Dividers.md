@@ -1,143 +1,126 @@
-# Divider Utilities Documentation
+# Divider Utilities
 
-Comprehensive documentation for **Divider Utilities**, designed to provide visually appealing, customizable dividers to enhance layout design and content separation.
-
----
-
-## Table of Contents
-
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Basic Divider](#basic-divider)
-4. [Divider Variants](#divider-variants)
-5. [Position Modifiers](#position-modifiers)
-6. [Usage](#usage)
-    - [HTML Example](#html-example)
-7. [Customization](#customization)
-8. [Best Practices](#best-practices)
-9. [Accessibility Considerations](#accessibility-considerations)
+The `divider` component creates **full-width decorative separators** between sections. These SVG-based elements visually break content while remaining lightweight and easy to position using utility classes and data attributes.
 
 ---
 
-## Overview
+### Table of Contents
 
-**Divider Utilities** offer elegant and versatile dividers designed to visually separate content sections, enhancing readability and visual interest.
-
----
-
-## Features
-
-- Multiple customizable divider variants
-- Background image support for engaging visuals
-- Full-width responsiveness
-- Customizable positions (top or bottom)
-- Precisely adjustable positioning through negative margins
+- [Purpose](#purpose)
+- [Base Class](#base-class)
+- [Divider Variants](#divider-variants)
+- [Position Modifiers](#position-modifiers)
+- [Usage Guidelines](#usage-guidelines)
+- [Examples](#examples)
 
 ---
 
-## Basic Divider
+## Purpose
 
-Base structure for dividers:
+Dividers enhance visual flow in page layouts. They can be placed **above**, **below**, or **between** sections using utility classes and spacing helpers.
 
-```html
-<div class="divider divider--one" data-position="top"></div>
-```
+---
+
+## Base Class
+
+| Class      | Description                                                            | 
+| ---------- | ---------------------------------------------------------------------- |
+| `.divider` | Base class that applies background styles, sizing, and layout behavior |
+
+### Base Styles
+
+- `width: 100%`
+- `background-repeat: no-repeat`
+- `background-position: center`
+- `background-size: cover`
+- `font-size: 0` (to suppress inline space)
+- Requires a non-empty element (`&nbsp;` or content) to render properly
 
 ---
 
 ## Divider Variants
 
-Available variants providing distinct visual styles:
+Apply a visual style using one of the predefined variants:
 
-| Class             | Aspect Ratio | Image Source   | 
-| ----------------- | ------------ | -------------- |
-| `.divider--one`   | `960/200`    | `divider1.svg` |
-| `.divider--two`   | `960/200`    | `divider2.svg` |
-| `.divider--three` | `960/100`    | `divider3.svg` |
-| `.divider--four`  | `960/100`    | `divider4.svg` |
-| `.divider--five`  | `960/100`    | `divider5.svg` |
+| Class             | Background Image Path | Aspect Ratio | 
+| ----------------- | --------------------- | ------------ |
+| `.divider--one`   | `divider1.svg`        | `960 / 200`  |
+| `.divider--two`   | `divider2.svg`        | `960 / 200`  |
+| `.divider--three` | `divider3.svg`        | `960 / 100`  |
+| `.divider--four`  | `divider4.svg`        | `960 / 100`  |
+| `.divider--five`  | `divider5.svg`        | `960 / 100`  |
+
+These use `aspect-ratio` for consistent rendering across screen sizes.
 
 ---
 
 ## Position Modifiers
 
-Easily control divider placement relative to sections:
+Control vertical spacing and alignment using the `data-position` attribute:
 
-- Top position:
-    
-    ```html
-    <div class="divider divider--three" data-position="top"></div>
-    ```
-    
-- Bottom position:
-    
-    ```html
-    <div class="divider divider--three" data-position="bottom"></div>
-    ```
-    
+| Attribute                | Behavior                                             | 
+| ------------------------ | ---------------------------------------------------- |
+| `data-position="top"`    | Pulls divider up by applying `margin-bottom: -1.3px` |
+| `data-position="bottom"` | Pulls divider down with `margin-top: -1.3px`         |
 
-Modifiers apply negative margins for seamless integration:
-
-```css
-[data-position="top"]    { margin-bottom: -1.3px; }
-[data-position="bottom"] { margin-top: -1.3px; }
-```
+This helps remove unwanted gaps between the divider and adjacent content.
 
 ---
 
-## Usage
+## Usage Guidelines
 
-### HTML Example
+Always follow these practices when using `.divider` elements:
+
+1. Include a non-breaking space to ensure the divider renders.  
+    **Example:**  
+    `<div class="divider divider--one">&nbsp;</div>`
+2. Combine with spacing utilities like `.mt-3` or `.mb-4` to fine-tune vertical placement.
+3. Use the `data-position` attribute to visually attach the divider to a section.  
+    Available values:
+    - `data-position="top"`
+    - `data-position="bottom"`
+4. You must define the background image paths for each divider variant in your own CSS.  
+
+**Example declarations:**
+
+```css
+.divider--one   { background-image: url(divider1.svg); }
+.divider--two   { background-image: url(divider2.svg); }
+.divider--three { background-image: url(divider3.svg); }
+.divider--four  { background-image: url(divider4.svg); }
+.divider--five  { background-image: url(divider5.svg); }
+```
+
+Adjust file paths as needed to match your project directory.
+
+I design my section dividers using [Haikei](https://app.haikei.app/) — a free tool for generating customizable SVG backgrounds and shapes. It's perfect for creating unique, responsive divider graphics that integrate seamlessly into this utility system.
+
+**Tip:** When creating your SVGs in Haikei, set the dimensions to **960×200** for `divider1` and `divider2`, and **960×100** for all other dividers. This ensures consistent scaling and correct aspect ratios across your layout.
+
+---
+
+## Examples
+
+### Top Divider
 
 ```html
-<section class="content-section">
-  <div class="divider divider--two" data-position="top"></div>
-  <!-- Content Here -->
-  <div class="divider divider--two" data-position="bottom"></div>
-</section>
+<div class="divider divider--five" data-position="top">&nbsp;</div>
+<section class="content">...</section>
+```
+
+### Bottom Divider
+
+```html
+<section class="content">...</section>
+<div class="divider divider--three" data-position="bottom">&nbsp;</div>
 ```
 
 ---
 
-## Customization
-
-- Adjust images by modifying the `background-image` URL.
-- Maintain responsive aspect ratios by using the provided ratios.
-
-Example CSS customization:
-
-```css
-.divider--custom {
-  background-image: url('path/to/custom-image.svg');
-  aspect-ratio: 960/150;
-}
-```
-
----
-
-## Best Practices
-
-- Use dividers sparingly to avoid overwhelming visual complexity.
-- Match dividers stylistically to overall site aesthetics.
-- Ensure consistency in aspect ratios and visual style.
-
----
-
-## Accessibility Considerations
-
-- Ensure decorative dividers are marked with appropriate ARIA attributes if necessary.
-- Dividers should not convey critical information.
-
----
-
-Utilize Divider Utilities effectively to create visually appealing and clearly structured layouts.
-
----
-
-| Release Meta             | v7.0.0 |
+| Release Meta             | v7.0.x |
 | ------------------------ | ------ |
-| SCSS Code Reviewed       | false  |
-| Documentation Reviewed   | false  |
+| SCSS Code Reviewed       | true   |
+| Documentation Reviewed   | true   |
 | JavaScript Code Reviewed | false  |
-| JavaScript Dependency    | null   | 
-| Icon Dependency          | null   |
+| JavaScript Dependency    | false  |
+| Icon Dependency          | false  | 

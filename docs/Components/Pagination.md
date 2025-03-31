@@ -1,159 +1,195 @@
-# Pagination Component Documentation
+# Pagination
 
-Comprehensive documentation for the **Pagination Component**, a flexible and intuitive UI element designed to navigate content across multiple pages seamlessly.
+The pagination system provides flexible, responsive navigation controls to move through paginated content. Built using CSS Grid, it offers layout consistency, dropdown-based page selection, and interactive styling for hover and active states.
 
 ---
 
 ## Table of Contents
 
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Base Structure](#base-structure)
-4. [Pagination Controls](#pagination-controls)
-    - [Previous and Next Buttons](#previous-and-next-buttons)
-    - [Current Page Indicator](#current-page-indicator)
-    - [Dropdown for Additional Pages](#dropdown-for-additional-pages)
-5. [Dropdown for Additional Pages](#dropdown-for-additional-pages)
-6. [Responsive Behavior](#responsive-behavior)
-7. [HTML Usage Example](#html-usage-example)
-8. [Customization](#customization)
-9. [Accessibility](#accessibility)
-10. [Best Practices](#best-practices)
+- [Overview](#overview)
+- [Basic Structure](#basic-structure)
+- [Navigation Controls](#navigation-controls)
+- [Current Page Display](#current-page-display)
+- [Dropdown for More Pages](#dropdown-for-more-pages)
+- [Page Links](#page-links)
+- [Responsive Behavior](#responsive-behavior)
+- [Class Reference](#class-reference)
+- [Copy-Paste Pagination Component](#copy-paste-pagination-component)
 
 ---
 
 ## Overview
 
-The **Pagination Component** provides users with intuitive controls for navigating multi-page content, enhancing usability and clarity.
+The component is designed to handle pagination in a clean, minimal interface. It supports:
+
+- **Previous/Next** navigation buttons
+- **Current page indicator**
+- **Expandable dropdown** for page links
+- Fully responsive layout adjustments for mobile devices
+
+It integrates easily with grid utility classes and SVG icons.
 
 ---
 
-## Features
+## Basic Structure
 
-- Easy navigation between pages
-- Clear current page indication
-- Responsive adjustments for smaller screens
-- Dropdown functionality for additional pages
-- Structured layout and clear visual indicators
-
----
-
-## Base Structure
-
-Basic structure for pagination:
+The `.pagination` container is a CSS Grid layout that holds all pagination controls. You can use additional utility classes like `grid`, `gap`, or `mt-*` for spacing.
 
 ```html
-<div class="pagination">
-  <a href="#" class="pagination__prev">Previous</a>
-  <span class="pagination__current">1</span>
-  <a href="#" class="pagination__next">Next</a>
+<div class="pagination grid grid-col-3 gap-1">
+    <a class="pagination__prev" href="#">Previous</a>
+    <span class="pagination__current">Page 3 of 10</span>
+    <a class="pagination__next" href="#">Next</a>
 </div>
 ```
 
 ---
 
-## Pagination Controls
+## Navigation Controls
 
-### Previous and Next Buttons
-
-Used for navigating between page sets:
+Use `.pagination__prev` and `.pagination__next` for moving between pages. These elements are styled with underlines by default and highlight on hover or active state.
 
 ```html
-<a href="#" class="pagination__prev">Previous</a>
-<a href="#" class="pagination__next">Next</a>
+<a class="pagination__prev" href="#">Previous</a>
+<a class="pagination__next" href="#">Next</a>
+```
+
+These support icon and label combinations inside a flex layout if needed.
+
+---
+
+## Current Page Display
+
+The `.pagination__current` element shows the current page out of the total, for example: `Page 3 of 10`. This is aligned to the right by default in the grid layout.
+
+```html
+<span class="pagination__current">Page 3 of 10</span>
 ```
 
 ---
 
-### Current Page Indicator
+## Dropdown for More Pages
 
-Displays the active page clearly:
+The `.pagination__more` element toggles a list of additional page links. It’s positioned relative and reveals a floating `.pagination__list` with hidden links.
 
 ```html
-<span class="pagination__current">3</span>
+<button class="pagination__more flex flex-vc" type="button">
+	<span>2</span>
+	<svg class="svg-icon svg-icon-md" aria-hidden="true">
+		<use href="#icon-chevron-up"></use>
+	</svg>
+	<ul class="pagination__list clear-list hidden">
+		<li><a class="pagination__link" href="?page=1">1</a></li>
+		<li><a class="pagination__link" href="?page=2">2</a></li>
+		<li><a class="pagination__link" href="?page=3">3</a></li>
+		<li><a class="pagination__link" href="?page=4">4</a></li>
+		<li><a class="pagination__link" href="?page=5">5</a></li>
+	</ul>
+</button>
 ```
+
+The dropdown appears on hover or can be toggled via JavaScript.
 
 ---
 
-### Dropdown for Additional Pages
+## Page Links
 
-Used when many pages are present:
+Each link inside `.pagination__list` uses `.pagination__link`. They appear as block-level buttons, and change background/text color on hover.
 
 ```html
-<div class="pagination__more">
-  More
-  <div class="pagination__list">
-    <a href="#" class="pagination__link">4</a>
-    <a href="#" class="pagination__link">5</a>
-  </div>
-</div>
+<a href="#" class="pagination__link">5</a>
 ```
+
+You can wrap these links in `<li>` if used inside a `<ul>` for better semantics.
 
 ---
 
 ## Responsive Behavior
 
-Automatically adapts layout and appearance for smaller screens, ensuring usability across devices.
+On screens smaller than `750px`, the component:
+
+- Switches to a 3-column layout
+- Adds padding and border to navigation buttons
+- Enhances tap targets with spacing and rounded corners
+- Icons inside buttons scale to `1.25em`
+
+```css
+@media (max-width: 750px) {
+    .pagination {
+        grid-template-columns: 1fr auto auto;
+        align-items: center;
+        gap: .75rem;
+        padding-top: 1rem !important;
+    }
+}
+```
 
 ---
 
-## HTML Usage Example
+## Class Reference
 
-Comprehensive pagination example:
+| Class                  | Description                                   | 
+| ---------------------- | --------------------------------------------- |
+| `.pagination`          | Base grid container for pagination            |
+| `.pagination__prev`    | Previous page control                         |
+| `.pagination__next`    | Next page control                             |
+| `.pagination__current` | Shows current page status (e.g. Page 2 of 10) |
+| `.pagination__more`    | Dropdown toggle for additional pages          |
+| `.pagination__list`    | Floating list of page links                   |
+| `.pagination__link`    | Individual page link inside the dropdown      |
+
+---
+
+## Copy-Paste Pagination Component
 
 ```html
-<div class="pagination">
-  <a href="#" class="pagination__prev">← Prev</a>
-  <span class="pagination__current">5</span>
+<div class="pagination grid grid-col-4 gap-1 mt-5 pt-05 color-300">
+    <!-- Current Result Range -->
+    <span>21 – 40  of 250 </span>
 
-  <div class="pagination__more">
-    More
-    <div class="pagination__list">
-      <a href="#" class="pagination__link">4</a>
-      <a href="#" class="pagination__link">5</a>
-      <a href="#" class="pagination__link">6</a>
+    <!-- Previous Page Button -->
+    <a class="pagination__prev flex flex-vc gap-025" href="?page=1">
+        <svg class="svg-icon" aria-hidden="true">
+            <use href="#icon-arrow-left"></use>
+        </svg>
+        <span class="hide-sm">Previous</span>
+    </a>
+
+    <!-- Next Page Button -->
+    <a class="pagination__next flex flex-vc gap-025" href="?page=3">
+        <span class="hide-sm">Next</span>
+        <svg class="svg-icon" aria-hidden="true">
+            <use href="#icon-arrow-right"></use>
+        </svg>
+    </a>
+
+    <!-- Current Page with Dropdown -->
+    <div class="pagination__current flex flex-vc gap-025 hide-sm">
+        <span class="hide-md">Page:</span>
+        <button class="pagination__more flex flex-vc" type="button">
+            <span>2</span>
+            <svg class="svg-icon svg-icon-md" aria-hidden="true">
+                <use href="#icon-chevron-up"></use>
+            </svg>
+            <ul class="pagination__list clear-list hidden">
+                <li><a class="pagination__link" href="?page=1">1</a></li>
+                <li><a class="pagination__link" href="?page=2">2</a></li>
+                <li><a class="pagination__link" href="?page=3">3</a></li>
+                <li><a class="pagination__link" href="?page=4">4</a></li>
+                <li><a class="pagination__link" href="?page=5">5</a></li>
+            </ul>
+        </button>
+        <span>of 5 </span>
     </div>
-  </div>
-
-  <a href="#" class="pagination__next">Next</a>
 </div>
 ```
 
 ---
 
-## Customization
-
-Adjust styles easily via CSS variables:
-
-- Color customization (`var(--color-200)`, `var(--color-green-300)`, etc.)
-- Borders, spacing, and animations
-
----
-
-## Accessibility
-
-- Ensure pagination elements are keyboard navigable.
-- Provide clear labels and context for each link.
-- Ensure good color contrast and visibility.
-
----
-
-## Best Practices
-
-- Limit visible page numbers to maintain readability.
-- Clearly indicate the current page and available actions.
-- Provide responsive adaptations for different screen sizes.
-
----
-
-Use this Pagination Component effectively to provide smooth navigation and enhance the overall user experience.
-
----
-
-| Release Meta             | v7.0.0 |
+| Release Meta             | v7.0.x |
 | ------------------------ | ------ |
-| SCSS Code Reviewed       | false  |
-| Documentation Reviewed   | false  |
-| JavaScript Code Reviewed | false  |
-| JavaScript Dependency    | null   | 
-| Icon Dependency          | null   |
+| SCSS Code Reviewed       | true   |
+| Documentation Reviewed   | true   |
+| JavaScript Code Reviewed | true   |
+| JavaScript Dependency    | true   |
+| Icon Dependency          | false  | 

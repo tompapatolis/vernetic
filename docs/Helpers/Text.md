@@ -1,220 +1,240 @@
-# Typography Utilities Documentation
+# Text Utilities
 
-## Table of Contents
-
-1. [Font Family Utilities](#font-family-utilities)
-2. [Font Size Utilities](#font-size-utilities)
-3. [Text Styles](#text-styles)
-4. [Font Weight Utilities](#font-weight-utilities)
-5. [Text Alignment](#text-alignment)
-6. [Text Transformations](#text-transformations)
-7. [Text Wrapping](#text-wrapping)
-8. [Letter Spacing](#letter-spacing)
-9. [Line Height Utilities](#line-height-utilities)
-10. [Text Decoration](#text-decoration)
-11. [Link Effects](#link-effects)
-12. [Gradient Text](#gradient-text)
+A comprehensive set of classes for font families, sizes, weights, spacing, text styling, alignment, and decoration.
 
 ---
 
-## Font Family Utilities
+### Table of Contents
 
-Applies predefined font families:
+- [Font Families](#font-families)
+- [Font Sizes](#font-sizes)
+- [Font Weights](#font-weights)
+- [Text Styles](#text-styles)
+- [Text Alignment](#text-alignment)
+- [Text Transformations](#text-transformations)
+- [Text Wrapping](#text-wrapping)
+- [Letter Spacing](#letter-spacing)
+- [Line Height](#line-height)
+- [Text Shadow](#text-shadow)
+- [Link Effects](#link-effects)
+- [Gradient Text](#gradient-text)
 
-| Class           | Font Family Variable  | 
-| --------------- | --------------------- |
-| `.ff-body`      | `var(--ff-body)`      |
-| `.ff-heading`   | `var(--ff-heading)`   |
-| `.ff-monospace` | `var(--ff-monospace)` |
-| `.ff-count`     | `var(--ff-count)`     |
+---
 
-Example:
+## Font Families
+
+| Class           | Description                       | 
+| --------------- | --------------------------------- |
+| `.ff-body`      | Applies the body font             |
+| `.ff-heading`   | Applies the heading font          |
+| `.ff-monospace` | Applies the monospace font        |
+| `.ff-count`     | Applies the numeric/counting font |
+
+**Example:**
 
 ```html
-<p class="ff-heading">Heading Font Family</p>
+<p class="ff-monospace">Monospace text</p>
 ```
 
 ---
 
-## Font Size Utilities
+## Font Sizes
 
-Responsive font size utilities available:
+#### Available values:
 
-**Sizes available:** `100`, `200`, `300`, `400`, `500`, `600`, `700`, `800`, `850`, `900`, `950`, `990`
+**For `rem`-based sizes:**  
 
-Example:
+`100`, `200`, `300`, `400`, `500`, `600`, `700`, `800`, `850`, `900`, `950`, `990`
+
+**For `em`-based sizes:**  
+
+`300em`, `400em`, `500em`, `600em`, `700em`, `800em`
+
+| Class         | Description                        | 
+| ------------- | ---------------------------------- |
+| `.fs-{key}`   | Sets font size using a scale token |
+
+**Example:**
 
 ```html
-<p class="fs-500">Font size set to 500</p>
+<p class="fs-400">Regular text</p>
+<p class="fs-700">Heading-like text</p>
+```
+
+---
+
+## Font Weights
+
+**Available values:**  
+`100`, `200`, `300`, `400`, `500`, `600`, `700`, `800`, `900`
+
+| Class         | Description      | 
+| ------------- | ---------------- |
+| `.fw-{value}` | Sets font weight |
+
+**Example:**
+
+```html
+<p class="fw-600">Semi-bold text</p>
 ```
 
 ---
 
 ## Text Styles
 
-| Class          | Effect             | 
-| -------------- | ------------------ |
-| `.text-bold`   | Bold text          |
-| `.text-italic` | Italic text        |
-| `.text-strike` | Strikethrough text |
+| Class                   | Description                  |
+| ----------------------- | ---------------------------- |
+| `.text-bold`            | Applies `font-weight: bold`  |
+| `.text-italic`          | Applies `font-style: italic` |
+| `.text-strike`          | Applies line-through         |
 
-Example:
-
-```html
-<p class="text-italic">Italicized Text</p>
-```
-
----
-
-## Font Weight Utilities
-
-Available font weights: `100`, `200`, `300`, `400`, `500`, `600`, `700`, `800`, `900`
-
-Example:
+**Example:**
 
 ```html
-<p class="fw-700">Bold Text</p>
+<p class="text-strike">Struck through</p>
 ```
 
 ---
 
 ## Text Alignment
 
-| Class          | Alignment | 
-| -------------- | --------- |
-| `.text-left`   | Left      |
-| `.text-center` | Center    |
-| `.text-right`  | Right     |
+| Class             | Description                   | 
+| ----------------- | ----------------------------- |
+| `.text-left`      | Aligns text to the left       |
+| `.text-center`    | Centers text                  |
+| `.text-right`     | Aligns text to the right      |
+| `.text-left-sm`   | Left-aligns on small screens  |
+| `.text-center-sm` | Centers text on small screens |
+| `.text-right-sm`  | Right-aligns on small screens |
 
-Responsive alignment for small screens (≤750px):
-
-| Class             | Alignment (Small Screens) | 
-| ----------------- | ------------------------- |
-| `.text-left-sm`   | Left                      |
-| `.text-center-sm` | Center                    |
-| `.text-right-sm`  | Right                     |
-
-Example:
+**Example:**
 
 ```html
-<div class="text-center-sm">Center on Small Screens</div>
+<p class="text-center text-left-sm">Responsive centered text</p>
 ```
 
 ---
 
 ## Text Transformations
 
-| Class            | Effect            | 
-| ---------------- | ----------------- |
-| `.text-cap`      | Capitalize        |
-| `.text-upper`    | Uppercase         |
-| `.text-lower`    | Lowercase         |
-| `.text-balanced` | Balanced wrapping |
-
-Example:
+| Class            | Description                    | 
+| ---------------- | ------------------------------ |
+| `.text-cap`      | Capitalizes each word          |
+| `.text-upper`    | Transforms text to uppercase   |
+| `.text-lower`    | Transforms text to lowercase   |
+| `.text-balanced` | Applies balanced text wrapping |
 
 ```html
-<p class="text-upper">uppercase text</p>
+<h2 class="text-upper">uppercase heading</h2>
 ```
 
 ---
 
 ## Text Wrapping
 
-| Class            | Effect                                |
-| ---------------- | ------------------------------------- |
-| `.no-wrap`       | Prevents wrapping                     | 
-| `.text-wrap`     | Normal wrapping                       |
-| `.text-pre`      | Preserves whitespace                  |
-| `.text-pre-wrap` | Preserves whitespace, allows wrap     |
-| `.text-pre-line` | Collapses whitespace, preserves lines |
-| `.text-break`    | Forces word breaks                    |
+| Class            | Description                                 | 
+| ---------------- | ------------------------------------------- |
+| `.text-no-wrap`  | Prevents text wrapping                      |
+| `.text-wrap`     | Enables normal wrapping                     |
+| `.text-pre`      | Preserves whitespace and line breaks        |
+| `.text-pre-wrap` | Wraps and preserves whitespace              |
+| `.text-pre-line` | Preserves line breaks, collapses whitespace |
+| `.text-break`    | Breaks long words if necessary              |
 
-Example:
+**Example:**
 
 ```html
-<p class="text-break">LongWordWithoutSpacesBreaksHere</p>
+<p class="text-pre-wrap">Preserve spacing</p>
 ```
 
 ---
 
 ## Letter Spacing
 
-Available letter-spacing values:
+| Class   | Description                | 
+| ------- | -------------------------- |
+| `.ls-0` | No extra letter spacing    |
+| `.ls-1` | Tight letter spacing       |
+| `.ls-2` | Extra-tight letter spacing |
 
-| Class   | Effect                    | 
-| ------- | ------------------------- |
-| `.ls-0` | Normal spacing (`0px`)    |
-| `.ls-1` | Slightly tighter (`-1px`) |
-| `.ls-2` | Condensed (`-2px`)        |
-
-Example:
+**Example:**
 
 ```html
-<p class="ls-1">Tighter Letter Spacing</p>
+<p class="ls-1">Condensed letters</p>
 ```
 
 ---
 
-## Line Height Utilities
+## Line Height
 
-Available line heights: `1`, `1.15`, `1.25`, `1.5`, `1.65`, `2`
+**Available values:**  
+`1`, `115`, `125`, `150`, `165`, `2`
 
-Example:
+| Class         | Description          | 
+| ------------- | -------------------- |
+| `.lh-{value}` | Sets the line height |
+
+**Example:**
 
 ```html
-<p class="lh-150">Line height of 1.5</p>
+<p class="lh-150">This paragraph has relaxed line spacing.</p>
 ```
 
 ---
 
-## Text Decoration
+## Text Shadow
 
-| Class          | Effect                             | 
-| -------------- | ---------------------------------- |
-| `.text-shadow` | Adds shadow (`var(--shadow-text)`) |
+| Class          | Description                      | 
+| -------------- | -------------------------------- |
+| `.text-shadow` | Applies a predefined text shadow |
 
-Example:
+**Example:**
 
 ```html
-<p class="text-shadow">Shadowed Text</p>
+<h1 class="text-shadow">Fancy shadow text</h1>
 ```
 
 ---
 
 ## Link Effects
 
-| Class              | Effect                      | 
-| ------------------ | --------------------------- |
-| `.underline-fancy` | Fancy colored underline     |
-| `.link-underline`  | Simple underline            |
-| `.link-opacity`    | Reduces opacity on hover    |
-| `.link-3d`         | 3D rotation effect on hover |
+| Class                   | Description                                  | 
+| ----------------------- | -------------------------------------------- |
+| `.link-underline-fancy` | Custom underline color that changes on hover |
+| `.link-underline`       | Regular underline, removed on hover          |
+| `.link-opacity`         | Reduces opacity on hover                     |
+| `.link-3d`              | 3D tilt and shift effect on hover            |
 
-Example:
+**Example:**
 
 ```html
-<a href="#" class="link-3d">Hover Me!</a>
+<a class="link-3d" href="#">Hover me</a>
 ```
 
 ---
 
 ## Gradient Text
 
-Available gradient classes: `.grad-1`, `.grad-2`, `.grad-3`, `.grad-4`, `.grad-5`, `.grad-6`, `.grad-7`, `.grad-8`, `.grad-9`, `.grad-10`
+| Class                  | Description                         | 
+| ---------------------- | ----------------------------------- |
+| `.grad-1` → `.grad-10` | Applies a specific gradient to text |
 
-Example:
+These use `background-clip: text` to simulate colorful gradient text.
+
+**Example:**
 
 ```html
-<span class="grad-3">Gradient Text</span>
+<span class="grad-3">Gradient heading</span>
 ```
+
+> 💡 Note: These only work in browsers that support `background-clip: text`.
 
 ---
 
-| Release Meta             | v7.0.0 |
+| Release Meta             | v7.0.x |
 | ------------------------ | ------ |
-| SCSS Code Reviewed       | false  |
-| Documentation Reviewed   | false  |
+| SCSS Code Reviewed       | true   | 
+| Documentation Reviewed   | true   |
 | JavaScript Code Reviewed | false  |
-| JavaScript Dependency    | null   | 
-| Icon Dependency          | null   |
+| JavaScript Dependency    | false  |
+| Icon Dependency          | false  |
