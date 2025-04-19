@@ -19,7 +19,7 @@ export function injectVerneticIcons() {
     const isLocalDev = location.hostname === '[::1]' && location.pathname.startsWith('/verdincms/public');
     const spriteURL = isLocalDev
         ? '/verdincms/public/vernetic/dist/icons/vernetic.svg'
-        : 'https://cdn.jsdelivr.net/gh/tompapatolis/vernetic@v7.0.7/dist/icons/vernetic.svg';
+        : 'https://cdn.jsdelivr.net/gh/tompapatolis/vernetic@v7.0.9/dist/icons/vernetic.svg';
 
     fetch(spriteURL)
         .then(response => {
