@@ -78,3 +78,9 @@ icons.injectVerneticIcons();
 import * as animations from './system/animations.js';
 animations.newObserveElements();
 animations.parallax();
+
+// import * as typewriter from './system/typewriter.js';
+// typewriter.initTypewriter();
+
+// import * as count from './system/count.js';
+// count.initCountUp();

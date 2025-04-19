@@ -16,7 +16,12 @@
  *****************************************************************************/
 
 export function injectVerneticIcons() {
-    fetch('https://cdn.jsdelivr.net/gh/tompapatolis/vernetic@v7.0.7/dist/icons/vernetic.svg', { mode: 'cors' })
+    const isLocalDev = location.hostname === '[::1]' && location.pathname.startsWith('/verdincms/public');
+    const spriteURL = isLocalDev
+        ? '/verdincms/public/vernetic/dist/icons/vernetic.svg'
+        : 'https://cdn.jsdelivr.net/gh/tompapatolis/vernetic@v7.0.7/dist/icons/vernetic.svg';
+
+    fetch(spriteURL)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -24,7 +29,6 @@ export function injectVerneticIcons() {
             return response.text();
         })
         .then(spriteText => {
-            // Insert the <svg>...</svg> content into the DOM
             document.body.insertAdjacentHTML('afterbegin', spriteText);
         })
         .catch(error => {

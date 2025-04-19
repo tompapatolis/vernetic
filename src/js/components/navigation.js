@@ -19,50 +19,26 @@
 export function initNavbar() {
     if (!document.querySelector('.navbar')) return; // Exit early if navbar does not exist
 
-    const navToggleLeft  = document.querySelector('.navbar__hamburger');
-    const navToggleRight = document.querySelector('.navbar__meatballs');
-    const sidebarLeft    = document.querySelector('.navbar__sidebar-left');
-    const sidebarRight   = document.querySelector('.navbar__sidebar-right');
-    const overlay        = document.querySelector('.overlay');
-    const body           = document.body;
+    const navToggleLeft = document.querySelector('.navbar__hamburger');
+    const sidebarLeft   = document.querySelector('.navbar__sidebar-left');
+    const overlay       = document.querySelector('.overlay');
+    const body          = document.body;
 
-    if ( navToggleLeft )  {
-        navToggleLeft.addEventListener('click', (e) => {
+    if (navToggleLeft) {
+        navToggleLeft.addEventListener('click', () => {
             navToggleLeft.classList.toggle('active');
             swapIcon(navToggleLeft.querySelector('use'), 'nav', 'close');
             sidebarLeft.classList.toggle('show');
-
-            if ( !sidebarRight.classList.contains('show') ) {
-                overlay.classList.toggle('show');
-                body.classList.toggle('no-scroll');
-            }
-
+            overlay.classList.toggle('show');
+            body.classList.toggle('no-scroll');
         });
     }
 
-    if ( navToggleRight )  {
-        navToggleRight.addEventListener('click', (e) => {
-            navToggleRight.classList.toggle('active');
-            swapIcon(navToggleRight.querySelector('use'), 'meatballs', 'close');
-            sidebarRight.classList.toggle('show');
-
-            if ( !sidebarLeft.classList.contains('show') ) {
-                overlay.classList.toggle('show');
-                body.classList.toggle('no-scroll');
-            }
-        });
-    }
-
-    if ( overlay )  {
-        overlay.addEventListener('click', (e) => {
+    if (overlay) {
+        overlay.addEventListener('click', () => {
             navToggleLeft.classList.remove('active');
             revertIcon(navToggleLeft.querySelector('use'), '#nav');
-
-            navToggleRight.classList.remove('active');
-            revertIcon(navToggleRight.querySelector('use'), '#meatballs');
-
             sidebarLeft.classList.remove('show');
-            sidebarRight.classList.remove('show');
             overlay.classList.remove('show');
             body.classList.remove('no-scroll');
         });

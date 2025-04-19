@@ -14,7 +14,7 @@
  * - Supports border-radius for rounded corners
  *****************************************************************************/
 
-table {
+.table {
     table-layout: auto;
     width: 100%;
     border-collapse: collapse;
@@ -38,12 +38,12 @@ table {
             text-align: left; // Align header text to the left
             border-bottom: 1px solid var(--color-300); // Separator line below the header
             font-weight: 500;
+
+            @media(max-width: 750px) {
+                padding: 1rem .5rem;
+            }
         }
 
-        // th:last-child {
-        //     width: 1%;
-        //     white-space: nowrap;
-        // }
     }
 
     // Table Body
@@ -65,12 +65,12 @@ table {
             td {
                 padding: .5rem 1rem; // Space around cell text
                 text-align: left; // Align cell text to the left
+
+                @media(max-width: 750px) {
+                    padding: .5rem;
+                }
             }
 
-            // td:last-child {
-            //     width: 1%;
-            //     white-space: nowrap;
-            // }
         }
     }
 }

@@ -88,15 +88,13 @@
     }
 
     /* Sidebar Buttons (Hamburger & Meatballs) */
-    &__hamburger,
-    &__meatballs  {
+    &__hamburger {
         color: inherit;
         padding: 0 .5rem;
     }
 
     /* Sidebars */
-    &__sidebar-left,
-    &__sidebar-right {
+    &__sidebar-left {
         position: fixed;
         top: var(--navbar-height);
         height: calc(100dvh - var(--navbar-height));
@@ -123,15 +121,6 @@
         transform: translateX(-100%);
         flex-direction: column;
         overflow-y: auto;
-    }
-
-    /* Right Sidebar */
-    &__sidebar-right {
-        right:0;
-        z-index: 801;
-        transform: translateX(100%);
-        flex-direction:column;
-        background-image: radial-gradient(400px circle at 5% 33%, var(--color-800), transparent);
     }
 
     /* Observer Element for Scroll Detection */
