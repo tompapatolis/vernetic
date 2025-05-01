@@ -83,7 +83,7 @@ function revertIcon(element, icon) {
  * - Exits early if no `[data-nav-active]` containers are found
  *****************************************************************************/
 
- export function activeNav() {
+export function activeNav() {
     const navActive = document.querySelectorAll('[data-nav-active]');
     if (!navActive.length) return; // Exit early if '[data-nav-active]' does not exist
 
@@ -93,9 +93,16 @@ function revertIcon(element, icon) {
         const navActiveItems    = itemGroup.querySelectorAll('a');
 
         navActiveItems.forEach(item => {
-            if ( item.dataset.match == navActiveSelected ) {
+
+            const matchCriteriaString = item.dataset.match ?? '';
+
+            if (!matchCriteriaString) return;
+
+            const matchValues = matchCriteriaString.split(',').map(value => value.trim());
+            if (matchValues.includes(navActiveSelected)) {
                 item.classList.add('active');
             }
+
         });
 
     });

@@ -23,10 +23,10 @@
     &[data-position="top"]    { margin-bottom: -1.3px; }
     &[data-position="bottom"] { margin-top: -1.3px; }
 
-    /* Divider Variants */
-    &--one   { background-image: url(../gfx/dividers/divider1.svg?v=2); aspect-ratio: 960/200; }
-    &--two   { background-image: url(../gfx/dividers/divider2.svg?v=2); aspect-ratio: 960/200; }
-    &--three { background-image: url(../gfx/dividers/divider3.svg?v=2); aspect-ratio: 960/100; }
-    &--four  { background-image: url(../gfx/dividers/divider4.svg?v=2); aspect-ratio: 960/100; }
-    &--five  { background-image: url(../gfx/dividers/divider5.svg?v=2); aspect-ratio: 960/100; }
+    /* Divider Variants - Use your own */
+    // &--one   { background-image: url(../gfx/dividers/divider1.svg?v=2); aspect-ratio: 960/200; }
+    // &--two   { background-image: url(../gfx/dividers/divider2.svg?v=2); aspect-ratio: 960/200; }
+    // &--three { background-image: url(../gfx/dividers/divider3.svg?v=2); aspect-ratio: 960/100; }
+    // &--four  { background-image: url(../gfx/dividers/divider4.svg?v=2); aspect-ratio: 960/100; }
+    // &--five  { background-image: url(../gfx/dividers/divider5.svg?v=2); aspect-ratio: 960/100; }
 }
