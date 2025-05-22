@@ -26,28 +26,6 @@ h4, .h4 {font-size: var(--fs-500em); font-weight: 500;}
 h5, .h5 {font-size: var(--fs-400em); font-weight: 500;}
 h6, .h6 {font-size: var(--fs-300em); font-weight: 500;}
 
-/* Sleek Headings */
-h1, h2, h3, h4, h5, h6 {
-    &.sleek-heading {
-        display: flex;
-        align-items: center;
-        gap: .375rem;
-        margin-bottom: 0;
-
-        svg {
-            color: var(--color-a200);
-            font-size: 1.25em;
-        }
-
-        &::after {
-            content: '';
-            height: 1px;
-            flex: 1 1 0;
-            background:  rgba(255,255,255,.15);
-        }
-    }
-}
-
 /******************************************************************************
  * PARAGRAPHS
  ******************************************************************************/

@@ -113,6 +113,17 @@ input[type="submit"] {
     width: auto;
 }
 
+/* Range Slider
+   - Removes default styling and sets custom width and cursor.
+*/
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
+}
+
 /* Chrome Autofill Styling
    - Prevents unwanted yellow autofill background in Chrome.
 */
